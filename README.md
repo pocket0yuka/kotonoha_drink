@@ -42,3 +42,6 @@
 * 履歴機能
 * イラストカラーリング機能
   (お気に入り、オリジナルページはイラスト、カラー選択して添付可能にする)
+
+### 画面遷移図
+https://www.figma.com/file/TzDlpu5ueA88VE0lWfjm1f/%E8%A8%80%E3%81%AE%E8%91%89drink?type=design&node-id=0%3A1&mode=design&t=cCWeppUp6ODTxtdM-1
