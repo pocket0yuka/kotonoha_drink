@@ -45,3 +45,6 @@
 
 ### 画面遷移図
 https://www.figma.com/file/TzDlpu5ueA88VE0lWfjm1f/%E8%A8%80%E3%81%AE%E8%91%89drink?type=design&node-id=0%3A1&mode=design&t=cCWeppUp6ODTxtdM-1
+
+### ER図
+https://i.gyazo.com/8da3d73be31a879d10ede4db23dbcbf1.png
