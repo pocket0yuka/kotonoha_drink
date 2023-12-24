@@ -22,6 +22,12 @@ COPY Gemfile Gemfile.lock /kotonoha_drink/
 # bundle installの実行
 RUN bundle install
 
+COPY package.json yarn.lock /kotonoha_drink//
+
+RUN yarn install
+
+RUN yarn add daisyui
+
 # ローカルの現在のディレクトリをコンテナ内にコピー
 COPY . /kotonoha_drink/
 

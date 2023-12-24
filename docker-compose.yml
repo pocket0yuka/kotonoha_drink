@@ -5,6 +5,7 @@ services:
     command: sh -c "rm -f tmp/pids/server.pid && ./bin/dev"
     volumes:
       - .:/kotonoha_drink
+      - node_modules:/kotonoha_drink/node_modules
     ports:
       - "3000:3000"
     depends_on:
@@ -25,3 +26,4 @@ services:
 
 volumes:
   db-store:
+  node_modules:
