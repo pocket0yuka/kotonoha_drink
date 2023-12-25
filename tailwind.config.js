@@ -5,5 +5,12 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ],
+  theme: {
+    extend: {},
+    fontFamily: {
+      pops: ["Poppins","sans-serif"],
+      maru: ["Zen Maru Gothic", "serif"],
+    },
+  },
   plugins: [require("daisyui")],
 }
