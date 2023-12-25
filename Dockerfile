@@ -39,4 +39,7 @@ ENTRYPOINT ["entrypoint.sh"]
 #コンテナがリッスンするPORTを指定
 EXPOSE 3000
 
+#コンテナ作成時にサーバーを立てる(本番環境用)
+#CMD ["rails", "server", "-b", "0.0.0.0"]
+
 CMD ["./bin/dev"]
