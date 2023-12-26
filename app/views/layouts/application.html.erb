@@ -14,8 +14,8 @@
   </head>
 
   <body class="font-maru">
-    <!-- ナビゲーションバー --> #後からログインしている時としていない時で条件分岐する
-    <%= render "shared/header_logged_out" %>
+    <!-- ナビゲーションバー --> <%# 後からログイン中のheaderを追加し条件分岐させる%> 
+    <%= render "shared/header_logged_out" %> 
     <!-- ヒーローセクション -->
     <%= yield %>
     <!-- お問い合わせ関連　-->
