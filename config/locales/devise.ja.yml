@@ -25,6 +25,7 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        name: 名前
     models:
       user: ユーザー
   devise:
@@ -140,4 +141,4 @@ ja:
       not_locked: はロックされていません。
       not_saved:
         one: エラーが発生したため %{resource} は保存されませんでした。
-        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+        other: "%{count} 件のエラーが発生した為 %{resource} は保存されませんでした。"
