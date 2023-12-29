@@ -1,71 +1,15 @@
-<!DOCTYPE html>
-  <head>
-    <title>言の葉Drinkサイト</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
-  </head>
-  
-  <body class="font-maru">
-    <!-- ナビゲーションバー -->
-    <header>
-      <di class="navbar border border-green-900 bg-base-100 bg-white">  
-        <div class="px-2 max-sm:hidden">
-          <a class="font-medium text-green-700 text-xl">言の葉</a><a class="text-black text-xl">Drink</a>
-        </div>
-        <div class="px-2 flex-1">
-          <input type="text" placeholder="ドリンク名を入力" class="font-semibold text-sm text-green-700 border border-emerald-700 bg-purple-50 input input-bordered input-md w-full max-w-md" />
-        </div>
-        <a class="px-1 text-black link link-hover hidden md:flex">ログイン</a>
-        <a class="px-1 text-green-700 link link-hover hidden md:flex">新規登録</a>
-        <div class="flex-none">
-          <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-            </div>
-            <ul tabindex="0" class="bg-white text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              <li class="border-b-2 border-indigo-700"><a>ドリンク名から探す</a></li>
-              <li><a>状況・場面から探す</a></li>
-              <li class="border-b-2 border-indigo-700"><a>投稿</a></li>
-              <li><a>ヘルプ</a></li>
-              <li class="md:hidden"><a>ログイン</a></li>
-              <li class="md:hidden"><a>新規登録</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- ヒーローセクション -->
-    <div class="hero min-h-screen bg-teal-50">
-      <div class="hero-content text-center">
-        <div class="max-w-md text-emerald-700">
-          <h1 class="sm:text-3xl text-2xl font-bold">思いを込めた一杯で、</h1>
-          <h1 class="sm:text-4xl text-2xl font-bold">日常をほんの少し特別に。<h1/>
-          <p class="py-6 text-base sm:text-lg">花に花言葉があるように、</p>
-          <p class="text-sm sm:text-base">もしもドリンクにドリンク言葉があったら？？</p>
-          <p class="py-6 text-sm sm:text-base">まずは、好きな飲み物の名前を入力してみましょう.</p>
-          <p class="py-6 text-base sm:text-lg">AIがドリンク言葉を作ってくれます!</p>
-        </div>
-      </div>
+<!-- ナビゲーションバー -->
+<!-- ヒーローセクション -->
+<div class="hero min-h-screen bg-teal-50">
+  <div class="hero-content text-center">
+    <div class="max-w-md text-emerald-700">
+      <h1 class="sm:text-3xl text-2xl font-bold">思いを込めた一杯で、</h1>
+      <h1 class="sm:text-4xl text-2xl font-bold">日常をほんの少し特別に。</h1>
+      <p class="py-6 text-base sm:text-lg">花に花言葉があるように、</p>
+      <p class="text-sm sm:text-base">もしもドリンクにドリンク言葉があったら？？</p>
+      <p class="py-6 text-sm sm:text-base">まずは、好きな飲み物の名前を入力してみましょう.</p>
+      <p class="py-6 text-base sm:text-lg">AIがドリンク言葉を作ってくれます!</p>
     </div>
-
-    <!-- お問い合わせ関連　-->
-    <footer class="footer p-8 bg-base-200 text-base-content bg-teal-950">
-      <aside>
-        <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" class="fill-current"><path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path></svg>
-        <p>言の葉Drink</p>
-      </aside> 
-      <nav class="md:py-8">
-        <a class="link link-hover">利用規約</a>
-      </nav> 
-      <nav class="md:py-8">
-        <a class="link link-hover">お問い合わせ</a>
-      </nav> 
-      <nav class="md:py-8">
-        <a class="link link-hover">プライバシーポリシー</a>
-      </nav>
-  </footer>
-
-  </body>
-</html>
+  </div>
+</div>
+<!-- お問い合わせ関連　-->

@@ -11,7 +11,8 @@ ENV EDITOR=vim
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev vim curl git \
     && curl -sL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
-    && npm install --global yarn
+    && npm install --global yarn \
+    && npm install -g esbuild
 
 # testfileディレクトリの作成
 WORKDIR /kotonoha_drink
@@ -22,14 +23,23 @@ COPY Gemfile Gemfile.lock /kotonoha_drink/
 # bundle installの実行
 RUN bundle install
 
-COPY package.json yarn.lock /kotonoha_drink//
+COPY package.json yarn.lock /kotonoha_drink/
 
 RUN yarn install
 
 RUN yarn add daisyui
 
+RUN yarn add @hotwired/turbo-rails @hotwired/stimulus
+
+
 # ローカルの現在のディレクトリをコンテナ内にコピー
 COPY . /kotonoha_drink/
+
+RUN yarn build
+
+RUN yarn build:css
+
+RUN bin/rails assets:precompile
 
 # entrypoint.shの設定
 COPY entrypoint.sh /usr/bin/
@@ -40,6 +50,6 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 #コンテナ作成時にサーバーを立てる(本番環境用)
-#CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
 
-CMD ["./bin/dev"]
+#CMD ["./bin/dev"]
