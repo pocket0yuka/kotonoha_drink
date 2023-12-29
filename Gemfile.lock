@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    bcrypt (3.1.20)
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
@@ -89,6 +90,15 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    devise (4.9.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    devise-i18n (1.12.0)
+      devise (>= 4.9.0)
+    devise-i18n-views (0.3.7)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -133,6 +143,7 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.15.5-aarch64-linux)
       racc (~> 1.4)
+    orm_adapter (0.5.0)
     pg (1.5.4)
     psych (5.1.2)
       stringio
@@ -164,6 +175,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.8)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (7.0.8)
       actionpack (= 7.0.8)
       activesupport (= 7.0.8)
@@ -177,6 +191,9 @@ GEM
     regexp_parser (2.8.3)
     reline (0.4.1)
       io-console (~> 0.5)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.2.6)
     rubyzip (2.3.2)
     selenium-webdriver (4.16.0)
@@ -201,6 +218,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -222,12 +241,16 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  devise
+  devise-i18n
+  devise-i18n-views
   dotenv-rails
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)
+  rails-i18n
   selenium-webdriver
   sprockets-rails
   stimulus-rails
