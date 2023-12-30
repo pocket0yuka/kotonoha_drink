@@ -21,7 +21,7 @@
           <li class="border-b-2 border-indigo-700"><a>状況・場面から探す</a></li>
           <li class="border-b-2 border-indigo-700"><a>投稿</a></li>
           <li><a>ヘルプ</a></li>
-          <li><a>ログアウト</a></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
     </div>
