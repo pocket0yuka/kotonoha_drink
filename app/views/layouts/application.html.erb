@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>KotonohaDrink</title>
+    <script src="https://kit.fontawesome.com/eb48d43c42.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
@@ -15,7 +16,11 @@
 
   <body class="font-maru">
     <!-- ナビゲーションバー --> <%# 後からログイン中のheaderを追加し条件分岐させる%> 
-    <%= render "shared/header_logged_out" %> 
+    <% if user_signed_in? %>
+      <%= render "shared/header_logged_in"%>
+    <% else %>
+      <%= render "shared/header_logged_out" %>
+    <% end %>
     <!-- ヒーローセクション -->
     <%= yield %>
     <!-- お問い合わせ関連　-->
