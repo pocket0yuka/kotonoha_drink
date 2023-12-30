@@ -1,7 +1,13 @@
 version: '3.8'
 services:
   web:
-    build: .
+    build: 
+      context: .
+      args:
+        DB_USERNAME: ${DB_USERNAME}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_HOST: ${DB_HOST}
+        DB_PORT: ${DB_PORT}
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     #command: sh -c "rm -f tmp/pids/server.pid && ./bin/dev"
     volumes:
