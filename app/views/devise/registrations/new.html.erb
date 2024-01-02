@@ -1,0 +1,50 @@
+<div class="min-h-screen bg-teal-50">
+  <div class="hero-content text-center w-full">
+    <div class="max-w-md w-full">
+      <div>
+        <h1 class="text-2xl font-bold p-8">新規登録</h1>
+      </div>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field p-4">
+          <%= f.label :名前 %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "name", class: "input input-bordered w-full max-w-xs"  %>
+        </div>
+
+        <div class="field p-4">
+          <%= f.label :メールアドレス %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@example.com", class: "input input-bordered w-full max-w-xs" %>
+        </div>
+
+        <div class="field p-4">
+          <%= f.label :パスワード %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class: "input input-bordered w-full max-w-xs"%>
+        </div>
+
+        <div class="field p-4">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password", class: "input input-bordered w-full max-w-xs" %>
+        </div>
+
+        <div class="actions p-8 text-green-700">
+          <%= f.submit "新規登録" %>
+        </div>
+      <% end %>
+
+      <hr class="my-4 p-8 border-t-8 border-purple-800" />
+
+      <div class="p-8">
+        <%= render "shared/google_logged_in" %>
+      </div>
+
+      <div class="font-bold text-black p-8">
+      <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

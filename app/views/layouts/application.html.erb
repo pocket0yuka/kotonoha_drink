@@ -4,6 +4,10 @@
     <title>KotonohaDrink</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&family=Roboto:wght@500&family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/eb48d43c42.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -14,8 +18,12 @@
   </head>
 
   <body class="font-maru">
-    <!-- ナビゲーションバー --> <%# 後からログイン中のheaderを追加し条件分岐させる%> 
-    <%= render "shared/header_logged_out" %> 
+    <!-- ナビゲーションバー -->
+    <% if user_signed_in? %>
+      <%= render "shared/header_logged_in"%>
+    <% else %>
+      <%= render "shared/header_logged_out" %>
+    <% end %>
     <!-- ヒーローセクション -->
     <%= yield %>
     <!-- お問い合わせ関連　-->
