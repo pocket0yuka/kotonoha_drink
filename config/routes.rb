@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #Userがログインしている場合のアクセス
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
-    get 'mypage', to: 'users#show', as: :user_mypage
+    resource :profile, only: %i[show edit update]
   end
 
   root "homes#index"

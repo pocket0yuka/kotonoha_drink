@@ -24,6 +24,8 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev vim curl 
     && npm install --global yarn \
     && npm install -g esbuild
 
+RUN apt-get update -y && apt-get install -y imagemagick
+
 # testfileディレクトリの作成
 WORKDIR /kotonoha_drink
 

@@ -61,6 +61,10 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'omniauth-google-oauth2'
 
+gem 'carrierwave'
+
+gem "mini_magick"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
