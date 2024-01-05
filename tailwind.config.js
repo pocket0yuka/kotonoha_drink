@@ -12,5 +12,22 @@ module.exports = {
       maru: ["Zen Maru Gothic", "serif"],
     },
   },
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+        "primary": "#15803d",
+        "secondary": "#b45309",
+        "accent": "#a21caf",
+        "neutral": "#e7e5e4",
+        "base-100": "#f3f4f6",
+        "info": "#f3f4f6",
+        "success": "#ffffff",
+        "warning": "#ffffff",
+        "error": "#be123c",
+        },
+      },
+    ],
+  },
   plugins: [require("daisyui")],
 }

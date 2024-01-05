@@ -1,0 +1,29 @@
+<div class=" min-h-screen bg-teal-50">
+
+
+
+  <div class="bg-white p-8 shadow">
+    <!-- アバター画像 -->
+    <div class="avatar">
+      <div class="w-24 rounded-full">
+        <%= image_tag @user.avatar.url, class: "rounded-full" %>
+      </div>
+    </div>
+
+    <!-- ユーザー情報 -->
+    <div class="text-right">
+      <h2 class="text-lg font-bold mb-2"><%= @user.name %></h2>
+      <p class="text-sm text-gray-600 mb-4"><i class="fa-regular fa-envelope"></i> <%= @user.email %></p>
+      <p class="text-sm text-gray-600"><i class="fa-solid fa-whiskey-glass"></i>+<i class="fa-regular fa-heart"></i> <%= @user.favorite_drink %></p>
+    </div>
+    <!-- 編集リンク -->
+    <div>
+      <%= link_to "編集", edit_profile_path %>
+    </div>
+
+  </div>
+
+
+
+</div>
+
