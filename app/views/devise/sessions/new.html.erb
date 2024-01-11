@@ -2,34 +2,37 @@
   <div class="hero-content text-center w-full">
     <div class="max-w-md w-full">
       <div>
-        <h1 class="text-2xl font-bold p-8">ログイン画面</h1>
+        <h1 class="text-4xl text-green-700 font-bold p-8">ログイン画面</h1>
       </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
         <div class="field p-8">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@example.com", class: "input input-bordered w-full max-w-xs" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "input input-bordered w-full max-w-xs" %>
         </div>
 
 
         <div class="field p-8">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password", placeholder: "password", class: "input input-bordered w-full max-w-xs" %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "input input-bordered w-full max-w-xs" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
-          <div class="form-control">
+          <div class="form-control items-center">
             <label class="label cursor-pointer">
               <span class="label-text">ログインを記憶する</span>
               <%= f.check_box :remember_me, class: "checkbox", checked: "checked" %>
             </label>
           </div>
         <% end %>
-
-        <div class="actions p-8 text-green-700 text-xl">
-          <%= f.submit "ログイン" %>
+        <div class="actions p-8">
+          <%= f.submit "ログイン", class: "btn w-full max-w-xs bg-teal-600 hover:bg-teal-800 text-neutral-50" %>
         </div>
       <% end %>
+
+      <hr class="my-4 p-8 border-t-3 border-purple-800" />
+
+      <div>
+        <%= render "shared/google_logged_in" %>
+      </div>
 
       <div class="p-8 text-black">
         <%= render "devise/shared/links" %>

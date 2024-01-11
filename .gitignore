@@ -37,3 +37,8 @@
 
 # 環境設定ファイル
 .env
+
+/config/credentials/development.key
+
+/public/uploads/
+app/assets/images/

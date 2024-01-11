@@ -47,13 +47,23 @@ gem "bootsnap", require: false
 
 gem "dotenv-rails"
 
-gem 'devise'
+gem "devise", "~> 4.9"
 
 gem 'devise-i18n'
 
 gem 'devise-i18n-views'
 
 gem 'rails-i18n'
+
+gem 'omniauth'
+
+gem 'omniauth-rails_csrf_protection'
+
+gem 'omniauth-google-oauth2'
+
+gem 'carrierwave'
+
+gem "mini_magick"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

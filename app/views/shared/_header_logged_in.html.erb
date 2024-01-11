@@ -1,29 +1,97 @@
 <!-- ナビゲーションバー(ログイン中) -->
 <header>
-  <div class="navbar border border-green-900 bg-base-100 bg-white">  
-    <div class="px-2 max-sm:hidden">
-      <a class="font-medium text-green-700 text-xl">言の葉</a><a class="text-black text-xl">Drink</a>
-    </div>
-    <div class="px-2 flex-1">
-      <input type="text" placeholder="キーワードから探す" class="font-semibold text-sm text-green-700 border border-emerald-700 bg-purple-50 input input-bordered input-md w-full max-w-md" />
-    </div>
-
-    <i class="p-2 fa-solid fa-bell fa-xl" style="color: #a95ec5;"></i>
-    <i class="p-2 fa-regular fa-heart fa-xl" style="color: #c02fca;"></i>
-    <div class="flex-none">
-      <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+  <div class="drawer">
+    <input id="my-drawer-3" type="checkbox" class="drawer-toggle" /> 
+    <div class="drawer-content">
+      <!-- Navbar -->
+      <div class="w-full navbar bg-white">
+        <div class="flex-none ">
+          <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </label>
+        </div> 
+        <div class="flex-1 px-2 mx-2 max-sm:hidden"><a class="font-medium text-green-700 text-xl">言の葉</a><a class="text-black text-xl">Drink</a></div>
+        <div class="px-2 flex-1">
+          <input type="text" placeholder="キーワードから探す" class="font-semibold text-sm text-green-700 border border-emerald-700 bg-purple-50 input input-bordered input-md w-full max-w-md" />
         </div>
-        <ul tabindex="0" class="bg-white text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li class="border-b-2 border-indigo-700"><a>マイページ</a></li>
-          <li><a>ドリンク名から探す</a></li>
-          <li class="border-b-2 border-indigo-700"><a>状況・場面から探す</a></li>
-          <li class="border-b-2 border-indigo-700"><a>投稿</a></li>
-          <li><a>ヘルプ</a></li>
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-        </ul>
+        <div class="flex-none hidden lg:block">
+          <ul class="menu menu-horizontal">
+            <!-- Navbar menu content here -->
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa-solid fa-right-from-bracket fa-sm"></i>ログアウト
+              <% end %>
+            </li>
+            
+            <li>
+              <a>
+                <i class="fa-solid fa-champagne-glasses fa-sm"></i>状況・場面から検索
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </div> 
+    <div class="drawer-side">
+      <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> 
+      <ul class="menu p-4 w-80 min-h-full bg-stone-300">
+        <!-- Sidebar content here -->
+        <li>
+        <a>
+          <i class="fa-solid fa-house fa-sm"></i>ホーム
+        </a>
+        </li>
+  
+        <li>
+          <a>
+          <i class="fa-regular fa-bookmark fa-sm"></i>ブックマーク
+          </a>
+        </li>
+
+        <li>
+          <a>
+            <i class="fa-solid fa-champagne-glasses fa-sm"></i>状況・場面から検索
+          </a>
+        </li>
+
+        <li>
+          <a>
+            <i class="fa-solid fa-whiskey-glass fa-sm"></i>自分でドリンク言葉を作る
+          </a>
+        </li>
+
+        <li>
+          <a>
+            <i class="fa-solid fa-pen fa-sm"></i>投稿
+          </a>
+        </li>
+
+        <li>
+          <a>
+            <i class="fa-solid fa-gear fa-sm"></i>設定
+          </a>
+        </li>
+
+        <li>
+          <a>
+            <i class="fa-regular fa-bell fa-sm"></i>通知
+          </a>
+        </li>
+
+        <li>
+          <a>
+            <i class="fa-regular fa-circle-question fa-sm"></i>ヘルプ
+          </a>
+        </li>
+
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket fa-sm"></i>ログアウト
+          <% end %>
+        </li>
+
+        <li><a>Sidebar Item 2</a></li>
+      </ul>
     </div>
   </div>
 </header>
