@@ -2,4 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "google_auth";
+/* app/assets/stylesheets/application.tailwind.css */
+
+/* サイドバーにz-indexを適用 */
+.drawer-side {
+  z-index: 2; /* 他の要素よりも上に表示 */
+}
+
+.modal-content {
+  display: flex; /* Flexboxを有効化 */
+  flex-direction: column; /* 子要素を縦方向に並べる */
+  justify-content: center; /* 子要素を垂直方向に中心に配置 */
+  align-items: center; /* 子要素を水平方向に中心に配置 */
+  height: 100%; /* 親要素と同じ高さにする */
+}
