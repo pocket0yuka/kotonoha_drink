@@ -300,6 +300,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   dotenv-rails
+  faraday
   jbuilder
   jsbundling-rails
   mini_magick

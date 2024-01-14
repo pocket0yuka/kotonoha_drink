@@ -45,25 +45,38 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# 環境変数を管理し、.envファイルからアプリケーションに読み込むためのGem
 gem "dotenv-rails"
 
+# ユーザー認証のための柔軟な認証ソリューションを提供するGem
 gem "devise", "~> 4.9"
 
+# Deviseの多言語対応を提供するGem
 gem 'devise-i18n'
 
+# Devise用の多言語化されたビューを提供するGem
 gem 'devise-i18n-views'
 
+# Railsアプリケーションの多言語対応をサポートするGem
 gem 'rails-i18n'
 
+# ソーシャルログインなど、外部プロバイダを使った認証機能を提供するGem
 gem 'omniauth'
 
+# OmniauthでのCross-Site Request Forgery対策を提供するGem
 gem 'omniauth-rails_csrf_protection'
 
+# Googleアカウントによる認証をOmniauthを介して行うためのGem
 gem 'omniauth-google-oauth2'
 
+# ファイルアップロードを管理するためのGem
 gem 'carrierwave'
 
+# 画像の処理（リサイズ、変換など）を行うためのMiniMagickをサポートするGem
 gem "mini_magick"
+
+# HTTPリクエストの実行とAPI通信のためのRubyライブラリ
+gem 'faraday'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
