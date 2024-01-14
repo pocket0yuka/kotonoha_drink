@@ -1,6 +1,9 @@
 # ベースイメージの指定
 FROM ruby:3.2.2-slim
 
+# 本番環境用の環境変数を設定
+#ENV RAILS_ENV="production"
+
 # 環境変数の設定
 ARG DB_USERNAME
 ARG DB_PASSWORD
