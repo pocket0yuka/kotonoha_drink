@@ -16,7 +16,18 @@ class OpenAiService
         temperature: 0.7
       })
 
-      responsed_drink_data(response)
+    responsed_drink_data(response)
+  end
+
+  def generate_image_url(drink_name)
+    response = @client.images.generate(
+      parameters: {
+        model: "dall-e-2",
+        prompt: "#{drink_name}の飲み物をアップで撮影したような画像にしてください。白からグレーを基調とした背景にしてください。光の当たり方や反射を工夫し、写実画のように表現してください。",
+        size: "256x256"
+      })
+
+    response.dig("data", 0, "url")
   end
 
   private
