@@ -75,8 +75,8 @@ gem 'carrierwave'
 # 画像の処理（リサイズ、変換など）を行うためのMiniMagickをサポートするGem
 gem "mini_magick"
 
-# HTTPリクエストの実行とAPI通信のためのRubyライブラリ
-gem 'faraday'
+# openAIと通信するgem
+gem "ruby-openai"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

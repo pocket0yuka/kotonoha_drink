@@ -5,7 +5,10 @@
       <a class="font-medium text-green-700 text-xl">言の葉</a><a class="text-black text-xl">Drink</a>
     </div>
     <div class="px-8 flex-1">
-      <input type="text" placeholder="ドリンク名を入力" class="font-semibold text-sm text-green-700 border border-emerald-700 bg-purple-50 input input-bordered input-md w-full max-w-lg" />
+      <%= form_tag drinkwords_path, method: :get do %>
+        <%= text_field_tag :keyword, nil, placeholder: "ドリンク名を入力", class: "font-semibold text-sm text-green-700 border border-emerald-700 bg-purple-50 input input-bordered input-md w-full max-w-lg" %>
+        <%= submit_tag "検索", class: "..." %>
+      <% end %>
     </div>
     <div class="flex-none">
       <%= link_to 'ログイン', new_user_session_path, class: "px-8 text-black link link-hover hidden md:flex" %>

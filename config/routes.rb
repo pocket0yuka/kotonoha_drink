@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
 
   root "homes#index"
+  resource :drinkwords, only: %i[show]
 end

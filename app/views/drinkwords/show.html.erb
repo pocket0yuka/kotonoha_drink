@@ -1,0 +1,15 @@
+<div class="min-h-screen bg-teal-50 p-4">
+  <% if @generated_results.present? %>
+    <h1>ドリンク言葉生成結果</h1>
+
+    <div>
+      <p>ドリンク名: <%= @generated_results[:drink_name] %></p>
+      <p>ドリンク言葉: <%= @generated_results[:drink_word] %></p>
+      <p>ドリンク豆情報: <%= @generated_results[:drink_info] %></p>
+      <p>他の候補: <%= @generated_results[:alternatives] %></p>
+    </div>
+
+  <% else %>
+    <p>ドリンク情報は見つかりませんでした。</p>
+  <% end %>
+</div>
