@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for kotonoha-drink on 2023-12-25T14:42:58+09:00
+# fly.toml app configuration file generated for kotonohadrink on 2024-01-13T04:14:42+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "kotonoha-drink"
+app = "kotonohadrink"
 primary_region = "nrt"
 
 [build]

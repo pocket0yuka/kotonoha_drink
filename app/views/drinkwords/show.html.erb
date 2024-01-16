@@ -1,0 +1,27 @@
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <% if @generated_results.present? %>
+      <% if @image_url.present? %>
+        <img src="<%= @image_url %>" alt="<%= @generated_results[:drink_name] %>の画像" class="max-w-sm rounded-lg shadow-2xl" />
+      <% else %>
+        <div class="placeholder max-w-sm rounded-lg shadow-2xl">
+          <p class="text-gray-500">画像はありません。</p>
+        </div>
+      <% end %>
+
+      <div>
+        <h1 class="text-5xl font-bold">ドリンク言葉生成結果</h1>
+        <div class="py-6">
+          <p class="text-lg"><strong>ドリンク名:</strong> <%= @generated_results[:drink_name] %></p>
+          <p class="text-lg"><strong>ドリンク言葉:</strong> <%= @generated_results[:drink_word] %></p>
+          <p class="text-lg"><strong>ドリンク豆情報:</strong> <%= @generated_results[:drink_info] %></p>
+          <p class="text-lg"><strong>他の候補:</strong> <%= @generated_results[:alternatives].join(", ") %></p>
+        </div>
+      </div>
+    <% else %>
+      <div>
+        <h1 class="text-5xl font-bold">ドリンク情報は見つかりませんでした。</h1>
+      </div>
+    <% end %>
+  </div>
+</div>

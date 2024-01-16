@@ -10,6 +10,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('drink-search-form');
+        form.addEventListener('submit', function(e) {
+          const keyword = form.elements['keyword'].value;
+          if (keyword.trim() === '') {
+            e.preventDefault();
+            // キーワードが空の場合は送信を阻止し、必要に応じてユーザーに警告を表示
+            alert("ドリンク名を入力してください。");
+          }
+        });
+      });
+    </script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

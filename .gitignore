@@ -39,3 +39,7 @@
 .env
 
 /config/credentials/development.key
+
+/public/uploads/
+app/assets/images/
+/config/credentials/production.key
