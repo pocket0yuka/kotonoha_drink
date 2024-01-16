@@ -1,5 +1,4 @@
 <head>
-  <!-- 他のヘッダー要素 -->
   <script>
     function openEditProfileModal() {
       var modal = document.getElementById('edit_profile_modal');
@@ -14,22 +13,20 @@
 </head>
 
 <div class=" min-h-screen bg-teal-50 p-4">
-  <div class="bg-white p-8 shadow max-w-md flex justify-center">
+  <div class="bg-white p-8 shadow max-w-md flex items-end">
     <!-- アバター画像 -->
-    <div class="avatar p-6 float-left">
+    <div class="avatar p-4 float-left">
       <div class="w-24 rounded-full">
         <%= image_tag @user.avatar.url %>
       </div>
     </div>
-
     <!-- ユーザー情報 -->
-    <div class="text-left">
+    <div class="p-6 text-left">
       <h2 class="text-lg text-center font-bold mb-2"><%= @user.name %></h2>
       <p class="text-sm text-gray-600 mb-4"><i class="fa-regular fa-envelope"></i> <%= @user.email %></p>
       <p class="text-sm text-gray-600"><i class="fa-solid fa-whiskey-glass"></i>+<i class="fa-regular fa-heart"></i> <%= @user.favorite_drink %></p>
-      
-
-
+    </div>
+    <!-- 編集リンク -->
     <div class="p-2 text-right">
       <%= link_to "編集", "javascript:void(0);", onclick: "openEditProfileModal()" %>
       <dialog id="edit_profile_modal" class="modal">
@@ -41,14 +38,8 @@
         </div>
       </dialog>
     </div>
-
-
-    </div>
-    <!-- 編集リンク -->
   </div>
-
-
+  
   <!-- アイコンメニュー -->
     <%= render "shared/profile" %>
 </div>
-

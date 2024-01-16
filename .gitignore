@@ -42,3 +42,4 @@
 
 /public/uploads/
 app/assets/images/
+/config/credentials/production.key

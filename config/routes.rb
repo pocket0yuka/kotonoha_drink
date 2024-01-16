@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   end
 
   root "homes#index"
+  resource :drinkwords, only: %i[show]
+  get '/menus', to: 'menus#index'
 end
