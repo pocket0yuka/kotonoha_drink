@@ -1,4 +1,4 @@
-class DrinkwordsController < ApplicationController
+class GeneratedresultsController < ApplicationController
   def show
     if params[:keyword].present?
       service = OpenAiService.new
