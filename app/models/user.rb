@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :generatedresults, dependent: :destroy
+  
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
