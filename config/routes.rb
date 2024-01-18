@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
 
   root "homes#index"
-  resource :drinkwords, only: %i[show]
+  get '/generatedresults', to: 'generatedresults#show'
   get '/drink_menus', to: 'drink_menus#index'
 end

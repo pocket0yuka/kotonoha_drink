@@ -6,8 +6,8 @@ class OpenAiService
   def generate_drink_words(keyword)
     response = @client.chat(
       parameters: {
-        #model: "gpt-4-1106-preview",
-        model: "gpt-3.5-turbo-1106",
+        model: "gpt-4-1106-preview",
+        #model: "gpt-3.5-turbo-1106",
         response_format: { type: "json_object" },
         messages: [
           {role: "system", content: "あなたはドリンクに関するエキスパートです。次に続くのはドリンクに関する情報のリクエストです。
