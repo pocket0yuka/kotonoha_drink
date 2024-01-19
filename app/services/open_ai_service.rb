@@ -22,6 +22,10 @@ class OpenAiService
       })
 
     responsed_drink_data(response)
+  rescue StandardError => e
+    # エラーハンドリング: ログにエラーを記録
+    Rails.logger.error("OpenAI API Error: #{e.message}")
+    nil
   end
 
   #def generate_image_url(drink_name)
@@ -33,6 +37,10 @@ class OpenAiService
       #})
 
     #response.dig("data", 0, "url")
+  #rescue StandardError => e
+    # エラーハンドリング: ログに日本語でエラーを記録
+    #Rails.logger.error("OpenAI画像生成APIエラー: #{e.message}")
+    #nil
   #end
 
   private

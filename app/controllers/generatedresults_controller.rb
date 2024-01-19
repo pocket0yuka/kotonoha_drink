@@ -7,6 +7,12 @@ class GeneratedresultsController < ApplicationController
       @generated_results = service.generate_drink_words(params[:keyword])
       # ドリンク名から画像のURLを取得
       #@image_url = service.generate_image_url(@generated_results[:drink_name]) if @generated_results.present?
+
+      #if @generated_results.nil? || @image_url.nil?
+        # APIからの応答がない場合の処理
+        #flash[:alert] = 'ドリンクの情報または画像を取得できませんでした。'
+        #redirect_to some_path # 適切なパスにリダイレクト
+      #end
     else
       @generated_results = nil
       #@image_url = nil
