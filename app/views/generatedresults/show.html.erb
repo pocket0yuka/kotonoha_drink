@@ -26,7 +26,8 @@
               </div>
               <div>
                 <% if user_signed_in? && @generated_results.present? %>
-                  <%= form_with model: Generatedresult.new, url: generatedresults_path, local: true do |form| %>
+                  <%= form_with model: Bookmark.new, url: bookmarks_path, local: true do |form| %>
+                    <!-- フォームのフィールド -->
                     <%= form.hidden_field :generated_drink, value: @generated_results[:first_candidate][:drink_name] %>
                     <%= form.hidden_field :generated_word, value: @generated_results[:first_candidate][:drink_word] %>
                     <%= form.hidden_field :generated_info, value: @generated_results[:first_candidate][:drink_info] %>
