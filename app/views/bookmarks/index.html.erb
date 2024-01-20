@@ -2,9 +2,16 @@
   <div class="text-center">
     <h1 class="text-4xl font-bold mb-6">生成結果一覧</h1>
 
+    <!-- 検索と並び替えフォーム -->
+    <%= form_tag bookmarks_path, method: :get, class: "mb-4" do %>
+      <%= text_field_tag :search, params[:search], placeholder: "検索...", class: "input input-bordered" %>
+      <%= select_tag :order, options_for_select({ '新しい順': 'created_at_desc', '古い順': 'created_at_asc', 'あいうえお順': 'alphabetical' }, params[:order]), prompt: "並び替え", class: "select select-bordered" %>
+      <%= submit_tag "検索と並び替え", class: "btn btn-primary" %>
+    <% end %>
+
     <div class="overflow-x-auto">
       <table class="table w-full">
-        <!-- ヘッダー -->
+        <!-- テーブルのヘッダー -->
         <thead>
           <tr>
             <th class="bg-base-300">ドリンク名</th>
@@ -20,7 +27,7 @@
               <td><%= result.generated_word %></td>
               <td>
                 <%= link_to '詳細を見る', bookmark_path(result), class: "btn btn-primary btn-sm" %>
-                <%= link_to '削除',  bookmark_path(result), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
+                <%= link_to '削除', bookmark_path(result), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
               </td>
             </tr>
           <% end %>

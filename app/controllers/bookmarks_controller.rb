@@ -3,9 +3,9 @@ class BookmarksController < ApplicationController
   before_action :authenticate_user!, only: %i[index show create destroy ]
   before_action :set_bookmark, only: %i[show destroy]
 
-  # ユーザーの生成結果を一覧表示
+  # ユーザーの生成結果を一覧表示(並び替え、検索あり、モデル参照)
   def index
-    @bookmarks = current_user.bookmarks
+    @bookmarks = current_user.bookmarks.search(params[:search]).order_by(params[:order])
   end
 
   def show
