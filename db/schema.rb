@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_133310) do
     t.bigint "user_id", null: false
     t.string "generated_drink"
     t.string "generated_word"
-    t.string "generated_info"
+    t.text "generated_info"
     t.string "image_url"
     t.text "memo"
     t.boolean "is_original"

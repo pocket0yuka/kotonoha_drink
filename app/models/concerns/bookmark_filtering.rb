@@ -15,6 +15,8 @@ module BookmarkFiltering
         order(created_at: :asc)
       when 'alphabetical'
         order('generated_drink ASC')
+      when 'is_original'
+        order(is_original: :desc)
       else
         order(created_at: :desc) # デフォルトの並び順
       end

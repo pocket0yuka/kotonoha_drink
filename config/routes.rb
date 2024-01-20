@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   get '/drink_menus', to: 'drink_menus#index'
   get '/generatedresults', to: 'generatedresults#show'
   resource :profile, only: %i[show edit update]
-  resources :bookmarks, only: %i[index create destroy show]
+  resources :bookmarks
 end

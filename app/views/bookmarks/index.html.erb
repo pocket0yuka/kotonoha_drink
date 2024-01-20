@@ -5,7 +5,7 @@
     <!-- 検索と並び替えフォーム -->
     <%= form_tag bookmarks_path, method: :get, class: "mb-4" do %>
       <%= text_field_tag :search, params[:search], placeholder: "検索...", class: "input input-bordered" %>
-      <%= select_tag :order, options_for_select({ '新しい順': 'created_at_desc', '古い順': 'created_at_asc', 'あいうえお順': 'alphabetical' }, params[:order]), prompt: "並び替え", class: "select select-bordered" %>
+      <%= select_tag :order, options_for_select({ '新しい順': 'created_at_desc', '古い順': 'created_at_asc', 'あいうえお順': 'alphabetical', 'オリジナル順': 'is_original' }, params[:order]), prompt: "並び替え", class: "select select-bordered" %>
       <%= submit_tag "検索と並び替え", class: "btn btn-primary" %>
     <% end %>
 
@@ -21,13 +21,21 @@
         </thead>
         <!-- テーブルのボディ -->
         <tbody>
-          <% @bookmarks.each do |result| %>
+          <% @bookmarks.each do |bookmark| %>
             <tr>
-              <td><%= result.generated_drink %></td>
-              <td><%= result.generated_word %></td>
               <td>
-                <%= link_to '詳細', bookmark_path(result), class: "btn btn-primary btn-sm" %>
-                <%= link_to '削除', bookmark_path(result), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
+                <!-- is_original の場合にアイコンを表示 -->
+                <% if bookmark.is_original %>
+                  <i class="fa-solid fa-whiskey-glass fa-sm"></i>
+                <% else %>
+                  <i class="fa-solid fa-robot fa-sm"></i>
+                <% end %>
+                <%= bookmark.generated_drink %>
+              </td>
+              <td><%= bookmark.generated_word %></td>
+              <td>
+                <%= link_to '詳細', bookmark_path(bookmark), class: "btn btn-primary btn-sm" %>
+                <%= link_to '削除', bookmark_path(bookmark), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
               </td>
             </tr>
           <% end %>

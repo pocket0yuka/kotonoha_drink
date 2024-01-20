@@ -5,7 +5,7 @@ class CreateBookmarks < ActiveRecord::Migration[7.0]
 
       t.string :generated_drink
       t.string :generated_word
-      t.string :generated_info
+      t.text :generated_info
       t.string :image_url
       t.text :memo
       t.boolean :is_original

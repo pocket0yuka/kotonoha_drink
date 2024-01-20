@@ -1,26 +1,73 @@
+<head>
+  <script>
+    function openEditBookmarkModal() {
+      var modal = document.getElementById('edit_bookmark_modal');
+      modal.showModal();
+    }
+
+    function closeEditBookmarkModal() {
+      var modal = document.getElementById('edit_bookmark_modal');
+      modal.close();
+    }
+  </script>
+</head>
+
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content flex-col lg:flex-row-reverse">
     <!-- 画像の表示 -->
-    <% if @bookmark.image_url.present? %>
-      <img src="<%= @generated_result.image_url %>" alt="<%= @generated_result.generated_drink %>の画像" class="max-w-sm rounded-lg shadow-2xl" />
-    <% else %>
-      <div class="placeholder max-w-sm rounded-lg shadow-2xl">
-        <p class="text-gray-500">画像はありません。</p>
-      </div>
-    <% end %>
+    <div class="max-w-md mx-auto">
+      <% if @bookmark.image_url.present? %>
+        <img src="<%= @bookmark.image_url %>" alt="<%= @bookmark.generated_drink %>の画像" class="rounded-lg shadow-2xl" />
+      <% else %>
+        <div class="placeholder rounded-lg shadow-2xl p-4">
+          <p class="text-gray-500">画像はありません。</p>
+        </div>
+      <% end %>
+    </div>
 
-    <div class="card w-full bg-base-100 shadow-xl">
+    <!-- カード -->
+    <div class="card w-full bg-base-100 shadow-xl max-w-lg mx-auto">
       <div class="card-body">
-        <h2 class="card-title text-4xl">ドリンク情報</h2>
+        <h2 class="card-title text-4xl mb-4">ドリンク情報</h2>
+
+        <!-- is_original の場合にアイコンを表示 -->
+        <div class="mb-4">
+          <% if @bookmark.is_original %>
+            <i class="fa-solid fa-whiskey-glass fa-sm text-primary"></i>
+          <% else %>
+            <i class="fa-solid fa-robot fa-sm"></i>
+          <% end %>
+          <span class="text-lg ml-2"><strong>ドリンク名:</strong> <%= @bookmark.generated_drink %></span>
+        </div>
 
         <div class="mb-4">
-          <p class="text-lg"><strong>ドリンク名:</strong> <%= @bookmark.generated_drink %></p>
           <p class="text-lg"><strong>ドリンク言葉:</strong> <%= @bookmark.generated_word %></p>
+        </div>
+
+        <div class="mb-4">
           <p class="text-lg"><strong>ドリンク情報:</strong> <%= @bookmark.generated_info %></p>
         </div>
 
+        <div class="mb-4">
+          <% if @bookmark.memo.present? %>
+            <p class="text-lg"><strong>メモ:</strong> <%= @bookmark.memo %></p>
+          <% end %>
+        </div>
+
+        <div class="p-2 text-right">
+          <%= link_to "編集", "javascript:void(0);", onclick: "openEditBookmarkModal()" %>
+          <dialog id="edit_bookmark_modal" class="modal">
+            <div class="modal-box">
+              <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="closeEditBookmarkModal()">✕</button>
+              </form>
+              <%= render 'bookmarks/edit' %>
+            </div>
+          </dialog>
+        </div>
+
         <!-- 一覧に戻るリンク -->
-        <%= link_to '一覧に戻る', bookmarks_path, class: "btn btn-primary" %>
+        <%= link_to '一覧に戻る', bookmarks_path, class: "btn btn-primary mt-4" %>
       </div>
     </div>
   </div>
