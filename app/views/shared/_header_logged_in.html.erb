@@ -11,7 +11,7 @@
           </label>
         </div> 
         <div class="flex-1 px-2 mx-2 max-sm:hidden"><a class="font-medium text-green-700 text-xl">言の葉</a><a class="text-black text-xl">Drink</a></div>
-          <%= form_with url: drinkwords_path, method: :get, local: true, id: 'drink-search-form' do |form| %>
+          <%= form_with url: generatedresults_path, method: :get, local: true, id: 'drink-search-form' do |form| %>
             <%= form.text_field :keyword, placeholder: "ドリンク名を入力", class: "font-semibold text-sm text-green-700 border border-emerald-700 bg-purple-50 input input-bordered input-md w-full max-w-lg" %>
             <%= form.submit "検索", class: "btn btn-primary" %>
           <% end %>
@@ -29,6 +29,12 @@
                 <i class="fa-solid fa-champagne-glasses fa-sm"></i>状況・場面から検索
               </a>
             </li>
+
+            <li>
+              <a href="<%= drink_menus_path %>">
+                <i class="fa-solid fa-book-open fa-sm"></i>メニュー表
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -38,14 +44,20 @@
       <ul class="menu p-4 w-80 min-h-full bg-stone-300">
         <!-- Sidebar content here -->
         <li>
-        <a>
+        <a href="<%= root_path %>">
           <i class="fa-solid fa-house fa-sm"></i>ホーム
         </a>
         </li>
   
         <li>
-          <a>
+          <a href="<%= bookmarks_path %>">
           <i class="fa-regular fa-bookmark fa-sm"></i>ブックマーク
+          </a>
+        </li>
+
+        <li>
+          <a href="<%= drink_menus_path %>">
+            <i class="fa-solid fa-book-open fa-sm"></i>メニュー表
           </a>
         </li>
 
