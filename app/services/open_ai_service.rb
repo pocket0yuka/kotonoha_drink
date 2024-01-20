@@ -6,8 +6,8 @@ class OpenAiService
   def generate_drink_words(keyword)
     response = @client.chat(
       parameters: {
-        #model: "gpt-4-1106-preview",
-        model: "gpt-3.5-turbo-1106",
+        model: "gpt-4-1106-preview",
+        #model: "gpt-3.5-turbo-1106",
         response_format: { type: "json_object" },
         messages: [
           {role: "system", content: "あなたはドリンクに関するエキスパートです。次に続くのはドリンクに関する情報のリクエストです。
@@ -22,6 +22,10 @@ class OpenAiService
       })
 
     responsed_drink_data(response)
+  rescue StandardError => e
+    # エラーハンドリング: ログにエラーを記録
+    Rails.logger.error("OpenAI API Error: #{e.message}")
+    nil
   end
 
   #def generate_image_url(drink_name)
@@ -33,6 +37,10 @@ class OpenAiService
       #})
 
     #response.dig("data", 0, "url")
+  #rescue StandardError => e
+    # エラーハンドリング: ログに日本語でエラーを記録
+    #Rails.logger.error("OpenAI画像生成APIエラー: #{e.message}")
+    #nil
   #end
 
   private

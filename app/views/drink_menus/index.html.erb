@@ -6,7 +6,7 @@
         <% drinks.each do |drink| %>
           <div class="p-4 border border-gray-200 rounded hover:shadow-lg transition duration-300">
             <p class="text-lg text-gray-600 font-semibold">
-              <%= link_to drink.name, drinkwords_path(keyword: drink.name, category: drink.category), class: "text-blue-500 hover:text-blue-700" %>
+              <%= link_to drink.name, generatedresults_path(keyword: drink.name, category: drink.category), class: "text-blue-500 hover:text-blue-700" %>
             </p>
             <!-- その他のドリンク情報をここに表示 -->
           </div>
