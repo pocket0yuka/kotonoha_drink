@@ -26,7 +26,7 @@
               <td><%= result.generated_drink %></td>
               <td><%= result.generated_word %></td>
               <td>
-                <%= link_to '詳細を見る', bookmark_path(result), class: "btn btn-primary btn-sm" %>
+                <%= link_to '詳細', bookmark_path(result), class: "btn btn-primary btn-sm" %>
                 <%= link_to '削除', bookmark_path(result), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
               </td>
             </tr>
