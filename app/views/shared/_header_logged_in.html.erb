@@ -29,6 +29,12 @@
                 <i class="fa-solid fa-champagne-glasses fa-sm"></i>状況・場面から検索
               </a>
             </li>
+
+            <li>
+              <a href="<%= drink_menus_path %>">
+                <i class="fa-solid fa-book-open fa-sm"></i>メニュー表
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -38,14 +44,20 @@
       <ul class="menu p-4 w-80 min-h-full bg-stone-300">
         <!-- Sidebar content here -->
         <li>
-        <a>
+        <a href="<%= root_path %>">
           <i class="fa-solid fa-house fa-sm"></i>ホーム
         </a>
         </li>
   
         <li>
-          <a>
+          <a href="<%= bookmarks_path %>">
           <i class="fa-regular fa-bookmark fa-sm"></i>ブックマーク
+          </a>
+        </li>
+
+        <li>
+          <a href="<%= drink_menus_path %>">
+            <i class="fa-solid fa-book-open fa-sm"></i>メニュー表
           </a>
         </li>
 
