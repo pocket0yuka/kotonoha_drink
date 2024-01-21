@@ -26,16 +26,29 @@
               </div>
               <div>
                 <% if user_signed_in? && @generated_results.present? %>
-                  <%= form_with model: Bookmark.new, url: bookmarks_path, local: true do |form| %>
-                    <!-- フォームのフィールド -->
-                    <%= form.hidden_field :generated_drink, value: @generated_results[:first_candidate][:drink_name] %>
-                    <%= form.hidden_field :generated_word, value: @generated_results[:first_candidate][:drink_word] %>
-                    <%= form.hidden_field :generated_info, value: @generated_results[:first_candidate][:drink_info] %>
-                    <%= form.hidden_field :image_url, value: @image_url %>
-                    <%= form.submit "結果を保存する", class: "btn btn-primary" %>
-                  <% end %>
+                  <div class="flex items-center">
+                    <%= form_with model: Bookmark.new, url: bookmarks_path, local: true do |form| %>
+                      <!-- フォームのフィールド -->
+                      <%= form.hidden_field :generated_drink, value: @generated_results[:first_candidate][:drink_name] %>
+                      <%= form.hidden_field :generated_word, value: @generated_results[:first_candidate][:drink_word] %>
+                      <%= form.hidden_field :generated_info, value: @generated_results[:first_candidate][:drink_info] %>
+                      <%= form.hidden_field :image_url, value: @image_url %>
+                      <%= form.submit "結果を保存する", class: "btn btn-primary mr-2" %>
+                    <% end %>
+                    <!-- シェアボタン -->
+                    <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
+                      <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@generated_results[:first_candidate][:drink_name]}のドリンク言葉は#{@generated_results[:first_candidate][:drink_word]}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
+                        <i class="fa-brands fa-square-x-twitter fa-lg"></i>に投稿する
+                      <% end %>
+                    </button>
+                  </div>
                 <% else %>
-                  <p>ドリンク情報は見つかりませんでした。</p>
+                    <!-- シェアボタン -->
+                    <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
+                      <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@generated_results[:first_candidate][:drink_name]}のドリンク言葉は#{@generated_results[:first_candidate][:drink_word]}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
+                        <i class="fa-brands fa-square-x-twitter fa-lg"></i>に投稿する
+                      <% end %>
+                    </button>
                 <% end %>
               </div>
             </div>
