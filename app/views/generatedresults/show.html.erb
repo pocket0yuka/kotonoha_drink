@@ -35,8 +35,7 @@
                       <%= form.hidden_field :image_url, value: @image_url %>
                       <%= form.submit "結果を保存する", class: "btn btn-primary mr-2" %>
                     <% end %>
-
-                    <!-- Twitter シェアボタン -->
+                    <!-- シェアボタン -->
                     <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
                       <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@generated_results[:first_candidate][:drink_name]}のドリンク言葉は#{@generated_results[:first_candidate][:drink_word]}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
                         <i class="fa-brands fa-square-x-twitter fa-lg"></i>に投稿する
@@ -44,7 +43,12 @@
                     </button>
                   </div>
                 <% else %>
-                  <p>ドリンク情報は見つかりませんでした。</p>
+                    <!-- シェアボタン -->
+                    <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
+                      <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@generated_results[:first_candidate][:drink_name]}のドリンク言葉は#{@generated_results[:first_candidate][:drink_word]}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
+                        <i class="fa-brands fa-square-x-twitter fa-lg"></i>に投稿する
+                      <% end %>
+                    </button>
                 <% end %>
               </div>
             </div>
