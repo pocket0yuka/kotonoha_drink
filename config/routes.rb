@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   root "homes#index"
   # ログイン後、drink_menusにリダイレクト(application_controller参照)
   get '/drink_menus', to: 'drink_menus#index'
-  get '/generatedresults', to: 'generatedresults#show'
+  get 'generatedresults/new', to: 'generatedresults#new'
+  get 'generatedresults', to: 'generatedresults#show'
   resource :profile, only: %i[show edit update]
   resources :bookmarks
 end
