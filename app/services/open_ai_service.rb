@@ -22,6 +22,7 @@ class OpenAiService
       })
 
     responsed_drink_data(response)
+    #Rails.logger.info "OpenAI API Response: #{response.inspect}"
   rescue StandardError => e
     # エラーハンドリング: ログにエラーを記録
     Rails.logger.error("OpenAI API Error: #{e.message}")
