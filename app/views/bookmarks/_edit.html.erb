@@ -1,26 +1,26 @@
 <div class="hero min-h-screen bg-base-200">
   <%= form_with(model: @bookmark, local: true, class: "w-full max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md", method: :put) do |form| %>
-    <div class="mb-4">
+    <div class="mb-4 text-left">
       <%= form.label :generated_word, 'ドリンク言葉', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :generated_word, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
-    <div class="mb-4">
+    <div class="mb-4 text-left">
       <%= form.label :generated_info, 'ドリンク情報', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :generated_info, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
-    <div class="mb-4">
+    <div class="mb-4 text-left">
       <%= form.label :image_url, '画像URL', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :image_url, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
-    <div class="mb-4">
+    <div class="mb-4 text-left">
       <%= form.label :memo, 'メモ', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_area :memo, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", rows: 4 %>
     </div>
 
-    <div class="flex items-center justify-between">
+    <div class="justify-between">
       <%= form.submit '更新', class: 'btn btn-primary' %>
     </div>
   <% end %>

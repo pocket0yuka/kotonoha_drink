@@ -15,24 +15,24 @@
             <%= form.text_field :keyword, placeholder: "ドリンク名を入力", class: "font-semibold text-sm text-green-700 border border-emerald-700 bg-purple-50 input input-bordered input-md w-full max-w-lg" %>
             <%= form.submit "検索", class: "btn btn-primary" %>
           <% end %>
-        <div class="flex-none hidden lg:block">
+        <div class="flex-none hidden md:block">
           <ul class="menu menu-horizontal">
             <!-- Navbar menu content here -->
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa-solid fa-right-from-bracket fa-sm"></i>ログアウト
+                <i class="fa-solid fa-right-from-bracket "></i>ログアウト
               <% end %>
             </li>
             
             <li>
-              <a>
-                <i class="fa-solid fa-champagne-glasses fa-sm"></i>状況・場面から検索
+              <a href="<%= generatedresult_path %>">
+                <i class="fa-solid fa-champagne-glasses fa-sm "></i>状況・場面から検索
               </a>
             </li>
 
             <li>
               <a href="<%= drink_menus_path %>">
-                <i class="fa-solid fa-book-open fa-sm"></i>メニュー表
+                <i class="fa-solid fa-book-open fa-sm "></i>メニュー表
               </a>
             </li>
           </ul>
@@ -68,7 +68,7 @@
         </li>
 
         <li>
-          <a>
+          <a href="<%= generatedresult_path %>">
             <i class="fa-solid fa-champagne-glasses fa-sm"></i>状況・場面から検索
           </a>
         </li>
