@@ -2,6 +2,21 @@ class GeneratedresultsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   before_action :initialize_service
 
+  #storyフォーム作成
+  def new
+    @story_form = StoryForm.new
+  end
+
+  #storyフォームの入力をバリデーション処理する
+  def create
+    @story_form = StoryForm.new(story_form_params)
+    if @story_form.valid?
+      request_story(@story_form.story)
+    else
+      render :new
+    end
+  end
+
   def show
     if params[:keyword].present?
       request_keyword(params[:keyword])
@@ -13,6 +28,11 @@ class GeneratedresultsController < ApplicationController
   end
 
   private
+
+  #storyフォームのバリデーション適用パラメータを渡す
+  def story_form_params
+    params.require(:story_form).permit(:story)
+  end
 
   #サービスの初期化
   def initialize_service
