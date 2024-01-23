@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   get 'generatedresults', to: 'generatedresults#show'
   resource :profile, only: %i[show edit update]
   resources :bookmarks
+  resources :posts
 end
