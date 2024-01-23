@@ -1,46 +1,55 @@
-<div class="min-h-screen bg-gray-100 flex items-center justify-center">
-  <div class="container mx-auto max-w-md shadow-md hover:shadow-lg transition duration-300">
-    <div class="py-12 p-10 bg-white rounded-xl">
-      <div class="mb-6 text-center">
-        <h3 class="text-xl text-gray-700 font-semibold">新しい投稿を作成</h3>
+<div class="flex flex-col sm:flex-row">
+  <div class="new-post-form w-full sm:w-1/2">
+    <!-- 新規投稿フォーム -->
+
+    <div class="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div class="container mx-auto max-w-md shadow-md hover:shadow-lg transition duration-300">
+        <div class="py-12 p-10 bg-white rounded-xl">
+          <div class="mb-6 text-center">
+            <h3 class="text-xl text-gray-700 font-semibold">新しい投稿を作成</h3>
+          </div>
+
+          <%= form_with(model: @post, local: true, class: "space-y-5") do |form| %>
+            <% if @post.errors.any? %>
+              <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong class="font-bold">エラー：</strong>
+                <span><%= pluralize(@post.errors.count, "件のエラー") %>が発生しました。</span>
+                <ul class="list-disc pl-5 mt-2">
+                  <% @post.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div>
+              <%= form.label :body, "投稿内容", class: "block text-gray-700 font-medium mb-2" %>
+              <%= form.text_area :body, rows: 4, class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
+            </div>
+
+            <fieldset class="mt-4">
+              <legend class="text-gray-700 font-medium mb-2">公開設定</legend>
+              <div class="flex items-center">
+                <label class="flex items-center">
+                  <%= form.radio_button :visibility, 0, checked: @post.visibility == '非公開', class: "radio mr-2" %>
+                  <span class="label-text">非公開</span>
+                </label>
+                <label class="flex items-center mr-4">
+                  <%= form.radio_button :visibility, 1, checked: @post.visibility == '公開', class: "radio mr-2" %>
+                  <span class="label-text">公開</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="flex justify-center mt-6">
+              <%= form.submit "投稿する", class: "btn btn-primary w-full mt-4" %>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-      <%= form_with(model: @post, local: true, class: "space-y-5") do |form| %>
-        <% if @post.errors.any? %>
-          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-            <strong class="font-bold">エラー：</strong>
-            <span><%= pluralize(@post.errors.count, "件のエラー") %>が発生しました。</span>
-            <ul class="list-disc pl-5 mt-2">
-              <% @post.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <div>
-          <%= form.label :body, "投稿内容", class: "block text-gray-700 font-medium mb-2" %>
-          <%= form.text_area :body, rows: 4, class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
-        </div>
-
-        <fieldset class="mt-4">
-          <legend class="text-gray-700 font-medium mb-2">公開設定</legend>
-          <div class="flex items-center">
-            <label class="flex items-center">
-              <%= form.radio_button :visibility, 0, checked: @post.visibility == '非公開', class: "radio mr-2" %>
-              <span class="label-text">非公開</span>
-            </label>
-            <label class="flex items-center mr-4">
-              <%= form.radio_button :visibility, 1, checked: @post.visibility == '公開', class: "radio mr-2" %>
-              <span class="label-text">公開</span>
-            </label>
-          </div>
-        </fieldset>
-
-        <div class="flex justify-center mt-6">
-          <%= form.submit "投稿する", class: "px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" %>
-        </div>
-      <% end %>
     </div>
+  </div>
+  <div class="private-posts-list w-full sm:w-1/2">
+    <%= render 'private_posts', private_posts: @private_posts %>
   </div>
 </div>

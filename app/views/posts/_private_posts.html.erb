@@ -1,0 +1,18 @@
+<h1>非公開</h1> 
+<div class="flex items-center justify-center">
+  <div class="overflow-x-auto h-96">
+    <table class="table table-pin-rows table-pin-cols">
+      <tbody>
+        <tr>
+          <th>投稿一覧</th>
+        </tr>
+        <% private_posts.each do |post| %>
+          <tr>
+            <td><%= post.body %></td>
+            <td><%= post.created_at.strftime("%Y.%m.%d") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

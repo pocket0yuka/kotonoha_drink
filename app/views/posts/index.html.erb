@@ -1,0 +1,9 @@
+<div class="public-posts-list">
+  <% @public_posts.each do |post| %>
+    <div class="post">
+      <%= post.body %>
+      <!-- 他の投稿の詳細を表示 -->
+    </div>
+  <% end %>
+</div>
+

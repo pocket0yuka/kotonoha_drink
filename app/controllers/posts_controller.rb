@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.all
+    @public_posts = Post.where(visibility: Post.visibilities[:公開])
   end
 
   def show
@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.new
+    @private_posts = current_user.posts.where(visibility: Post.visibilities[:非公開])
   end
 
   def create
@@ -30,5 +31,5 @@ def set_post
 end
 
 def post_params
-  params.require(:post).permit(:body, :visibility)
+  params.require(:post).permit(:body, :visibility).merge(visibility: params[:post][:visibility].to_i)
 end
