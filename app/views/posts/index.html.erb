@@ -1,9 +1,21 @@
-<div class="public-posts-list">
-  <% @public_posts.each do |post| %>
-    <div class="post">
-      <%= post.body %>
-      <!-- 他の投稿の詳細を表示 -->
-    </div>
-  <% end %>
+<div class="min-h-screen bg-gray-100 flex flex-wrap items-center justify-center">
+  <div class="chat chat-start overflow-y-auto h-screen">
+    <% @posts.each do |post| %>
+      <div class="chat-image avatar">
+        <div class="w-10 rounded-full">
+        <%= image_tag post.user.avatar.url %>
+        </div>
+      </div>
+      <%= post.user.name %>
+      <div class="chat-bubble">
+        <div class="post">
+          <%= post.body %>
+        </div>
+      </div>
+      <time class="text-xs opacity-50"><%= l post.created_at, format: :short %></time>
+    <% end %>
+  </div> 
+  <div class="p-8">
+    <%= link_to '投稿フォームに戻る', new_post_path, class: "btn btn-primary mt-4" %>
+  </div>
 </div>
-

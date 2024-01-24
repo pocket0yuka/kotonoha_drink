@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @public_posts = Post.where(visibility: Post.visibilities[:公開])
+    @posts = Post.where(visibility: Post.visibilities[:公開]).order(created_at: :desc)
   end
 
   def show
@@ -11,25 +11,33 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.new
-    @private_posts = current_user.posts.where(visibility: Post.visibilities[:非公開])
+    @private_posts = current_user.posts.where(visibility: Post.visibilities[:非公開]).order(created_at: :desc)
   end
 
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      redirect_to @post, notice: '投稿が作成されました。'
+      redirect_after_create
     else
       render :new
     end
   end
-end
 
-private
+  private
 
-def set_post
-  @post = Post.find(params[:id])
-end
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-def post_params
-  params.require(:post).permit(:body, :visibility).merge(visibility: params[:post][:visibility].to_i)
+  def post_params
+    params.require(:post).permit(:body, :visibility).merge(visibility: params[:post][:visibility].to_i)
+  end
+
+  def redirect_after_create
+    if @post.visibility == '公開'
+      redirect_to posts_path, notice: '公開の投稿が作成されました。'
+    else
+      redirect_to @post, notice: '非公開の投稿が作成されました。'
+    end
+  end
 end

@@ -9,7 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
 
-  validates :uid, uniqueness: { scope: :provider }
+  validates :uid, uniqueness: { scope: :provider }, unless: -> { provider.blank? }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
