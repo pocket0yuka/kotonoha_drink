@@ -16,7 +16,12 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    tag_names = params[:post][:tag_names]
     if @post.save
+      if tag_names.present?
+        tags = tag_names.split(/[、,]+/).map(&:strip).uniq
+        create_tags(@post, tags)
+      end
       redirect_after_create
     else
       render :new
@@ -38,6 +43,13 @@ class PostsController < ApplicationController
       redirect_to posts_path, notice: '公開の投稿が作成されました。'
     else
       redirect_to @post, notice: '非公開の投稿が作成されました。'
+    end
+  end
+
+  def create_tags(post, tags)
+    tags.each do |tag|
+      tag = Tag.find_or_create_by(name: tag)
+      post.tags << tag
     end
   end
 end

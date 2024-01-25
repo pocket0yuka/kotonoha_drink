@@ -1,5 +1,5 @@
-<h1 class="text-lg">非公開</h1> 
-<div class="flex items-center justify-center">
+<h1 class="text-lg p-6">非公開</h1>
+<div class="flex items-center justify-center text-left">
   <div class="overflow-x-auto h-96">
     <table class="table table-pin-rows table-pin-cols">
       <tbody>
@@ -8,7 +8,18 @@
         </tr>
         <% private_posts.each do |post| %>
           <tr>
-            <td><%= post.body %></td>
+            <td>
+              <div>
+                <% post.tags.each do |tag| %>
+                  <span class="tag bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                    <%= tag.name %>
+                  </span>
+                <% end %>
+              </div>
+              <div>
+                <%= post.body %>
+              </div>
+            </td>
             <td><%= l post.created_at, format: :public_post %></td>
           </tr>
         <% end %>

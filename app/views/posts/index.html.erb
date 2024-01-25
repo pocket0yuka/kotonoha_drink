@@ -1,21 +1,30 @@
-<div class="min-h-screen bg-gray-100 flex flex-wrap items-center justify-center">
-  <div class="chat chat-start overflow-y-auto h-screen">
+<div class="min-h-screen flex flex-wrap items-center justify-center">
+  <!-- Your existing content here -->
+  <div class="overflow-y-auto h-screen w-full max-w-2xl">
     <% @posts.each do |post| %>
-      <div class="chat-image avatar">
-        <div class="w-10 rounded-full">
-        <%= image_tag post.user.avatar.url %>
+      <div class="chat chat-start">
+        <div class="chat-image avatar">
+          <div class="w-10 rounded-full">
+            <%= image_tag post.user.avatar.url %>
+          </div>
         </div>
-      </div>
-      <%= post.user.name %>
-      <div class="chat-bubble">
-        <div class="post">
-          <%= post.body %>
+        <div class="chat-header p-2">
+          <%= post.user.name %>
+          <time class="text-xs opacity-50"><%= l post.created_at, format: :short %></time>
+          <!-- タグの表示 -->
+          <% post.tags.each do |tag| %>
+            <span class="tag bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 flex-wrap p-2">
+              <%= tag.name %>
+            </span>
+          <% end %>
         </div>
+        <div class="chat-bubble"><%= post.body %></div>
       </div>
-      <time class="text-xs opacity-50"><%= l post.created_at, format: :short %></time>
     <% end %>
-  </div> 
+  </div>
+
   <div class="p-8">
     <%= link_to '投稿フォームに戻る', new_post_path, class: "btn btn-primary mt-4" %>
   </div>
 </div>
+

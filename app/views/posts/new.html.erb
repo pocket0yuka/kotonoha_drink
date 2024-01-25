@@ -21,7 +21,10 @@
                 </ul>
               </div>
             <% end %>
-
+            <div>
+              <%= form.label :tag_names, "タグ", class: "block text-gray-700 font-medium mb-2" %>
+              <%= form.text_field :tag_names, placeholder: "例）お酒,ビール ", class: "input input-bordered w-full max-w-xs" %>
+            </div>
             <div>
               <%= form.label :body, "投稿内容", class: "block text-gray-700 font-medium mb-2" %>
               <%= form.text_area :body, rows: 4, class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
