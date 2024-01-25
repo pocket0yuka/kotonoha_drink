@@ -17,4 +17,11 @@ Rails.application.routes.draw do
   get 'generatedresults', to: 'generatedresults#show'
   resource :profile, only: %i[show edit update]
   resources :bookmarks
+  resources :posts do
+    resource :favorites, only: %i[create destroy]
+    collection do
+      get 'search', to: 'posts#index', as: :search
+      post 'search', to: 'posts#index', as: :search_post
+    end
+  end
 end

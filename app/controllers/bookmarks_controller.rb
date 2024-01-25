@@ -5,7 +5,7 @@ class BookmarksController < ApplicationController
 
   # ユーザーの生成結果を一覧表示(並び替え、検索あり、モデル参照)
   def index
-    @bookmarks = current_user.bookmarks.search(params[:search]).order_by(params[:order])
+    @bookmarks = current_user.bookmarks.includes(:user).search(params[:search]).order_by(params[:order])
   end
 
   def show

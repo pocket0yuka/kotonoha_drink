@@ -78,6 +78,9 @@ gem "mini_magick"
 # openAIと通信するgem
 gem "ruby-openai"
 
+# 検索機能
+gem 'ransack'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
