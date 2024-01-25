@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update]
   resources :bookmarks
   resources :posts do
+    resource :favorites, only: %i[create destroy]
     collection do
-      match 'search' => 'posts#index', via: [:get, :post], as: :search
+      get 'search', to: 'posts#index', as: :search
+      post 'search', to: 'posts#index', as: :search_post
     end
   end
 end
