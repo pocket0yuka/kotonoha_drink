@@ -4,4 +4,9 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true
 
+    # Ransackによる検索可能な属性を定義
+    def self.ransackable_attributes(auth_object = nil)
+      ["created_at", "id", "name"]
+    end
+
 end

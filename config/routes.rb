@@ -17,5 +17,9 @@ Rails.application.routes.draw do
   get 'generatedresults', to: 'generatedresults#show'
   resource :profile, only: %i[show edit update]
   resources :bookmarks
-  resources :posts
+  resources :posts do
+    collection do
+      match 'search' => 'posts#index', via: [:get, :post], as: :search
+    end
+  end
 end

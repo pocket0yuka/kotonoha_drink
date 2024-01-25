@@ -3,15 +3,17 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.includes(:user).where(visibility: Post.visibilities[:公開]).order(created_at: :desc)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.includes(:tags, :user).where(visibility: Post.visibilities[:公開]).order(created_at: :desc)
   end
 
   def show
   end
 
   def new
+    @q = current_user.posts.ransack(params[:q])
+    @private_posts = @q.result.where(visibility: Post.visibilities[:非公開]).order(created_at: :desc)
     @post = current_user.posts.new
-    @private_posts = current_user.posts.where(visibility: Post.visibilities[:非公開]).order(created_at: :desc)
   end
 
   def create

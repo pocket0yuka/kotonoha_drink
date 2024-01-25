@@ -25,9 +25,13 @@
       </div>
     <% end %>
   </div>
-
   <div class="p-8">
-    <%= link_to '投稿フォームに戻る', new_post_path, class: "btn btn-primary mt-4" %>
+    <%= search_form_for @q, class: "form-control" do |f| %>
+      <div class="flex gap-2 items-center">
+        <%= f.search_field :tags_name_cont,placeholder: "タグで検索" ,class: "input input-bordered input-primary w-full max-w-xs" %>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <%= link_to '投稿フォームに戻る', new_post_path, class: "btn bg-indigo-500 hover:bg-indigo-600 text-white mt-4" %>
   </div>
 </div>
-
