@@ -28,6 +28,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    if @post.destroy
+      if @post.visibility == '公開'
+        redirect_to posts_path, notice: '公開投稿が削除されました。'
+      else
+        redirect_to new_post_url, notice: '非公開投稿が削除されました。'
+      end
+    else
+      redirect_to @post, alert: '投稿の削除に失敗しました。'
+    end
+  end
+
   private
 
   def set_post

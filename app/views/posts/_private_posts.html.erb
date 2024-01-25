@@ -20,7 +20,12 @@
                 <%= post.body %>
               </div>
             </td>
-            <td><%= l post.created_at, format: :public_post %></td>
+            <td>
+              <%= link_to post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+                <%= l post.created_at, format: :public_post %>
+                <i class="fa-regular fa-trash-can fa-sm"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

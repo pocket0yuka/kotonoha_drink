@@ -19,6 +19,9 @@
           <% end %>
         </div>
         <div class="chat-bubble"><%= post.body %></div>
+          <%= link_to post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+            <i class="fa-regular fa-trash-can fa-sm"></i>
+          <% end %>
       </div>
     <% end %>
   </div>
