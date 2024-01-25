@@ -9,18 +9,7 @@
             <h1 class="text-xl text-gray-700 font-semibold">新しい投稿を作成</h1>
           </div>
 
-          <%= form_with(model: @post, local: true, class: "space-y-5") do |form| %>
-            <% if @post.errors.any? %>
-              <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong class="font-bold">エラー：</strong>
-                <span><%= pluralize(@post.errors.count, "件のエラー") %>が発生しました。</span>
-                <ul class="list-disc pl-5 mt-2">
-                  <% @post.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
+          <%= form_with(model: @post, local: true,data: { turbo_frame: "private_posts" }, class: "space-y-5") do |form| %>
             <div>
               <%= form.label :tag_names, "タグ", class: "block text-gray-700 font-medium mb-2" %>
               <%= form.text_field :tag_names, placeholder: "例）お酒,ビール ", class: "input input-bordered w-full max-w-xs" %>
@@ -29,7 +18,6 @@
               <%= form.label :body, "投稿内容", class: "block text-gray-700 font-medium mb-2" %>
               <%= form.text_area :body, rows: 4, class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
             </div>
-
             <fieldset class="mt-4">
               <legend class="text-gray-700 font-medium mb-2">公開設定</legend>
               <div class="flex items-center">
@@ -43,7 +31,6 @@
                 </label>
               </div>
             </fieldset>
-
             <div class="flex justify-center mt-6">
               <%= form.submit "投稿する", class: "btn btn-primary w-full mt-4" %>
             </div>

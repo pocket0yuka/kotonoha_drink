@@ -17,12 +17,20 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     tag_names = params[:post][:tag_names]
+
     if @post.save
       if tag_names.present?
         tags = tag_names.split(/[、,]+/).map(&:strip).uniq
         create_tags(@post, tags)
       end
-      redirect_after_create
+
+      respond_to do |format|
+        format.html { redirect_after_create }
+        format.turbo_stream do
+          # 非公開投稿のリスト部分だけを更新する
+          render turbo_stream: turbo_stream.replace("private_posts", partial: "posts/private_posts", locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) })
+        end
+      end
     else
       render :new
     end
