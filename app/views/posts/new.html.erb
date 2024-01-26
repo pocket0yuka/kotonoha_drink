@@ -7,7 +7,10 @@
           <div class="mb-6 text-center">
             <h1 class="text-xl text-gray-700 font-semibold">新しい投稿を作成</h1>
           </div>
-          <%= form_with(model: @post, local: true,data: { turbo_frame: "private_posts" }, class: "space-y-5") do |form| %>
+          <%= form_with(model: @post, local: true, class: "space-y-5") do |form| %>
+            <% if @post.visibility == '非公開' %>
+              <%= hidden_field_tag :turbo_frame, "private_posts" %>
+            <% end %>
             <div>
               <%= form.label :tag_names, "タグ", class: "block text-gray-700 font-medium mb-2" %>
               <%= form.text_field :tag_names, placeholder: "例）お酒,ビール ", class: "input input-bordered w-full max-w-xs" %>

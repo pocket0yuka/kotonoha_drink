@@ -2,36 +2,38 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
 
+  # 公開時の投稿を表示
   def index
     @q = Post.ransack(params[:q])
+    # タグとユーザーを事前に読み込み（N+1防止）
     @posts = @q.result.includes(:tags, :user).where(visibility: Post.visibilities[:公開]).order(created_at: :desc)
   end
 
   def show
   end
 
+  # 新規投稿ページの表示
   def new
     @q = current_user.posts.ransack(params[:q])
+    # 非公開投稿を取得
     @private_posts = @q.result.where(visibility: Post.visibilities[:非公開]).order(created_at: :desc)
     @post = current_user.posts.new
   end
 
   def create
     @post = current_user.posts.new(post_params)
+    #モデルにないのでtagを直接取得
     tag_names = params[:post][:tag_names]
 
     if @post.save
-      if tag_names.present?
-        tags = tag_names.split(/[、,]+/).map(&:strip).uniq
-        create_tags(@post, tags)
-      end
+      # タグがあれば追加
+      add_tags(tag_names) if tag_names.present?
 
-      respond_to do |format|
-        format.html { redirect_after_create }
-        format.turbo_stream do
-          # 非公開投稿のリスト部分だけを更新する
-          render turbo_stream: turbo_stream.replace("private_posts", partial: "posts/private_posts", locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) })
-        end
+      if @post.visibility == '非公開'
+        private_response
+      else
+        # 公開投稿の場合のリダイレクト
+        redirect_to posts_path, notice: '公開の投稿が作成されました。'
       end
     else
       render :new
@@ -43,7 +45,7 @@ class PostsController < ApplicationController
       if @post.visibility == '公開'
         redirect_to posts_path, notice: '公開投稿が削除されました。'
       else
-        redirect_to new_post_url, notice: '非公開投稿が削除されました。'
+        redirect_to new_post_path, notice: '非公開投稿が削除されました。'
       end
     else
       redirect_to @post, alert: '投稿の削除に失敗しました。'
@@ -56,22 +58,30 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  # タグの作成と投稿への追加
+  def create_tags(post, tags)
+    tags.each do |tag_name|
+      tag = Tag.find_or_create_by(name: tag_name)
+      post.tags << tag unless post.tags.include?(tag)
+    end
+  end
+
   def post_params
     params.require(:post).permit(:body, :visibility).merge(visibility: params[:post][:visibility].to_i)
   end
 
-  def redirect_after_create
-    if @post.visibility == '公開'
-      redirect_to posts_path, notice: '公開の投稿が作成されました。'
-    else
-      redirect_to @post, notice: '非公開の投稿が作成されました。'
-    end
+  # タグが指定されている場合にタグを追加
+  def add_tags(tag_names)
+    tags = tag_names.split(/[、,]+/).map(&:strip).uniq
+    create_tags(@post, tags)
   end
 
-  def create_tags(post, tags)
-    tags.each do |tag|
-      tag = Tag.find_or_create_by(name: tag)
-      post.tags << tag
+  # 非公開投稿時のレスポンス
+  def private_response
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("private_posts", partial: "posts/private_posts", locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) })
+      end
     end
   end
 end
