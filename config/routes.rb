@@ -24,4 +24,7 @@ Rails.application.routes.draw do
       post 'search', to: 'posts#index', as: :search_post
     end
   end
+  resources :tags do
+    get :search, on: :collection
+  end
 end
