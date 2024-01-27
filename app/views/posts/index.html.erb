@@ -1,40 +1,42 @@
 <div class="min-h-screen flex flex-wrap items-center justify-center">
   <!-- Your existing content here -->
-  <div class="overflow-y-auto h-screen w-full max-w-2xl">
-    <% @posts.each do |post| %>
-      <div class="chat chat-start">
-        <div class="chat-image avatar">
-          <div class="w-10 rounded-full">
-            <%= image_tag post.user.avatar.url %>
+  <div class="w-full max-w-2xl">
+    <div class="p-4 bg-zinc-400 sticky top-0 z-10	z-index: 10;">
+      <%= search_form_for @q, class: "form-control" do |f| %>
+        <div class="flex gap-2 items-center">
+          <%= f.search_field :tags_name_cont,placeholder: "タグで検索" ,class: "input input-bordered input-primary w-full max-w-xs" %>
+          <%= f.submit "検索", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <%= link_to '投稿フォームに戻る', new_post_path, class: "btn bg-indigo-500 hover:bg-indigo-600 text-white mt-4" %>
+    </div>
+    <div>
+      <% @posts.each do |post| %>
+        <div class="chat chat-start w-5/6 mx-auto max-w-screen-xl">
+          <div class="chat-image avatar">
+            <div class="w-10 rounded-full">
+              <%= image_tag post.user.avatar.url %>
+            </div>
           </div>
-        </div>
-        <div class="chat-header p-2">
-          <%= post.user.name %>
-          <time class="text-xs opacity-50"><%= l post.created_at, format: :short %></time>
-          <!-- タグの表示 -->
-          <% post.tags.each do |tag| %>
-            <span class="tag bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 flex-wrap p-2">
-              <%= tag.name %>
-            </span>
-          <% end %>
-        </div>
-        <div class="chat-bubble"><%= post.body %></div>
-          <% if current_user == post.user %>
-            <%= link_to post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
-              <i class="fa-regular fa-trash-can fa-sm"></i>
+          <div class="chat-header p-2">
+            <%= post.user.name %>
+            <time class="text-xs opacity-50"><%= l post.created_at, format: :short %></time>
+            <!-- タグの表示 -->
+            <% post.tags.each do |tag| %>
+              <span class="tag bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 flex-wrap p-2">
+                <%= tag.name %>
+              </span>
             <% end %>
-          <% end %>
-        <%= render'favorites/favorite', post: post %>
-      </div>
-    <% end %>
-  </div>
-  <div class="p-8">
-    <%= search_form_for @q, class: "form-control" do |f| %>
-      <div class="flex gap-2 items-center">
-        <%= f.search_field :tags_name_cont,placeholder: "タグで検索" ,class: "input input-bordered input-primary w-full max-w-xs" %>
-        <%= f.submit "検索", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-    <%= link_to '投稿フォームに戻る', new_post_path, class: "btn bg-indigo-500 hover:bg-indigo-600 text-white mt-4" %>
+          </div>
+          <div class="chat-bubble"><%= post.body %></div>
+            <% if current_user == post.user %>
+              <%= link_to post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+                <i class="fa-regular fa-trash-can fa-sm"></i>
+              <% end %>
+            <% end %>
+          <%= render'favorites/favorite', post: post %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
