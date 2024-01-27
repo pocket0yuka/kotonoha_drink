@@ -45,7 +45,12 @@
     <div class=" p-6 text-right">
       <%= search_form_for @q, url: new_post_path, class: "form-control" do |f| %>
         <div class="flex gap-2 items-center">
-          <%= f.search_field :tags_name_cont, placeholder: "タグで検索", class: "input input-bordered input-primary w-full max-w-xs" %>
+          <div data-controller="autocomplete" data-autocomplete-url-value="/tags/search" role="combobox">
+            <%= f.search_field :tags_name_cont,data: { autocomplete_target: 'input' },placeholder: "タグで検索" ,class: "input input-bordered input-primary w-full max-w-xs" %>
+            <%= f.hidden_field :tags_name, data: { autocomplete_target: 'hidden' } %>
+            <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+            <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4"></div>
+          </div>
           <%= f.submit "検索", class: "btn btn-primary" %>
         </div>
       <% end %>
