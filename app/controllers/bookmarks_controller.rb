@@ -49,6 +49,6 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:generated_drink, :generated_word, :generated_info, :image_url, :memo, :is_original)
+    params.require(:bookmark).permit(:generated_drink, :generated_word, :generated_info, :image, :memo, :is_original)
   end
 end

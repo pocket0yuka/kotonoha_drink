@@ -16,8 +16,8 @@
   <div class="hero-content flex-col lg:flex-row-reverse">
     <!-- 画像の表示 -->
     <div class="max-w-md mx-auto">
-      <% if @bookmark.image_url.present? %>
-        <img src="<%= @bookmark.image_url %>" alt="<%= @bookmark.generated_drink %>の画像" class="rounded-lg shadow-2xl" />
+      <% if @bookmark.image.present? %>
+        <img src="<%= @bookmark.image %>" alt="<%= @bookmark.generated_drink %>の画像" class="rounded-lg shadow-2xl" />
       <% else %>
         <div class="placeholder rounded-lg shadow-2xl p-4">
           <p class="text-gray-500">画像はありません。</p>
