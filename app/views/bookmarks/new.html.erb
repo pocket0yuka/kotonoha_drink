@@ -17,20 +17,25 @@
       </div>
   
       <div class="mb-4">
-        <%= form.label :image_url, '画像URL', class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= form.text_field :image_url, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <%= form.label :image_url, '画像', class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <div class="relative rounded-md shadow-sm">
+          <input type="file" id="image_url" name="image_url" class="hidden" accept="image/*" data-target="#preview-target">
+          <label for="image_url" class="btn bg-teal-600 hover:bg-teal-800 text-neutral-50 cursor-pointer">
+            画像を変更する
+          </label>
+        </div>
       </div>
-  
+
       <div class="mb-4">
         <%= form.label :memo, 'メモ', class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= form.text_area :memo, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", rows: 4 %>
       </div>
-  
+
       <%= form.hidden_field :is_original, value: true %>
-  
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-end">
         <%= form.submit 'ブックマークを保存する', class: 'btn btn-primary' %>
       </div>
+      
     <% end %>
   </div>
 </div>
