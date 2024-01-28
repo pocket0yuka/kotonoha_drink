@@ -19,7 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_211837) do
     t.string "generated_drink"
     t.string "generated_word"
     t.text "generated_info"
-    t.string "image_url"
+    t.string "image"
+    t.string "image_cache"
     t.text "memo"
     t.boolean "is_original"
     t.datetime "created_at", null: false

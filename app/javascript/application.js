@@ -9,8 +9,12 @@ import "./controllers"
 // storyフォームの文字残数の表示インポート
 import "./story_form/character_count"
 
+// オートコンプリート
 import { Application } from "@hotwired/stimulus"
 import { Autocomplete } from 'stimulus-autocomplete'
 
 const application = Application.start()
 application.register('autocomplete', Autocomplete)
+
+// 画像プレビューに関するjs
+import "./image/preview"
