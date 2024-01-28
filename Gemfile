@@ -72,6 +72,9 @@ gem 'omniauth-google-oauth2'
 # ファイルアップロードを管理するためのGem
 gem 'carrierwave'
 
+#S3ストレージサービスと連携
+gem 'fog-aws'
+
 # 画像の処理（リサイズ、変換など）を行うためのMiniMagickをサポートするGem
 gem "mini_magick"
 
