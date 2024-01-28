@@ -7,6 +7,7 @@ class CreateBookmarks < ActiveRecord::Migration[7.0]
       t.string :generated_word
       t.text :generated_info
       t.string :image
+      t.string :image_cache
       t.text :memo
       t.boolean :is_original
 

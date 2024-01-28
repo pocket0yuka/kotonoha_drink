@@ -14,10 +14,17 @@
       <%= form.label :generated_info, 'ドリンク情報', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :generated_info, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
-
-    <div class="mb-4">
-      <%= form.label :image, '画像', class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.file_field :image, class: "w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", accept: "image/*", data: { target: "#preview-target" } %>
+<div class="form-group mb-3"">
+    <%= form.label :image, '画像' %>
+    <%= form.file_field :image, class:'form-control js-file-select-preview', accept: 'image/*', data: { target: '#preview-target' } %>
+    <%= form.hidden_field :bookmark_image_cache %>
+</div>
+    <div class="form-group mt-3 mb-3">
+      <% if @bookmark.image.present? %>
+        <%= image_tag @bookmark.image.url %>
+      <% else %>
+        <%= image_tag 'kotonoha_bookmark.png',id: 'preview-target',size: '250x250' %>
+      <% end %>
     </div>
 
     <div class="mb-4">
