@@ -1,17 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.js-file-select-preview').forEach(element => {
-    element.addEventListener('change', (event) => {
-      const file = event.target.files[0];
-      if (file) {
+document.addEventListener('turbo:load', () => {
+  const elements = document.querySelectorAll('.js-file-select-preview');
+  elements.forEach((element) => {
+    const previewElement = document.querySelector(element.dataset.target);
+    if (previewElement) {
+      element.addEventListener('change', (e) => {
         const reader = new FileReader();
-        reader.onload = (e) => {
-          const preview = document.getElementById('preview-target');
-          if (preview) {
-            preview.src = e.target.result;
-          }
+        reader.onloadend = () => {
+          previewElement.src = reader.result;
         };
-        reader.readAsDataURL(file);
-      }
-    });
+        const file = e.target.files[0];
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      });
+    }
   });
 });
