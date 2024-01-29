@@ -12,34 +12,36 @@
   </script>
 </head>
 
-<div class=" min-h-screen bg-teal-50 p-4">
-  <div class="bg-white p-8 shadow max-w-md flex items-end">
+
+
+<div class="min-h-screen bg-gray-100 p-4">
+  <div class="bg-white p-8 shadow-lg rounded-lg max-w-md mx-auto flex flex-col items-center"> 
     <!-- アバター画像 -->
-    <div class="avatar p-4 float-left">
-      <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+    <div class="avatar p-4">
+      <div class="w-32 h-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-lg">
         <%= image_tag @user.avatar.url %>
       </div>
     </div>
     <!-- ユーザー情報 -->
-    <div class="p-6 text-left">
-      <h2 class="text-lg text-center font-bold mb-2"><%= @user.name %></h2>
-      <p class="text-sm text-gray-600 mb-4"><i class="fa-regular fa-envelope"></i> <%= @user.email %></p>
-      <p class="text-sm text-gray-600"><i class="fa-solid fa-whiskey-glass"></i>+<i class="fa-regular fa-heart"></i> <%= @user.favorite_drink %></p>
-    </div>
-    <!-- 編集リンク -->
-    <div class="p-2 text-right">
-      <%= link_to "編集", "javascript:void(0);", onclick: "openEditProfileModal()" %>
-      <dialog id="edit_profile_modal" class="modal">
-        <div class="modal-box">
-          <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="closeEditProfileModal()">✕</button>
-          </form>
-          <%= render 'profiles/edit' %>
-        </div>
-      </dialog>
+    <div class="p-6 text-center w-full">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-3"><%= @user.name %></h2>
+      <p class="text-md text-gray-600 mb-4"><i class="fa-regular fa-envelope"></i> <%= @user.email %></p>
+      <p class="text-md text-gray-600"><i class="fa-solid fa-whiskey-glass"></i>+<i class="fa-regular fa-heart"></i> <%= @user.favorite_drink %></p>
+      <!-- 編集リンク -->
+      <div class="p-2 text-right">
+        <%= link_to "編集", "javascript:void(0);", onclick: "openEditProfileModal()" %>
+        <dialog id="edit_profile_modal" class="modal">
+          <div class="modal-box">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="closeEditProfileModal()">✕</button>
+            </form>
+            <%= render 'profiles/edit' %>
+          </div>
+        </dialog>
+      </div>
+      <div class="p-2">
+        <%= link_to '退会はこちらから', '/users/edit', class: "btn bg-indigo-500 hover:bg-indigo-600 text-white" %>
+      </div>
     </div>
   </div>
-  
-  <!-- アイコンメニュー -->
-    <%= render "shared/profile" %>
 </div>
