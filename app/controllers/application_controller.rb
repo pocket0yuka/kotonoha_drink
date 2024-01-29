@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  #(ログイン、パスワード編集)許可に必要なパラメータ
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:password, :password_confirmation, :current_password])
   end
 
   #ログインした後profileにリダイレクトする
