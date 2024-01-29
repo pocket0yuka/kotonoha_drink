@@ -27,4 +27,8 @@ Rails.application.routes.draw do
   resources :tags do
     get :search, on: :collection
   end
+  #メーラー用のurl
+  Rails.application.routes.draw do
+    mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  end
 end

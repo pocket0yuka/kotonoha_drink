@@ -84,6 +84,9 @@ gem "ruby-openai"
 # 検索機能
 gem 'ransack'
 
+#メール閲覧
+gem 'letter_opener_web'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
