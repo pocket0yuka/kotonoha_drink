@@ -1,5 +1,4 @@
 <div id="favorite_<%= post.id %>">
-  <% unless post.user == current_user %>
     <% if post.favorited_by?(current_user) %>
       <%= link_to post_favorites_path(post), data: { turbo_method: :delete } do %>
         <i class="fa-solid fa-heart" style="color: #f04769;"></i>
@@ -19,5 +18,4 @@
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
 </div>
