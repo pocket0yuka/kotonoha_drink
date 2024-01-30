@@ -1,0 +1,23 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md">
+    <div class="flex items-center space-x-4">
+      <div class="flex-shrink-0">
+        <%= image_tag @post.user.avatar.url, class: "w-12 h-12 rounded-full" %>
+      </div>
+      <div>
+        <h2 class="text-xl font-semibold text-gray-800"><%= @post.user.name %> の投稿</h2>
+        <time class="text-sm text-gray-500"><%= l @post.created_at, format: :short %></time>
+      </div>
+    </div>
+    <div class="mt-4">
+      <% @post.tags.each do |tag| %>
+        <span class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+          <%= tag.name %>
+        </span>
+      <% end %>
+    </div>
+    <div class="mt-4 text-gray-700 text-lg">
+      <%= @post.body %>
+    </div>
+  </div>
+</div>

@@ -7,11 +7,11 @@
     <div class="mx-auto my-4 max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
       <div class="p-2">
         <span>
-          <%= link_to user_path(visitor) do %>
+          <span>
             <% avatar_url = visitor.avatar.present? ? visitor.avatar.url : 'path_to_default_image.jpg' %>
             <%= image_tag(avatar_url, class: "w-8 h-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-lg") %>
             <strong><%= visitor.name %></strong>
-          <% end %>
+          </span>
           さんが
           <% case notification.action %>
           <% when 'favorite' then %>
