@@ -38,13 +38,13 @@
                 <%= tag.name %>
               </span>
             <% end %>
-          </div>
-          <div class="chat-bubble"><%= post.body %></div>
             <% if current_user == post.user %>
               <%= link_to post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
                 <i class="fa-regular fa-trash-can fa-sm"></i>
               <% end %>
             <% end %>
+          </div>
+          <div class="chat-bubble"><%= post.body %></div>
           <%= render'favorites/favorite', post: post %>
         </div>
       <% end %>
