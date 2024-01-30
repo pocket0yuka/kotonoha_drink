@@ -1,0 +1,29 @@
+<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+
+<% if notifications.exists? %>
+  <% notifications.each do |notification| %>
+    <% visitor = notification.visitor %>
+    <% visited = notification.visited %>
+    <div class="mx-auto my-4 max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="p-2">
+        <span>
+          <%= link_to user_path(visitor) do %>
+            <% avatar_url = visitor.avatar.present? ? visitor.avatar.url : 'path_to_default_image.jpg' %>
+            <%= image_tag(avatar_url, class: "w-8 h-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-lg") %>
+            <strong><%= visitor.name %></strong>
+          <% end %>
+          さんが
+          <% case notification.action %>
+          <% when 'favorite' then %>
+            <%= link_to 'あなたの投稿', notification.post, class: "text-blue-500 hover:text-blue-700" %>
+            にいいねしました
+            <span><%= time_ago_in_words(notification.created_at).upcase %></span>
+          <% end %>
+        </span>
+      </div>
+      <hr>
+    </div>
+  <% end %>
+<% else %>
+  <p>通知はありません</p>
+<% end %>

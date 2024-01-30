@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     # ログアウトパス
     get '/users/sign_out' => 'devise/sessions#destroy'
+    resources :users, only: [:show]
   end
 
   root "homes#index"
@@ -31,4 +32,5 @@ Rails.application.routes.draw do
   Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   end
+  resources :notifications, only: %i[index]
 end
