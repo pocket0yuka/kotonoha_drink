@@ -33,4 +33,7 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   end
   resources :notifications, only: %i[index]
+  get 'contact', to: 'statics#contact'
+  get 'terms_of_service', to: 'statics#terms_of_service'
+  get 'privacy_policy', to: 'statics#privacy_policy'
 end
