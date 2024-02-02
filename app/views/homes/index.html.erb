@@ -1,13 +1,16 @@
 <!-- ナビゲーションバー -->
 <!-- ヒーローセクション -->
-<div class="hero min-h-screen bg-white">
-  <div class="hero-content text-center flex flex-wrap">
-    <div class="mb-8 ">
-    <%= image_tag 'kotonoha_drink logo.png',size: '250x250'%>
-    <a class="text-green-700 text-5xl font-bold">言の葉</a>
-    <a class="text-black text-5xl font-bold">Drink</a>
+<div class="min-h-screen bg-white">
+  <div class="hero-content text-center flex flex-wrap md:pt-52 sm:pt-8 mx-auto">
+  <%= image_tag 'kotonoha_leaf.png', class: "max-sm:hidden absolute bottom-0 right-48 z-0",size: '340x500'%>
+    <!-- 言の葉ドリンクロゴ -->
+    <div class="mb-8 max-w-md z-10">
+      <%= image_tag 'kotonoha_drink logo.png',size: '250x250'%>
+      <a class="text-green-700 text-5xl font-bold">言の葉</a>
+      <a class="text-black text-5xl font-bold">Drink</a>
     </div>
-    <div class="max-w-md text-emerald-700">
+    <%= image_tag 'kotonoha_leaf.png', class: "sm:hidden absolute bottom-10 right-2 z-0",size: '170x500'%>
+    <div class="max-w-md text-emerald-700 text-center backdrop-opacity-10 backdrop-invert bg-white/75"">
       <h1 class="sm:text-3xl text-2xl font-bold">思いを込めた一杯で、</h1>
       <h1 class="sm:text-4xl text-2xl font-bold">日常をほんの少し特別に。</h1>
       <p class="py-5 text-base sm:text-lg">花に花言葉があるように、</p>
@@ -16,5 +19,50 @@
       <p class="py-5 text-base sm:text-lg">AIがドリンク言葉を作ってくれます!</p>
     </div>
   </div>
+  <!-- 使い方 -->
+<div class="bg-white p-8 m-8 mt-32 shadow-lg rounded-lg max-w-lg  h-auto md:ml-64 backdrop-opacity-10 bg-white/75">
+    <!-- タイトル部分 -->
+    <div class="text-2xl font-bold text-center mb-4">何ができる？</div>
+
+    <!-- 内容部分 -->
+    <div class="p-2">
+      <p class="text-gray-700">お客様の情報を利用する目的:</p>
+      <p>当社は、お客様から取得した情報を、以下の目的のために利用します。</p>
+      <!-- ここに具体的な情報を追加 -->
+    </div>
+
+    <div class="p-2">
+      <p class="text-gray-700">安全管理のために講じた措置:</p>
+      <p>当社が、お客様から取得した情報に関して安全管理のために講じた措置につきましては、末尾記載のお問い合わせ先にご連絡をいただきましたら、法令の定めに従い個別にご回答させていただきます。</p>
+      <!-- ここに具体的な情報を追加 -->
+    </div>
+
+    <div class="p-2">
+      <p class="text-gray-700">第三者提供:</p>
+      <p>当社は、お客様から取得する情報のうち、個人データ（個人情報保護法第１６条第３項）に該当するものついては、あらかじめお客様の同意を得ずに、第三者（日本国外にある者を含みます。）に提供しません。 但し、次の場合は除きます。</p>
+      <!-- ここに具体的な情報を追加 -->
+    </div>
+  <div class="p-2">
+      <p class="text-gray-700">お客様の情報を利用する目的:</p>
+      <p>当社は、お客様から取得した情報を、以下の目的のために利用します。</p>
+      <!-- ここに具体的な情報を追加 -->
+    </div>
+
+    <div class="p-2">
+      <p class="text-gray-700">安全管理のために講じた措置:</p>
+      <p>当社が、お客様から取得した情報に関して安全管理のために講じた措置につきましては、末尾記載のお問い合わせ先にご連絡をいただきましたら、法令の定めに従い個別にご回答させていただきます。</p>
+      <!-- ここに具体的な情報を追加 -->
+    </div>
+
+    <div class="p-2">
+      <p class="text-gray-700">第三者提供:</p>
+      <p>当社は、お客様から取得する情報のうち、個人データ（個人情報保護法第１６条第３項）に該当するものついては、あらかじめお客様の同意を得ずに、第三者（日本国外にある者を含みます。）に提供しません。 但し、次の場合は除きます。</p>
+      <!-- ここに具体的な情報を追加 -->
+
+  </div>
 </div>
+
+
+
+
 <!-- お問い合わせ関連　-->
