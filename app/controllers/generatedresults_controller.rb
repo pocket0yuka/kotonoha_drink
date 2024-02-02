@@ -23,7 +23,8 @@ class GeneratedresultsController < ApplicationController
     elsif story_params_present?
       request_story(params[:story])
     else
-      set_default_results
+      @generated_results = nil
+      @image_url = nil
     end
   end
 
@@ -42,14 +43,14 @@ class GeneratedresultsController < ApplicationController
   #キーワードでリクエスト
   def request_keyword(keyword)
     @generated_results = @service.generate_drink_words(keyword)
-    #generate_image_url if @generated_results.present?
+    generate_image_url if @generated_results.present?
     check_api_response
   end
 
   # ドリンク名から画像のURLを取得
-  #def generate_image_url
-    #@image_url = @service.generate_image_url(@generated_results[:first_candidate][:drink_name])
-  #end
+  def generate_image_url
+    @image_url = @service.generate_image_url(@generated_results[:first_candidate][:drink_name])
+  end
 
   #storyパラメータでリクエスト
   def request_story(story)
@@ -63,12 +64,6 @@ class GeneratedresultsController < ApplicationController
       flash[:alert] = 'ドリンクの情報または画像を取得できませんでした。'
       redirect_to generatedresults_path # パスにリダイレクト
     end
-  end
-
-  #何もリクエストがなかった場合の処理
-  def set_default_results
-    @generated_results = nil
-    #@image_url = nil
   end
 
   #storyパラメータの有無

@@ -16,8 +16,10 @@
   <div class="hero-content flex-col lg:flex-row-reverse">
     <!-- 画像の表示 -->
     <div class="max-w-md mx-auto">
-      <% if @bookmark.image.present? %>
-        <img src="<%= @bookmark.image %>" alt="<%= @bookmark.generated_drink %>の画像" class="rounded-lg shadow-2xl" />
+      <% if @bookmark.image_url.present? %>
+        <%= image_tag @bookmark.image_url, alt: "#{@bookmark.generated_drink}の画像", class: "rounded-lg shadow-2xl" %>
+      <% elsif @bookmark.image.present? %>
+        <%= image_tag @bookmark.image, alt: "#{@bookmark.generated_drink}の画像", class: "rounded-lg shadow-2xl" %>
       <% else %>
         <div class="placeholder rounded-lg shadow-2xl p-4">
           <p class="text-gray-500">画像はありません。</p>
@@ -30,7 +32,7 @@
       <div class="card-body">
         <h2 class="card-title text-4xl mb-4">ドリンク情報</h2>
 
-        <!-- is_original の場合にアイコンを表示 -->
+        <!-- is_original の場合 -->
         <div class="mb-4">
           <% if @bookmark.is_original %>
             <i class="fa-solid fa-whiskey-glass fa-sm text-primary"></i>

@@ -29,20 +29,20 @@ class OpenAiService
     nil
   end
 
-  #def generate_image_url(drink_name)
-    #response = @client.images.generate(
-      #parameters: {
-        #model: "dall-e-2",
-        #prompt: "#{drink_name}の飲み物をクローズアップで撮影したような画像を生成してください。背景は白からグレーのグラデーションで、飲み物の質感や色彩が際立つようにしてください。光の反射や陰影を使って、写真のようなリアリズムを表現してください。",
-        #size: "256x256"
-      #})
+  def generate_image_url(drink_name)
+    response = @client.images.generate(
+      parameters: {
+        model: "dall-e-2",
+        prompt: "#{drink_name}の飲み物をクローズアップで撮影したような画像を生成してください。背景は白からグレーのグラデーションで、飲み物の質感や色彩が際立つようにしてください。光の反射や陰影を使って、写真のようなリアリズムを表現してください。",
+        size: "256x256"
+      })
 
-    #response.dig("data", 0, "url")
-  #rescue StandardError => e
+    response.dig("data", 0, "url")
+  rescue StandardError => e
     # エラーハンドリング: ログに日本語でエラーを記録
-    #Rails.logger.error("OpenAI画像生成APIエラー: #{e.message}")
-    #nil
-  #end
+    Rails.logger.error("OpenAI画像生成APIエラー: #{e.message}")
+    nil
+  end
 
   private
 
