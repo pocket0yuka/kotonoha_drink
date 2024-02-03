@@ -1,5 +1,10 @@
-<div class="hero min-h-screen bg-base-200">
+<div class="hero min-h-screen bg-gray-100">
     <%= form_with(model: @bookmark, local: true, class: "w-full max-w-xl mx-auto p-2 bg-white rounded-lg shadow-md", method: :put) do |form| %>
+    <div class="mb-4 text-left">
+      <%= form.label :generated_drink, 'ドリンク名', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :generated_drink, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    
     <div class="mb-4 text-left">
       <%= form.label :generated_word, 'ドリンク言葉', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :generated_word, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>

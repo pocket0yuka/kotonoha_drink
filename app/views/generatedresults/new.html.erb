@@ -1,7 +1,8 @@
-<div class="hero min-h-screen bg-base-200">
+<div class="hero min-h-screen bg-gray-100">
   <%= form_with url: generatedresults_path, method: :get, local: true, id: 'story-form', class: "flex flex-col gap-4 p-4 max-w-md mx-auto" do |form| %>
     <%= form.text_area :story, placeholder: "今日の1日の出来事（60文字以内）", class: "textarea textarea-bordered w-full", rows: 3, maxlength: 60, id: "story-textarea" %>
     <span id="char-count" class="text-gray-600">残りの文字数: 60</span>
     <%= form.submit "検索", class: "btn btn-primary w-full mt-4" %>
+  <%= image_tag 'kotonoha_situation.png',class: "p-4",size: '250x250'%>
   <% end %>
 </div>
