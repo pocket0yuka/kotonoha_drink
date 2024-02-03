@@ -4,11 +4,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.development?
+  if Rails.env.test? #テスト環境の場合
     storage :file
-  elsif Rails.env.test?
-    storage :file
-  else
+  else #開発、本番環境の場合
     storage :fog
   end
 
@@ -45,6 +43,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_allowlist
     %w(jpg jpeg gif png)
+  end
+
+  def filename
+    original_filename if original_filename
   end
 
   # Override the filename of the uploaded files:
