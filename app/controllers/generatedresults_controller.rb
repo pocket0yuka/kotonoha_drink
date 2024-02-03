@@ -24,7 +24,7 @@ class GeneratedresultsController < ApplicationController
       request_story(params[:story])
     else
       @generated_results = nil
-      @image_url = nil
+      @image = nil
     end
   end
 
@@ -43,13 +43,13 @@ class GeneratedresultsController < ApplicationController
   #キーワードでリクエスト
   def request_keyword(keyword)
     @generated_results = @service.generate_drink_words(keyword)
-    generate_image_url if @generated_results.present?
+    generate_image if @generated_results.present?
     check_api_response
   end
 
   # ドリンク名から画像のURLを取得
-  def generate_image_url
-    @image_url = @service.generate_image_url(@generated_results[:first_candidate][:drink_name])
+  def generate_image
+    @image = @service.generate_image(@generated_results[:first_candidate][:drink_name])
   end
 
   #storyパラメータでリクエスト
@@ -60,7 +60,7 @@ class GeneratedresultsController < ApplicationController
 
   #レスポンスに問題があった場合の処理
   def check_api_response
-    if @generated_results.nil? #|| @image_url.nil?
+    if @generated_results.nil? || @image.nil?
       flash[:alert] = 'ドリンクの情報または画像を取得できませんでした。'
       redirect_to generatedresults_path # パスにリダイレクト
     end
@@ -73,6 +73,6 @@ class GeneratedresultsController < ApplicationController
 
   #レスポンスのパラメータを許可
   def generatedresult_params
-    params.require(:generatedresult).permit(:generated_drink, :generated_word, :generated_info, :image_url)
+    params.require(:generatedresult).permit(:generated_drink, :generated_word, :generated_info, :image)
   end
 end

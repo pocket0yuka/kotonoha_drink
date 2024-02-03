@@ -20,7 +20,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_091741) do
     t.string "generated_word"
     t.text "generated_info"
     t.string "image"
-    t.string "image_url"
     t.string "image_cache"
     t.text "memo"
     t.boolean "is_original"
