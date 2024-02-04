@@ -4,8 +4,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  if Rails.env.test? #テスト環境の場合
+    storage :file
+  else #開発、本番環境の場合
+    storage :fog
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -30,12 +33,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # end
 
   #画像を100x100pxにリサイズ
-  process resize_to_limit: [250, 250]
-
-  #サムネイルバージョン用で50x50pxにリサイズ
-  version :thumb do
-    process resize_to_fit: [50, 50]
-  end
+  process resize_to_limit: [100, 100]
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
