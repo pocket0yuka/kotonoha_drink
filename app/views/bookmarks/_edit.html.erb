@@ -20,11 +20,12 @@
         <%= form.file_field :image, class:'form-control js-file-select-preview', accept: 'image/*', data: { target: '#preview-target' } %>
         <%= form.hidden_field :image_cache %>
     </div>
+    
     <div class="form-group mt-3 mb-3">
       <% if @bookmark.image.present? %>
-        <%= image_tag @bookmark.image.url %>
+        <%= image_tag @bookmark.image.url, id: 'preview-target', size: '250x250' %>
       <% else %>
-        <%= image_tag 'kotonoha_bookmark.png',id: 'preview-target',size: '250x250' %>
+        <%= image_tag '', id: 'preview-target', size: '250x250', alt: 'Image preview' %>
       <% end %>
     </div>
 
