@@ -34,11 +34,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   #画像を100x100pxにリサイズ
   process resize_to_limit: [350, 350]
 
-  #サムネイルバージョン用で50x50pxにリサイズ
-  version :thumb do
-    process resize_to_fit: [250, 250]
-  end
-
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist

@@ -26,15 +26,15 @@ class BookmarksController < ApplicationController
     end
   end
 
-  #フォームから送信されたデータを使用して新しいレコードを作成
   def create
     @bookmark = current_user.bookmarks.new(bookmark_params)
     # フォームから保存したものはis_originalとする。パラメータが含まれていない場合、APIからのレスポンスとして扱う
-    @bookmark.is_original = bookmark_params[:is_original].present? ? bookmark_params[:is_original] : false
-    if @bookmark.save
-      redirect_to bookmarks_path
+    @bookmark.is_original = bookmark_params[:is_original] == 'true'
+
+    if @bookmark.is_original
+      original_bookmark
     else
-      render :new, alert: 'ブックマークの保存に失敗しました。'
+      generated_bookmark
     end
   end
 
@@ -47,6 +47,28 @@ class BookmarksController < ApplicationController
   end
 
   private
+
+  #ユーザー自身でドリンク言葉を作る場合(is_original = true)
+  def original_bookmark
+    if @bookmark.save
+      redirect_to bookmarks_path
+    else
+      render :new
+    end
+  end
+
+  #aiによる生成結果をブックマークする場合(is_original = false)
+  def generated_bookmark
+    base64_image = params[:bookmark][:image] # フォームから送信されたBase64画像データ
+    filename = "bookmark_#{Time.zone.now.to_i}" # 任意のファイル名
+    @bookmark.download_image(base64_image, filename) if base64_image.present?
+
+    if @bookmark.save
+      redirect_to bookmarks_path, notice: 'APIによるブックマークが正常に保存されました。'
+    else
+      render :new, alert: 'APIによるブックマークの保存に失敗しました。'
+    end
+  end
 
   def set_bookmark
     @bookmark = current_user.bookmarks.find(params[:id])
