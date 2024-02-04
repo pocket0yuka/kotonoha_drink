@@ -2,18 +2,17 @@
   <%= form_with model: @user, url: profile_path do |f| %>
     <div class="flex items-center mb-4">
       <!-- プロフィール画像 -->
-      <div class=" mr-4">
-        <%= image_tag @user.avatar.url, class: "w-32 h-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-lg" %>
+      <div class="mr-4">
+        <%= image_tag @user.avatar.url, class: "w-32 h-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-lg", id: "preview-target" %>
       </div>
       <!-- ファイルアップロード -->
       <div class="p-4 px-2">
-        <%= f.file_field :avatar, class: "hidden", accept: 'image/*', data: { target: '#preview-target' } %>
+        <%= f.file_field :avatar, class: "hidden js-file-select-preview", id: "user_avatar", accept: 'image/*', data: { target: '#preview-target' } %>
         <label for="user_avatar" class="btn bg-teal-600 hover:bg-teal-800 text-neutral-50 cursor-pointer">
           画像を変更する
         </label>
       </div>
     </div>
-
     <!-- 名前入力フィールド -->
     <div class="mb-4 w-full">
       <%= f.label :名前, class: "text-left block text-sm font-medium mb-1" %>
