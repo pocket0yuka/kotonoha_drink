@@ -10,9 +10,9 @@ class OpenAiService
         #model: "gpt-3.5-turbo-1106",
         response_format: { type: "json_object" },
         messages: [
-          {role: "system", content: "あなたはドリンクに関するエキスパートです。次に続くのはドリンクに関する情報のリクエストです。
-          第1候補はドリンク名、ドリンク言葉、ドリンク情報について各回答をjson形式で提供してください。
-          第2、第3候補はドリンク名のみ回答し、他候補という名目でjson形式で提供してください。
+          {role: "system", content: "あなたは花言葉と飲み物に関するソムリエです。次に続くのはドリンク名です。
+          このドリンク名を元にドリンク言葉、ドリンク情報を生成して
+          ドリンク名、ドリンク言葉、ドリンク情報として各回答をjson形式で提供してください。
           ドリンク言葉は(花言葉のように)そのドリンクに関連する意味深くキャッチーな言葉にしてください。
           ドリンク名は実際に存在し、一般的に認識されているものにしてください。ドリンク情報は具体的なドリンク情報、由来があれば由来を含めて（約80文字）説明してください。"},
           {role: "user", content: keyword}
@@ -23,6 +23,31 @@ class OpenAiService
 
     responsed_drink_data(response)
     #Rails.logger.info "OpenAI API Response: #{response.inspect}"
+  rescue StandardError => e
+    # エラーハンドリング: ログにエラーを記録
+    Rails.logger.error("OpenAI API Error: #{e.message}")
+    nil
+  end
+
+  def generate_story_drink_words(story)
+    response = @client.chat(
+      parameters: {
+        model: "gpt-4-1106-preview",
+        #model: "gpt-3.5-turbo-1106",
+        response_format: { type: "json_object" },
+        messages: [
+          {role: "system", content: "あなたは花言葉と飲み物に関するソムリエです。次に続くのはドリンクに関する情報のリクエストです。
+          このリクエストを元にオススメの飲み物を提案してください。具体的な商品名も含めて提案してください。
+          ドリンク名、ドリンク言葉、ドリンク情報を生成し各回答をjson形式で提供してください。
+          ドリンク言葉は(花言葉のように)そのドリンクに関連する意味深くキャッチーな言葉にしてください。
+          ドリンク名は実際に存在し、一般的に認識されているものにしてください。ドリンク情報は具体的なドリンク情報、由来があれば由来を含めて（約80文字）説明してください。"},
+          {role: "user", content: story}
+        ],
+        max_tokens: 1000,
+        temperature: 0.5
+      })
+
+      responsed_drink_data(response)
   rescue StandardError => e
     # エラーハンドリング: ログにエラーを記録
     Rails.logger.error("OpenAI API Error: #{e.message}")
@@ -43,7 +68,7 @@ class OpenAiService
   # 取得したBase64データの先頭部分をログに出力
   #Rails.logger.info "取得したBase64データの先頭: #{base64_data[0..100]}"
   rescue StandardError => e
-    # エラーハンドリング: ログに日本語でエラーを記録
+    #エラーハンドリング: ログに日本語でエラーを記録
     Rails.logger.error("OpenAI画像生成APIエラー: #{e.message}")
     nil
   end
@@ -55,17 +80,16 @@ class OpenAiService
     data = response.dig("choices", 0, "message", "content")
     #データが存在しない場合、メソッドを終了
     return unless data
+    Rails.logger.info "Raw API Response: #{data}" #ログ確認用
     # JSON文字列をハッシュに変換
     parsed_data = JSON.parse(data)
-    {
-      first_candidate: {
-        drink_name: parsed_data.dig("第1候補", "ドリンク名"),
-        drink_word: parsed_data.dig("第1候補", "ドリンク言葉"),
-        drink_info: parsed_data.dig("第1候補", "ドリンク情報")
-      },
-      second_candidate: parsed_data.dig("第2候補", "ドリンク名"),
-      third_candidate: parsed_data.dig("第3候補", "ドリンク名")
+    result = {
+        drink_name: parsed_data.dig("ドリンク名"),
+        drink_word: parsed_data.dig("ドリンク言葉"),
+        drink_info: parsed_data.dig("ドリンク情報")
     }
 
+    Rails.logger.info "API Response Data: #{result.inspect}"   #ログ確認用
+    result
   end
 end
