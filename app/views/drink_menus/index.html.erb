@@ -1,10 +1,12 @@
 <div class="min-h-screen bg-gray-100 p-4">
-  <%= paginate @categories %>
+  <%= paginate @categories, window: 1, outer_window: 0 %>
   <% @categories.each do |category| %>
     <h2><%= I18n.t("activerecord.attributes.drink.category.#{category.category}") %></h2>
     <ul>
       <% @drinks.each do |drink| %>
-        <li><%= drink.name %></li>
+        <li>
+          <%= link_to drink.name, generatedresults_path(keyword: drink.name, category: drink.category) %>
+        </li>
       <% end %>
     </ul>
   <% end %>

@@ -1,0 +1,27 @@
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<%= paginator.render do %>
+  <div class="flex justify-center space-x-2 my-4">
+    <%# 最初のページへのリンク %>
+    <%= link_to '«', url_for(page: 1), class: "join-item btn", rel: "prev", remote: remote unless current_page.first? %>
+    
+    <% each_page do |page| %>
+      <% if page.left_outer? || page.right_outer? || page.inside_window? %>
+        <%# 現在のページかどうかでクラスを変更します %>
+        <% active_class = page.current? ? 'bg-violet-500 text-white' : 'bg-violet-300 text-black' %>
+        
+        <%# ページへのリンクをボタンとして表示します %>
+        <%= link_to page, url_for(page: page), class: "join-item btn #{active_class}" %>
+      <% end %>
+    <% end %>
+    
+    <%# 最後のページへのリンク %>
+    <%= link_to '»', url_for(page: total_pages), class: "join-item btn", rel: "next", remote: remote unless current_page.last? %>
+  </div>
+<% end %>
