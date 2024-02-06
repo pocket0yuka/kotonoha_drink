@@ -84,6 +84,9 @@ gem "ruby-openai"
 # 検索機能
 gem 'ransack'
 
+#ページネーション
+gem 'kaminari'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
