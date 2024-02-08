@@ -18,7 +18,7 @@ class OpenAiService
           {role: "user", content: keyword}
         ],
         max_tokens: 1000,
-        temperature: 0.5
+        temperature: 0.7
       })
 
     responsed_drink_data(response)
@@ -44,7 +44,7 @@ class OpenAiService
           {role: "user", content: story}
         ],
         max_tokens: 1000,
-        temperature: 0.5
+        temperature: 0.7
       })
 
       responsed_drink_data(response)

@@ -1,13 +1,16 @@
 document.addEventListener('turbo:load', () => {
-  const searchForm = document.getElementById('drink-search-form');
+  // 複数のフォームIDを配列で管理
+  const formIds = ['drink-search-form', 'story-form'];
 
-  if (searchForm) {
-    searchForm.addEventListener('submit', () => {
-      showLoadingModal(); // モーダルを表示
-      // ここではe.preventDefault()を使用しない
-      // フォームのデフォルトのGET送信を利用してページ遷移を行う
-    });
-  }
+  // 各フォームに対してイベントリスナーを設定
+  formIds.forEach((formId) => {
+    const form = document.getElementById(formId);
+    if (form) {
+      form.addEventListener('submit', () => {
+        showLoadingModal(); // ローディングモーダルを表示
+      });
+    }
+  });
 });
 
 // モーダルを表示する関数
