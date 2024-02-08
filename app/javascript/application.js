@@ -18,3 +18,6 @@ application.register('autocomplete', Autocomplete)
 
 // 画像プレビューに関するjs
 import "./image/preview"
+
+//ローディング画面
+import "./modal/loading"
