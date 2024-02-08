@@ -1,4 +1,5 @@
 <div class="hero min-h-screen bg-gray-100">
+  <%= render "shared/loading" %>
   <%= form_with model: @story_form, url: generatedresults_path, method: :get, local: true, id: 'story-form', class: "flex flex-col gap-4 p-4 max-w-md mx-auto" do |form| %>
     <%= form.text_area :story, placeholder: "ここに注文を書いてください。例）2月で旬な飲み物は何かありますか？アルコールで。例2）友達に紅茶をプレゼントしたい。フルーティーで珍しい紅茶を教えて。", class: "textarea textarea-bordered w-full", rows: 3, maxlength: 60, id: "story-textarea" %>
     <span id="char-count" class="text-gray-600">残りの文字数: 60</span>
