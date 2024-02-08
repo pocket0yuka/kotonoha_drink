@@ -1,30 +1,23 @@
 document.addEventListener('turbo:load', () => {
   const searchForm = document.getElementById('drink-search-form');
-  const loadingModal = document.getElementById('loadingModal');
-
-  searchForm.addEventListener('submit', (e) => {
-    // モーダルを表示する
-    loadingModal.classList.remove('hidden');
-  });
-});
-
-document.addEventListener('turbo:load', function() {
-  const searchForm = document.getElementById('drink-search-form');
 
   if (searchForm) {
-    searchForm.addEventListener('submit', function(event) {
-      showLoadingModal(); // フォーム送信時にローディングモーダルを表示
+    searchForm.addEventListener('submit', () => {
+      showLoadingModal(); // モーダルを表示
+      // ここではe.preventDefault()を使用しない
+      // フォームのデフォルトのGET送信を利用してページ遷移を行う
     });
   }
-  
-  // Ajaxリクエストが成功したらローディングモーダルを非表示にする
-  // RailsのUJSによるajax:successイベントを利用
-  $(document).on('ajax:success', function() {
-    hideLoadingModal();
-  });
-  
-  // エラー時もモーダルを非表示にする
-  $(document).on('ajax:error', function() {
-    hideLoadingModal();
-  });
 });
+
+// モーダルを表示する関数
+function showLoadingModal() {
+  const modalOverlay = document.getElementById('modalOverlay');
+  modalOverlay.classList.remove('hidden');
+}
+
+// モーダルを非表示にする関数
+function hideLoadingModal() {
+  const modalOverlay = document.getElementById('modalOverlay');
+  modalOverlay.classList.add('hidden');
+}
