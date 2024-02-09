@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# 投稿に対するいいね機能のコントローラ
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
 

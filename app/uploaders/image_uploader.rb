@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
+# 画像のアップロード
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.test? #テスト環境の場合
+  if Rails.env.test? # テスト環境の場合
     storage :file
-  else #開発、本番環境の場合
+  else # 開発、本番環境の場合
     storage :fog
   end
-
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -31,17 +33,17 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  #画像を100x100pxにリサイズ
+  # 画像を100x100pxにリサイズ
   process resize_to_limit: [350, 350]
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   def filename
-    original_filename if original_filename
+    original_filename
   end
 
   # Override the filename of the uploaded files:

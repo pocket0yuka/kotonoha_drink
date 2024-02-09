@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# 投稿のコントローラ
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
@@ -22,7 +25,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    #モデルにないのでtagを直接取得
+    # モデルにないのでtagを直接取得
     tag_names = params[:post][:tag_names]
 
     if @post.save
@@ -80,7 +83,8 @@ class PostsController < ApplicationController
   def private_response
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("private_posts", partial: "posts/private_posts", locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) })
+        render turbo_stream: turbo_stream.replace('private_posts', partial: 'posts/private_posts',
+                                                                   locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) })
       end
     end
   end

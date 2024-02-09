@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# プロフィールのコントローラ
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, only: %i[edit update]
   before_action :set_user, only: %i[show edit update]
@@ -7,7 +10,6 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-
   end
 
   def update

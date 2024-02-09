@@ -1,0 +1,53 @@
+require: rubocop-rails # 必須
+
+AllCops:
+  # 除外するディレクトリ（自動生成されるファイル）
+  Exclude:
+    - "vendor/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "bin/*"
+    - "node_modules/**/*"
+
+  # 新ルールを有効化
+  NewCops: enable
+
+# 1行あたりの文字数をチェックする
+Layout/LineLength:
+  Max: 130
+  # 下記ファイルはチェックの対象から外す
+  Exclude:
+    - "Rakefile"
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
+    - 'app/services/open_ai_service.rb'
+
+
+# ネストが深すぎないかをチェック（if文のネストもチェック）
+Metrics/BlockNesting:
+  Max: 5
+
+# クラスの行数をチェック（無効）
+Metrics/ClassLength:
+  Enabled: false
+
+# 空メソッドの場合に、1行のスタイルにしない　NG例：def style1; end
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+
+# 日本語でのコメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+# メソッドの行数が多すぎないかをチェック
+Metrics/MethodLength:
+  Max: 30
+
+
+# ドキュメント前のコメント
+Style/Documentation:
+  # 下記ファイルはチェックの対象から外す
+  Exclude:
+    - "app/helpers/users/omniauth_callbacks_helper.rb"
+    - "test/test_helper.rb"

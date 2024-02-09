@@ -3,14 +3,14 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  #ログイン後にリダイレクトするパスを設定
+  # ログイン後にリダイレクトするパスを設定
   devise_scope :user do
     # ログアウトパス
     get '/users/sign_out' => 'devise/sessions#destroy'
     resources :users, only: [:show]
   end
 
-  root "homes#index"
+  root 'homes#index'
   # ログイン後、drink_menusにリダイレクト(application_controller参照)
   get '/drink_menus', to: 'drink_menus#index'
   get 'generatedresult', to: 'generatedresults#new'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :tags do
     get :search, on: :collection
   end
-  #メーラー用のurl
+  # メーラー用のurl
   Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   end
