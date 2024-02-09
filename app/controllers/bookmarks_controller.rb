@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# ブックマークコントローラー
 class BookmarksController < ApplicationController
-  #ユーザーが(createとnewのみ)ログインしていることを確認
+  # ユーザーが(createとnewのみ)ログインしていることを確認
   before_action :authenticate_user!
   before_action :set_bookmark, only: %i[show edit update destroy]
 
@@ -8,22 +11,14 @@ class BookmarksController < ApplicationController
     @bookmarks = current_user.bookmarks.includes(:user).search(params[:search]).order_by(params[:order])
   end
 
-  def new
-    @bookmark =Bookmark.new
-  end
-
   def show
   end
 
-  def edit
+  def new
+    @bookmark = Bookmark.new
   end
 
-  def update
-    if @bookmark.update(bookmark_params)
-      redirect_to bookmark_path, notice: 'ブックマークを更新しました。'
-    else
-      render :edit, alert: 'ブックマークの更新に失敗しました。'
-    end
+  def edit
   end
 
   def create
@@ -38,17 +33,22 @@ class BookmarksController < ApplicationController
     end
   end
 
-  def destroy
-    if @bookmark.destroy
-      redirect_to bookmarks_path, notice: 'ブックマークを削除しました。'
+  def update
+    if @bookmark.update(bookmark_params)
+      redirect_to bookmark_path
     else
-      redirect_to bookmarks_path, alert: 'ブックマークの削除に失敗しました。'
+      render :edit
     end
+  end
+
+  def destroy
+    @bookmark.destroy
+    redirect_to bookmarks_path
   end
 
   private
 
-  #ユーザー自身でドリンク言葉を作る場合(is_original = true)
+  # ユーザー自身でドリンク言葉を作る場合(is_original = true)
   def original_bookmark
     if @bookmark.save
       redirect_to bookmarks_path
@@ -57,16 +57,16 @@ class BookmarksController < ApplicationController
     end
   end
 
-  #aiによる生成結果をブックマークする場合(is_original = false)
+  # aiによる生成結果をブックマークする場合(is_original = false)
   def generated_bookmark
     base64_image = params[:bookmark][:image] # フォームから送信されたBase64画像データ
     filename = "bookmark_#{Time.zone.now.to_i}" # 任意のファイル名
     @bookmark.download_image(base64_image, filename) if base64_image.present?
 
     if @bookmark.save
-      redirect_to bookmarks_path, notice: 'APIによるブックマークが正常に保存されました。'
+      redirect_to bookmarks_path
     else
-      render :new, alert: 'APIによるブックマークの保存に失敗しました。'
+      render :new
     end
   end
 
@@ -75,6 +75,7 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:generated_drink, :generated_word, :generated_info, :image, :image_cache, :memo, :is_original)
+    params.require(:bookmark).permit(:generated_drink, :generated_word, :generated_info, :image, :image_cache, :memo,
+                                     :is_original)
   end
 end

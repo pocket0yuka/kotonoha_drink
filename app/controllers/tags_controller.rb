@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# タグのコントローラ
 class TagsController < ApplicationController
   before_action :authenticate_user!
 
@@ -7,7 +10,7 @@ class TagsController < ApplicationController
   end
 
   def search
-    @tags = Tag.where("name like ?", "%#{params[:q]}%")
+    @tags = Tag.where('name like ?', "%#{params[:q]}%")
     respond_to do |format|
       format.js
     end

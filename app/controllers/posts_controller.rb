@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# 投稿のコントローラ
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
@@ -20,9 +23,12 @@ class PostsController < ApplicationController
     @post = current_user.posts.new
   end
 
+  def edit
+  end
+
   def create
     @post = current_user.posts.new(post_params)
-    #モデルにないのでtagを直接取得
+    # モデルにないのでtagを直接取得
     tag_names = params[:post][:tag_names]
 
     if @post.save
@@ -33,22 +39,25 @@ class PostsController < ApplicationController
         private_response
       else
         # 公開投稿の場合のリダイレクト
-        redirect_to posts_path, notice: '公開の投稿が作成されました。'
+        redirect_to posts_path
       end
     else
       render :new
     end
   end
 
+  def update
+  end
+
   def destroy
     if @post.destroy
       if @post.visibility == '公開'
-        redirect_to posts_path, notice: '公開投稿が削除されました。'
+        redirect_to posts_path
       else
-        redirect_to new_post_path, notice: '非公開投稿が削除されました。'
+        redirect_to new_post_path
       end
     else
-      redirect_to @post, alert: '投稿の削除に失敗しました。'
+      redirect_to @post
     end
   end
 
@@ -80,7 +89,11 @@ class PostsController < ApplicationController
   def private_response
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("private_posts", partial: "posts/private_posts", locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) })
+        render turbo_stream: turbo_stream.replace(
+          'private_posts',
+          partial: 'posts/private_posts',
+          locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) }
+        )
       end
     end
   end

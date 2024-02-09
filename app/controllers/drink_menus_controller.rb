@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# ドリンクメニュー表のコントローラ
 class DrinkMenusController < ApplicationController
   def index
     @categories = Drink.select(:category).distinct.order(:category).page(params[:page]).per(1)

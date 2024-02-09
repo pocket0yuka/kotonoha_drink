@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# ドリンクメニュー表のドリンクに関するモデル
 class Drink < ApplicationRecord
   validates :name, presence: true
   paginates_per 20
