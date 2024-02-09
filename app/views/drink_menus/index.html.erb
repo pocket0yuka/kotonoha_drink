@@ -1,4 +1,5 @@
 <div class="min-h-screen bg-gray-100 p-4">
+  <%= render "shared/loading" %>
   <%= paginate @categories, window: 1, outer_window: 0 %>
   <% @categories.each do |category| %>
     <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4">
