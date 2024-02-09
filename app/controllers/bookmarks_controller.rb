@@ -35,18 +35,15 @@ class BookmarksController < ApplicationController
 
   def update
     if @bookmark.update(bookmark_params)
-      redirect_to bookmark_path, notice: 'ブックマークを更新しました。'
+      redirect_to bookmark_path
     else
-      render :edit, alert: 'ブックマークの更新に失敗しました。'
+      render :edit
     end
   end
 
   def destroy
-    if @bookmark.destroy
-      redirect_to bookmarks_path, notice: 'ブックマークを削除しました。'
-    else
-      redirect_to bookmarks_path, alert: 'ブックマークの削除に失敗しました。'
-    end
+    @bookmark.destroy
+    redirect_to bookmarks_path
   end
 
   private
@@ -67,9 +64,9 @@ class BookmarksController < ApplicationController
     @bookmark.download_image(base64_image, filename) if base64_image.present?
 
     if @bookmark.save
-      redirect_to bookmarks_path, notice: 'APIによるブックマークが正常に保存されました。'
+      redirect_to bookmarks_path
     else
-      render :new, alert: 'APIによるブックマークの保存に失敗しました。'
+      render :new
     end
   end
 

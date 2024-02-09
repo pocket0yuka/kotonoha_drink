@@ -8,6 +8,7 @@ AllCops:
     - "config/**/*"
     - "bin/*"
     - "node_modules/**/*"
+    - "app/controllers/users/omniauth_callbacks_controller.rb" #googleログイン
 
   # 新ルールを有効化
   NewCops: enable
@@ -51,3 +52,8 @@ Style/Documentation:
   Exclude:
     - "app/helpers/users/omniauth_callbacks_helper.rb"
     - "test/test_helper.rb"
+
+# I18nフラッシュメッセージ日本語を許可したい
+Rails/I18nLocaleTexts:
+  Exclude:
+    - 'app/controllers/**/*'
