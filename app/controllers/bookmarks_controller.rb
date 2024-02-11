@@ -2,7 +2,7 @@
 
 # ブックマークコントローラー
 class BookmarksController < ApplicationController
-  # ユーザーが(createとnewのみ)ログインしていることを確認
+  # ユーザーがログインしていることを確認
   before_action :authenticate_user!
   before_action :set_bookmark, only: %i[show edit update destroy]
 
