@@ -20,9 +20,7 @@
       <% if @bookmark.image.present? %>
         <%= image_tag @bookmark.image.url, alt: "#{@bookmark.generated_drink}の画像", class: "rounded-lg shadow-2xl" %>
       <% else %>
-        <div class="placeholder rounded-lg shadow-2xl p-4">
-          <p class="text-gray-500">画像はありません。</p>
-        </div>
+        <%= image_tag  "kotonoha_drink logo.png", size: '250x250', class: "rounded-lg shadow-2xl"%>
       <% end %>
     </div>
 
