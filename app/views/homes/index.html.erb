@@ -5,10 +5,15 @@
   <div class="hero-content text-center flex flex-wrap md:pt-52 sm:pt-8 mx-auto">
   <%= image_tag 'kotonoha_leaf.png', class: "max-sm:hidden absolute bottom-0 right-48 z-0",size: '340x500'%>
     <!-- 言の葉ドリンクロゴ -->
-    <div class="mb-8 max-w-md z-10">
+    <div class="mb-8 max-w-md z-10 max-sm:hidden">
       <%= image_tag 'kotonoha_drink logo.png',size: '250x250'%>
       <a class="text-green-700 text-5xl font-bold">言の葉</a>
       <a class="text-black text-5xl font-bold">Drink</a>
+    </div>
+    <div class="flex items-center mb-8 max-w-md z-10 sm:hidden">
+      <%= image_tag 'kotonoha_drink logo.png',class: "w-24 h-24 mr-4",size: '250x250'%>
+      <a class="text-green-700 text-4xl md:text-6xl font-bold">言の葉</a>
+      <a class="text-black text-4xl md:text-6xl font-bold">Drink</a>
     </div>
     <%= image_tag 'kotonoha_leaf.png', class: "sm:hidden absolute bottom-10 right-2 z-0",size: '170x500'%>
     <div class="max-w-md text-emerald-700 text-center backdrop-opacity-10 backdrop-invert bg-white/75"">

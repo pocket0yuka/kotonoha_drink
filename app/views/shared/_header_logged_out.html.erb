@@ -7,7 +7,7 @@
       <a class="text-black text-xl">rink</a>
     </div>
     <%= form_with url: generatedresults_path, method: :get, local: true, id: 'drink-search-form' do |form| %>
-      <%= form.text_field :keyword, placeholder: "ドリンク名を入力", class: "font-semibold text-sm text-green-700 border border-emerald-700 bg-purple-50 input input-bordered input-md w-full max-w-lg" %>
+      <%= form.text_field :keyword, placeholder: "ドリンク名を入力", class: "text-sm text-green-700 border border-emerald-700 bg-slate-50 input input-bordered input-md w-full max-w-lg" %>
       <%= form.submit "検索", class: "btn btn-primary" %>
     <% end %>
     <div class="flex-none">
