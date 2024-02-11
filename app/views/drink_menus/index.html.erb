@@ -7,7 +7,7 @@
       <ul class="list-disc list-inside p-4">
         <% @drinks.each do |drink| %>
           <li class="py-2 border-b border-gray-200">
-            <%= link_to drink.name, generatedresults_path(keyword: drink.name, category: drink.category), class: "text-blue-500 hover:text-blue-600" %>
+            <%= link_to drink.name, generatedresults_path(keyword: drink.name, category: drink.category), class: "show-modal text-blue-500 hover:text-blue-600", data: { modal_target: "#modalOverlay" } %>
           </li>
         <% end %>
       </ul>
