@@ -1,15 +1,63 @@
 <!-- ナビゲーションバー -->
 <!-- ヒーローセクション -->
-<div class="hero min-h-screen bg-teal-50">
-  <div class="hero-content text-center">
-    <div class="max-w-md text-emerald-700">
+<div class="min-h-screen bg-white">
+  <%= render "shared/loading" %>
+  <div class="hero-content text-center flex flex-wrap md:pt-52 sm:pt-8 mx-auto">
+  <%= image_tag 'kotonoha_leaf.png', class: "max-sm:hidden absolute bottom-0 right-48 z-0",size: '340x500'%>
+    <!-- 言の葉ドリンクロゴ -->
+    <div class="mb-8 max-w-md z-10 max-sm:hidden">
+      <%= image_tag 'kotonoha_drink logo.png',size: '250x250'%>
+      <a class="text-green-700 text-5xl font-bold">言の葉</a>
+      <a class="text-black text-5xl font-bold">Drink</a>
+    </div>
+    <div class="flex items-center mb-8 max-w-md z-10 sm:hidden">
+      <%= image_tag 'kotonoha_drink logo.png',class: "w-24 h-24 mr-4",size: '250x250'%>
+      <a class="text-green-700 text-4xl md:text-6xl font-bold">言の葉</a>
+      <a class="text-black text-4xl md:text-6xl font-bold">Drink</a>
+    </div>
+    <%= image_tag 'kotonoha_leaf.png', class: "sm:hidden absolute bottom-10 right-2 z-0",size: '170x500'%>
+    <div class="max-w-md text-emerald-700 text-center backdrop-opacity-10 backdrop-invert bg-white/75"">
       <h1 class="sm:text-3xl text-2xl font-bold">思いを込めた一杯で、</h1>
       <h1 class="sm:text-4xl text-2xl font-bold">日常をほんの少し特別に。</h1>
-      <p class="py-6 text-base sm:text-lg">花に花言葉があるように、</p>
+      <p class="py-5 text-base sm:text-lg">花に花言葉があるように、</p>
       <p class="text-sm sm:text-base">もしもドリンクにドリンク言葉があったら？？</p>
-      <p class="py-6 text-sm sm:text-base">まずは、好きな飲み物の名前を入力してみましょう.</p>
-      <p class="py-6 text-base sm:text-lg">AIがドリンク言葉を作ってくれます!</p>
+      <p class="py-5 text-sm sm:text-base">まずは、好きな飲み物の名前を入力してみましょう.</p>
+      <p class="py-5 text-base sm:text-lg">AIがドリンク言葉を作ってくれます!</p>
+    </div>
+  </div>
+  <!-- 使い方 -->
+<div class="bg-white p-8 m-8 mt-32 shadow-lg rounded-lg max-w-lg  h-auto md:ml-64 backdrop-opacity-10 bg-white/75">
+  <div class="md:overflow-x-auto md:h-96">
+    
+    <!-- タイトル部分 -->
+    <div class="text-2xl font-bold text-center mb-4">何ができる？</div>
+    <!-- 内容部分 -->
+    <div class="py-6">
+      <p class="text-gray-700 font-bold">ドリンク言葉を作る:</p>
+        文章やキーワードからAIがドリンク言葉を作ってくれます。</br>
+      <%= image_tag 'kotonoha_drink_word.png',class: "p-4",size: '500x800'%>
+      <%= image_tag 'kotonoha_text.png',class: "p-4",size: '500x800'%>
+    </div>
+    <div class="py-6">
+      <p class="text-gray-700 font-bold">ドリンク言葉を記録する:</p>
+      ドリンク言葉を保存、自分で作ることもできます。</br>
+      <%= image_tag 'kotonoha_bookdrink.png',class: "p-4",size: '500x800'%>
+    </div>
+    <div class="py-6">
+      <p class="text-gray-700 font-bold">ドリンク日記や投稿を書く:</p>
+        非公開投稿では日記として、</br>
+        公開投稿では情報共有やつぶやきとして使えます。</br>
+    <%= image_tag 'kotonoha_hikoukai.png',class: "p-4",size: '500x800'%>
+    <%= image_tag 'kotonoha_koukai.png',class: "p-4",size: '500x800'%>
+    </div>
+    <div class="py-6">
+      <%= link_to 'お試し:', root_path, class: "font-bold text-emerald-700" %></br>
+      上部の検索コーナー、メニュー表はログインせずに使用できます。ぜひお試しください。
     </div>
   </div>
 </div>
+
+
+
+
 <!-- お問い合わせ関連　-->

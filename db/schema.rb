@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_19_133310) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_30_091741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_133310) do
     t.string "generated_drink"
     t.string "generated_word"
     t.text "generated_info"
-    t.string "image_url"
+    t.string "image"
+    t.string "image_cache"
     t.text "memo"
     t.boolean "is_original"
     t.datetime "created_at", null: false
@@ -29,8 +30,54 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_133310) do
 
   create_table "drinks", force: :cascade do |t|
     t.string "name", null: false
-    t.string "category"
+    t.integer "category"
     t.integer "display_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "body"
+    t.integer "visibility", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "posttags", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_posttags_on_post_id"
+    t.index ["tag_id"], name: "index_posttags_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,4 +100,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_133310) do
   end
 
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "notifications", "posts"
+  add_foreign_key "posts", "users"
+  add_foreign_key "posttags", "posts"
+  add_foreign_key "posttags", "tags"
 end

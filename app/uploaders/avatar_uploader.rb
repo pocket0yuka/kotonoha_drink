@@ -1,11 +1,17 @@
+# frozen_string_literal: true
+
+# アバターのアップロード
 class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  if Rails.env.test? # テスト環境の場合
+    storage :file
+  else # 開発、本番環境の場合
+    storage :fog
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -14,12 +20,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url(*args)
-    "runtekun_1.png"
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  def default_url(*_args)
+    'kotonoha_drink logo.png'
+    #   # For Rails 3.1+ asset pipeline compatibility:
+    #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+    #
+    #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
 
   # Process files as they are uploaded:
@@ -28,16 +34,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+
+  # 画像を100x100pxにリサイズ
   process resize_to_limit: [100, 100]
-  # Create different versions of your uploaded files:
-  version :thumb do
-    process resize_to_fit: [50, 50]
-  end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Override the filename of the uploaded files:

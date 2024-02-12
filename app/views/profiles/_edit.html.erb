@@ -2,22 +2,26 @@
   <%= form_with model: @user, url: profile_path do |f| %>
     <div class="flex items-center mb-4">
       <!-- プロフィール画像 -->
-      <div class="w-24 h-24 mr-4">
-        <%= image_tag @user.avatar.url, class: "rounded-full" %>
+      <div class="mr-4">
+        <%= image_tag @user.avatar.url, class: "w-20 h-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-lg", id: "preview-target" %>
       </div>
       <!-- ファイルアップロード -->
       <div class="p-4 px-2">
-        <%= f.file_field :avatar, class: "hidden", accept: 'image/*', data: { target: '#preview-target' } %>
+        <%= f.file_field :avatar, class: "hidden js-file-select-preview", id: "user_avatar", accept: 'image/*', data: { target: '#preview-target' } %>
         <label for="user_avatar" class="btn bg-teal-600 hover:bg-teal-800 text-neutral-50 cursor-pointer">
           画像を変更する
         </label>
       </div>
     </div>
-
     <!-- 名前入力フィールド -->
     <div class="mb-4 w-full">
       <%= f.label :名前, class: "text-left block text-sm font-medium mb-1" %>
       <%= f.text_field :name, class: "input input-bordered w-full" %>
+    </div>
+
+    <div class="mb-4 w-full">
+      <%= f.label :メールアドレス, class: "text-left block text-sm font-medium mb-1" %>
+      <%= f.text_field :email, class: "input input-bordered w-full" %>
     </div>
 
     <!-- 好きな飲み物入力フィールド -->

@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      drink: "ドリンク"
+    attributes:
+      drink:
+        category:
+          cafe: "カフェ"
+          coffee: "コーヒー"
+          soft_drink: "ソフトドリンク"
+          tea: "お茶"
+          non_alcoholic_cocktail: "ノンアルコールカクテル"
+          cocktail: "カクテル"
+          whiskey: "ウイスキー"
+          sake: "日本酒"
+          wine: "ワイン"
+          beer: "ビール"

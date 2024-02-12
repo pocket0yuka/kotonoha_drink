@@ -12,16 +12,15 @@
   </script>
 </head>
 
-<div class="hero min-h-screen bg-base-200">
+<div class="hero min-h-screen bg-gray-100">
+  <%= render "shared/loading" %>
   <div class="hero-content flex-col lg:flex-row-reverse">
     <!-- 画像の表示 -->
     <div class="max-w-md mx-auto">
-      <% if @bookmark.image_url.present? %>
-        <img src="<%= @bookmark.image_url %>" alt="<%= @bookmark.generated_drink %>の画像" class="rounded-lg shadow-2xl" />
+      <% if @bookmark.image.present? %>
+        <%= image_tag @bookmark.image.url, alt: "#{@bookmark.generated_drink}の画像", class: "rounded-lg shadow-2xl" %>
       <% else %>
-        <div class="placeholder rounded-lg shadow-2xl p-4">
-          <p class="text-gray-500">画像はありません。</p>
-        </div>
+        <%= image_tag  "kotonoha_drink logo.png", size: '250x250', class: "rounded-lg shadow-2xl"%>
       <% end %>
     </div>
 
@@ -30,7 +29,7 @@
       <div class="card-body">
         <h2 class="card-title text-4xl mb-4">ドリンク情報</h2>
 
-        <!-- is_original の場合にアイコンを表示 -->
+        <!-- is_original の場合 -->
         <div class="mb-4">
           <% if @bookmark.is_original %>
             <i class="fa-solid fa-whiskey-glass fa-sm text-primary"></i>

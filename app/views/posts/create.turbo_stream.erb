@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "private_posts" do %>
+  <%= render partial: "posts/private_posts", locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) } %>
+<% end %>

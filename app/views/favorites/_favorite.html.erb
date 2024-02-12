@@ -1,0 +1,21 @@
+<div id="favorite_<%= post.id %>">
+    <% if post.favorited_by?(current_user) %>
+      <%= link_to post_favorites_path(post), data: { turbo_method: :delete } do %>
+        <i class="fa-solid fa-heart" style="color: #f04769;"></i>
+        <% if post.favorites.count > 0 %>
+          <%= post.favorites.count %>いいね
+        <% else %>
+          いいね
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to post_favorites_path(post), data: { turbo_method: :post } do %>
+        <i class="fa-regular fa-heart fa-sm"></i>
+        <% if post.favorites.count > 0 %>
+          <%= post.favorites.count %>いいね
+        <% else %>
+          いいね
+        <% end %>
+      <% end %>
+    <% end %>
+</div>

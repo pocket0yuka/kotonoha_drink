@@ -1,5 +1,6 @@
-<div class="hero min-h-screen bg-base-200">
-  <%= form_with model: Bookmark.new, local: true, class: "w-full max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md" do |form| %>
+<div class="hero min-h-screen bg-gray-100 p-4">
+  <%= render "shared/loading" %>
+  <%= form_with model: @bookmark, local: true, class: "w-full max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md" do |form| %>
     <div class="mb-4">
       <%= form.label :generated_drink, 'ドリンク名', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :generated_drink, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
@@ -14,10 +15,17 @@
       <%= form.label :generated_info, 'ドリンク情報', class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :generated_info, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
-
-    <div class="mb-4">
-      <%= form.label :image_url, '画像URL', class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_field :image_url, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <div class="form-group mb-3"">
+        <%= form.label :image, '画像' %>
+        <%= form.file_field :image, class:'form-control js-file-select-preview', accept: 'image/*', data: { target: '#preview-target' } %>
+        <%= form.hidden_field :image_cache %>
+    </div>
+    <div class="form-group mt-3 mb-3">
+      <% if @bookmark.image.present? %>
+        <%= image_tag @bookmark.image.url %>
+      <% else %>
+        <%= image_tag 'kotonoha_bookmark.png',id: 'preview-target',size: '250x250' %>
+      <% end %>
     </div>
 
     <div class="mb-4">
@@ -26,9 +34,9 @@
     </div>
 
     <%= form.hidden_field :is_original, value: true %>
-
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-end">
       <%= form.submit 'ブックマークを保存する', class: 'btn btn-primary' %>
     </div>
   <% end %>
+  </div>
 </div>
