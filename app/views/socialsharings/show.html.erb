@@ -5,7 +5,7 @@
     <!-- 画像の表示 -->
     <div class="max-w-md mx-auto">
       <% if @socialsharing.image.present? %>
-        <%= image_tag @socialsharing.image, alt: "#{@socialsharing.generated_drink}の画像", class: "rounded-lg shadow-2xl" %>
+        <%= image_tag @socialsharing.image.url, alt: "#{@socialsharing.generated_drink}の画像", class: "rounded-lg shadow-2xl" %>
       <% else %>
         <%= image_tag "kotonoha_drink logo.png", size: '250x250', class: "rounded-lg shadow-2xl" %>
       <% end %>

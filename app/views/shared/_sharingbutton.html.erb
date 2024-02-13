@@ -1,5 +1,5 @@
-                <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
-                      <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@generated_results[:drink_name]}のドリンク言葉は#{@generated_results[:drink_word]}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
-                        <i class="fa-brands fa-square-x-twitter fa-lg"></i>に投稿する
-                      <% end %>
-                    </button>
+<button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
+  <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@generated_results[:drink_name]}のドリンク言葉は#{@generated_results[:drink_word]}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
+    <i class="fa-brands fa-square-x-twitter fa-lg"></i>に投稿する
+  <% end %>
+</button>
