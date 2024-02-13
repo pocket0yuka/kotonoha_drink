@@ -10,10 +10,12 @@ class SocialsharingsController < ApplicationController
 
   def create
     @socialsharing = Socialsharing.new(socialsharing_params)
+    image_data
     if @socialsharing.save
-      image_data
+      redirect_to socialsharing_path(@socialsharing)
+    else
+      render :new
     end
-
   end
 
   private
@@ -22,12 +24,6 @@ class SocialsharingsController < ApplicationController
     base64_image = params[:socialsharing][:image] # フォームから送信されたBase64画像データ
     filename = "socialsharing_#{Time.zone.now.to_i}" # 任意のファイル名
     @socialsharing.download_image(base64_image, filename) if base64_image.present?
-
-    if @socialsharing.save
-      redirect_to socialsharings_path
-    else
-      render :new
-    end
   end
 
   def socialsharing_params

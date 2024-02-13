@@ -25,26 +25,19 @@
                 <% if user_signed_in? && @generated_results.present? %>
                   <div class="flex items-center">
                     <%= form_with model: Bookmark.new, url: bookmarks_path, local: true do |form| %>
-                      <!-- フォームのフィールド -->
+                      <!-- 結果を保存 -->
                       <%= form.hidden_field :generated_drink, value: @generated_results[:drink_name] %>
                       <%= form.hidden_field :generated_word, value: @generated_results[:drink_word] %>
                       <%= form.hidden_field :generated_info, value: @generated_results[:drink_info] %>
                       <%= form.hidden_field :image, value: @image %>
                       <%= form.submit "結果を保存する", class: "btn btn-primary mr-2" %>
                     <% end %>
-                    <!-- シェアボタン -->
+                    <!-- ドリンクシェア -->
                       <%= render "shared/sharingbutton" %>
                   </div>
                 <% else %>
-                    <!-- シェアボタン -->
-                    <%= form_with model: Socialsharing.new, url: socialsharings_path, local: true do |form| %>
-                      <!-- フォームのフィールド -->
-                      <%= form.hidden_field :generated_drink, value: @generated_results[:drink_name] %>
-                      <%= form.hidden_field :generated_word, value: @generated_results[:drink_word] %>
-                      <%= form.hidden_field :generated_info, value: @generated_results[:drink_info] %>
-                      <%= form.hidden_field :image, value: @image %>
-                      <%= form.submit "xに投稿する", class: "btn btn-primary mr-2" %>
-                    <% end %>
+                  <!-- ドリンクシェア -->
+                  <%= render "shared/sharingbutton" %>
                 <% end %>
               </div>
             </div>
