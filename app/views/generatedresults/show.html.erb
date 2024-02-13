@@ -1,4 +1,4 @@
-<div class="hero min-h-screen bg-base-200">
+<div class="hero min-h-screen bg-gray-100">
   <%= render "shared/loading" %>
   <div class="hero-content flex-col lg:flex-row-reverse">
       <% if @generated_results.present? %>
@@ -9,9 +9,9 @@
           <p class="text-gray-500">画像はありません。</p>
         </div>
       <% end %>
-      <div class="hero min-h-screen bg-base-200">
+      <div class="hero min-h-screen bg-gray-100">
         <div class="hero-content flex-col lg:flex-row-reverse">
-          <div class="card w-full bg-base-100 shadow-xl">
+          <div class="card w-full bg-white shadow-xl">
             <div class="card-body">
               <h2 class="card-title text-4xl">ドリンク情報</h2>
 
@@ -33,19 +33,18 @@
                       <%= form.submit "結果を保存する", class: "btn btn-primary mr-2" %>
                     <% end %>
                     <!-- シェアボタン -->
-                    <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
-                      <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@generated_results[:drink_name]}のドリンク言葉は#{@generated_results[:drink_word]}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
-                        <i class="fa-brands fa-square-x-twitter fa-lg"></i>に投稿する
-                      <% end %>
-                    </button>
+                      <%= render "shared/sharingbutton" %>
                   </div>
                 <% else %>
                     <!-- シェアボタン -->
-                    <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
-                      <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@generated_results[:drink_name]}のドリンク言葉は#{@generated_results[:drink_word]}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
-                        <i class="fa-brands fa-square-x-twitter fa-lg"></i>に投稿する
-                      <% end %>
-                    </button>
+                    <%= form_with model: Socialsharing.new, url: socialsharings_path, local: true do |form| %>
+                      <!-- フォームのフィールド -->
+                      <%= form.hidden_field :generated_drink, value: @generated_results[:drink_name] %>
+                      <%= form.hidden_field :generated_word, value: @generated_results[:drink_word] %>
+                      <%= form.hidden_field :generated_info, value: @generated_results[:drink_info] %>
+                      <%= form.hidden_field :image, value: @image %>
+                      <%= form.submit "xに投稿する", class: "btn btn-primary mr-2" %>
+                    <% end %>
                 <% end %>
               </div>
             </div>
