@@ -1,0 +1,40 @@
+
+<div class="hero min-h-screen bg-gray-100">
+  <%= render "shared/loading" %>
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <!-- 画像の表示 -->
+    <div class="max-w-md mx-auto">
+      <% if @socialsharing.image.present? %>
+        <%= image_tag @socialsharing.image.url, alt: "#{@socialsharing.generated_drink}の画像", class: "rounded-lg shadow-2xl" %>
+      <% else %>
+        <%= image_tag "kotonoha_drink logo.png", size: '250x250', class: "rounded-lg shadow-2xl" %>
+      <% end %>
+    </div>
+
+    <!-- カード -->
+    <div class="card w-full bg-white shadow-xl max-w-lg mx-auto">
+      <div class="card-body">
+        <h2 class="card-title text-4xl mb-4">ドリンク情報</h2>
+
+        <div class="mb-4">
+          <span class="text-lg"><strong>ドリンク名:</strong> <%= @socialsharing.generated_drink %></span>
+        </div>
+
+        <div class="mb-4">
+          <p class="text-lg"><strong>ドリンク言葉:</strong> <%= @socialsharing.generated_word %></p>
+        </div>
+
+        <div class="mb-4">
+          <p class="text-lg"><strong>ドリンク情報:</strong> <%= @socialsharing.generated_info %></p>
+        </div>
+
+        <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
+          <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@socialsharing.generated_drink}のドリンク言葉は#{@socialsharing.generated_word}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
+            <i class="fa-brands fa-square-x-twitter fa-lg"></i>にも投稿する？
+          <% end %>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>

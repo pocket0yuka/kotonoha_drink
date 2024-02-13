@@ -1,0 +1,21 @@
+<div class="hero min-h-screen bg-gray-100">
+  <div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <% @socialsharings.each do |socialsharing| %>
+        <div class="relative overflow-hidden shadow-lg rounded-lg">
+          <%= link_to socialsharing_path(socialsharing) do %>
+            <% if socialsharing.image.present? %>
+              <%= image_tag socialsharing.image.url, class: "w-full h-full object-cover transition duration-500 ease-in-out transform hover:scale-105" %>
+            <% else %>
+              <%= image_tag "kotonoha_drink logo.png", size: '250x250', class: "w-full h-full object-cover transition duration-500 ease-in-out transform hover:scale-105" %>
+            <% end %>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+              <h2 class="text-xl text-white font-bold truncate"><%= socialsharing.generated_drink %></h2>
+              <p class="text-sm text-white truncate"><%= socialsharing.generated_word %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
