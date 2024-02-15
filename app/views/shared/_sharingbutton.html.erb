@@ -1,0 +1,10 @@
+<%= form_with model: Socialsharing.new, url: socialsharings_path, local: true, id: "socialsharing-form", class: "socialsharing-form" do |form| %>
+  <%= form.hidden_field :generated_drink, value: @generated_results[:drink_name] %>
+  <%= form.hidden_field :generated_word, value: @generated_results[:drink_word] %>
+  <%= form.hidden_field :generated_info, value: @generated_results[:drink_info] %>
+  <%= form.hidden_field :image, value: @image %>
+  <!-- シェアボタン -->
+  <button type="submit" class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white flex items-center">
+    <i class="fa-solid fa-champagne-glasses fa-sm"></i>ドリンクをシェアする
+  </button>
+<% end %>
