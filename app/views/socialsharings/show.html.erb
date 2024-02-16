@@ -1,7 +1,7 @@
 
 <div class="hero min-h-screen bg-gray-100">
   <%= render "shared/loading" %>
-  <div class="hero-content flex-col lg:flex-row-reverse">
+  <div class="hero-content flex-col ">
     <!-- 画像の表示 -->
     <div class="max-w-md mx-auto">
       <% if @socialsharing.image.present? %>
@@ -13,7 +13,7 @@
 
     <!-- カード -->
     <div class="card w-full bg-white shadow-xl max-w-lg mx-auto">
-      <div class="card-body">
+      <div class="card-body p-4 sm:p-6">
         <h2 class="card-title text-4xl mb-4">ドリンク情報</h2>
 
         <div class="mb-4">
