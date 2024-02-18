@@ -21,6 +21,8 @@ class PostsController < ApplicationController
     # 非公開投稿を取得
     @private_posts = @q.result.where(visibility: Post.visibilities[:非公開]).order(created_at: :desc)
     @post = current_user.posts.new
+    @post.tag_names = params[:tag_names] if params[:tag_names].present?
+    @post.body = params[:body] if params[:body].present?
   end
 
   def edit
