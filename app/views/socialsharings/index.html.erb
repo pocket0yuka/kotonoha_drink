@@ -1,6 +1,7 @@
 <div class="hero min-h-screen bg-gray-100">
   <div class="container mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+    <!-- smサイズでは2列、mdサイズでは2列、lgサイズで5列のグリッドレイアウトに調整 -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
       <% @socialsharings.each do |socialsharing| %>
         <div class="relative overflow-hidden shadow-lg rounded-lg">
           <%= link_to socialsharing_path(socialsharing) do %>

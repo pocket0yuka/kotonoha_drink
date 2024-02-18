@@ -1,12 +1,9 @@
 <%= turbo_frame_tag "private_posts" do %>
-  <h1 class="text-lg p-6">非公開</h1>
+  <h1 class="text-lg p-6">非公開投稿</h1>
   <div class="flex items-center justify-center text-left">
     <div class="overflow-x-auto h-96">
       <table class="table table-pin-rows table-pin-cols">
         <tbody>
-          <tr>
-            <th>日記</th>
-          </tr>
             <% private_posts.each do |post| %>
               <tr>
                 <td>
