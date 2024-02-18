@@ -35,6 +35,14 @@
         <%= render "shared/google_logged_in" %>
       </div>
 
+      <p class="p-8">初めての方はこちらから</p>
+
+<% if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to new_registration_path(resource_name), class: "btn w-full max-w-xs bg-indigo-500 hover:bg-indigo-600 text-neutral-50" do %>
+    新規登録
+  <% end %>
+<% end %>
+
       <div class="p-8 text-black">
         <%= render "devise/shared/links" %>
       </div>
