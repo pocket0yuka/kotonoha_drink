@@ -59,24 +59,24 @@ class OpenAiService
     nil
   end
 
-  def generate_image(drink_name)
-    response = @client.images.generate(
-    parameters: {
-    model: "dall-e-2",
-    prompt: "#{drink_name}は実在する飲み物です。クローズアップで撮影したような画像を生成してください。背景は白からグレーのグラデーションで、飲み物の質感や色彩が際立つようにしてください。光の反射や陰影を使って、写真のようなリアリズムを表現してください。",
-    size: "256x256",
-    response_format: "b64_json"# Base64エンコーディングされた画像データをリクエスト
-    })
+  #def generate_image(drink_name)
+    #response = @client.images.generate(
+    #parameters: {
+    #model: "dall-e-2",
+    #prompt: "#{drink_name}は実在する飲み物です。クローズアップで撮影したような画像を生成してください。背景は白からグレーのグラデーションで、飲み物の質感や色彩が際立つようにしてください。光の反射や陰影を使って、写真のようなリアリズムを表現してください。",
+    #size: "256x256",
+    #response_format: "b64_json"# Base64エンコーディングされた画像データをリクエスト
+    #})
 
   # Base64エンコーディングされた画像データを取得
-  response.dig("data", 0, "b64_json")
+  #response.dig("data", 0, "b64_json")
   # 取得したBase64データの先頭部分をログに出力
   # Rails.logger.info "取得したBase64データの先頭: #{base64_data[0..100]}"
-  rescue StandardError => e
+  #rescue StandardError => e
   # エラーハンドリング: ログに日本語でエラーを記録
-    Rails.logger.error("OpenAI画像生成APIエラー: #{e.message}")
-    nil
-  end
+    #Rails.logger.error("OpenAI画像生成APIエラー: #{e.message}")
+    #nil
+  #end
 
   private
 

@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   end
 
   root 'homes#index'
-  # ログイン後、drink_menusにリダイレクト(application_controller参照)
-  get '/drink_menus', to: 'drink_menus#index'
+  # ログイン後、drinksにリダイレクト(application_controller参照)
   get 'generatedresult', to: 'generatedresults#new'
   post 'generatedresults', to: 'generatedresults#create'
   get 'generatedresults', to: 'generatedresults#show'
+  resources :drinks, only: %i[index show]
   resource :profile, only: %i[show edit update]
   resources :bookmarks
   resources :socialsharings, only: %i[show index create]
