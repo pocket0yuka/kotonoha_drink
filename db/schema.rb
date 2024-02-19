@@ -29,7 +29,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_13_075003) do
   end
 
   create_table "drinks", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
+    t.string "word"
+    t.text "info"
+    t.string "image"
     t.integer "category"
     t.integer "display_order"
     t.datetime "created_at", null: false
