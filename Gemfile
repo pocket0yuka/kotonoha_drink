@@ -89,6 +89,9 @@ gem 'ransack'
 # ページネーション
 gem 'kaminari'
 
+# キャッシュ管理
+gem 'redis'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
