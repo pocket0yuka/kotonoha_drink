@@ -38,6 +38,22 @@
       <%= render "shared/header_logged_out" %>
     <% end %>
     <!-- ヒーローセクション -->
+
+    <% flash.each do |key, value| %>
+      <% case key %>
+      <% when "notice" %>
+        <div class="animate-flash fixed top-14 sm:top-24 translate-x-1/2 sm:translate-x-0 right-2 sm:right-6 z-30 w-11/12 sm:w-fit max-w-[90%] sm:max-w-1/2 py-2 sm:py-4 px-4 sm:px-6 flex justify-center items-center bg-amber-400 shadow-lg border border-line-100 rounded-lg">
+          <p class="text-sm sm:text-base font-bold text-indigo-950 !leading-none"><%= value %></p>
+        </div>
+      <% when "alert" %>
+        <div class="animate-flash fixed top-14 sm:top-24 translate-x-1/2 sm:translate-x-0 right-2 sm:right-6 z-30 w-11/12 sm:w-fit max-w-[90%] sm:max-w-1/2 py-2 sm:py-4 px-4 sm:px-6 flex justify-center items-center bg-amber-400 shadow-lg border border-line-100 rounded-lg">
+          <p class="text-sm sm:text-base font-bold text-indigo-950"><%= value %></p>
+        </div>
+      <% else %>
+        <p class="alert alert-<%= key %>"><%= value %></p>
+      <% end %>
+    <% end %>
+
     <%= yield %>
     <!-- お問い合わせ関連　-->
     <%= render "shared/footer" %> 
