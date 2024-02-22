@@ -16,7 +16,7 @@ module.exports = {
         },
       },
       animation: {
-        flash: "flashFade 7.0s forwards",
+        flash: "flashFade 4.0s forwards",
       },
     },
     fontFamily: {
