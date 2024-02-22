@@ -20,7 +20,7 @@ services:
       - db
       - redis
     environment:
-      REDIS_URL: redis://redis:6379/0
+      REDIS_URL: ${REDIS_URL}
     stdin_open: true
     tty: true
 
