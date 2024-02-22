@@ -2,6 +2,9 @@
 
 # 投稿のモデル
 class Post < ApplicationRecord
+  #socialsharing外部インスタンス➡️postにパラメータを渡してtag_nameに新しい値を入れるためメソッド追加
+  attr_accessor :tag_names
+
   belongs_to :user
   has_many :posttags, dependent: :destroy
   has_many :tags, through: :posttags

@@ -2,6 +2,8 @@
 
 # ドリンクメニュー表のドリンクに関するモデル
 class Drink < ApplicationRecord
+  mount_uploader :image, ImageUploader
+  
   validates :name, presence: true
   paginates_per 20
 

@@ -16,6 +16,13 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+
+  #redisの設定
+  config.cache_store = :redis_cache_store, {
+  url: ENV['REDIS_URL'], # Redisの接続情報を環境変数から取得する
+  expires_in: 1.day,    # キャッシュの有効期限を設定
+  }
+
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true

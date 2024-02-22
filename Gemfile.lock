@@ -92,6 +92,7 @@ GEM
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
     concurrent-ruby (1.2.3)
+    connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
@@ -293,6 +294,10 @@ GEM
       i18n
     rdoc (6.6.2)
       psych (>= 4.0.0)
+    redis (5.1.0)
+      redis-client (>= 0.17.0)
+    redis-client (0.20.0)
+      connection_pool
     regexp_parser (2.9.0)
     reline (0.4.2)
       io-console (~> 0.5)
@@ -409,6 +414,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   rails-i18n
   ransack
+  redis
   rubocop
   rubocop-performance
   rubocop-rails

@@ -62,9 +62,13 @@ class OpenAiService
   def generate_image(drink_name)
     response = @client.images.generate(
     parameters: {
-    model: "dall-e-2",
+    # model: "dall-e-2"
+    model: "dall-e-3",
     prompt: "#{drink_name}は実在する飲み物です。クローズアップで撮影したような画像を生成してください。背景は白からグレーのグラデーションで、飲み物の質感や色彩が際立つようにしてください。光の反射や陰影を使って、写真のようなリアリズムを表現してください。",
-    size: "256x256",
+    #size: "256x256",
+    size: "1024x1024",
+    quality: "standard",
+    n: 1,
     response_format: "b64_json"# Base64エンコーディングされた画像データをリクエスト
     })
 
