@@ -92,6 +92,9 @@ gem 'kaminari'
 # キャッシュ管理
 gem 'redis'
 
+# ogp設定
+gem "meta-tags"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
