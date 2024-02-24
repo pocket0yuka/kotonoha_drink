@@ -33,31 +33,35 @@
     <div class="text-2xl font-bold text-center mb-4">何ができる？</div>
     <!-- 内容部分 -->
     <div class="py-6">
-      <p class="text-gray-700 font-bold">ドリンク言葉を作る:</p>
-        文章やキーワードからAIがドリンク言葉を作ってくれます。</br>
+      <p class="text-gray-700 font-bold">ドリンク言葉を作る(1日3回まで):</p>
+        ドリンク名や文章からAIがドリンク言葉や画像を作ってくれます。</br>
+        ※画像も実物ではなくAIが生成する為、イメージ画となります。</br>
       <%= image_tag 'kotonoha_drink_word.png',class: "p-4",size: '500x800'%>
       <%= image_tag 'kotonoha_text.png',class: "p-4",size: '500x800'%>
     </div>
     <div class="py-6">
-      <p class="text-gray-700 font-bold">ドリンク言葉を記録する:</p>
-      ドリンク言葉を保存、自分で作ることもできます。</br>
+      <p class="text-gray-700 font-bold">ドリンクを記録する:</p>
+      ドリンク言葉や画像を保存、自分で作ることもできます。</br>
+      出来上がったドリンクはみんなとシェアしてみましょう。</br>
       <%= image_tag 'kotonoha_bookdrink.png',class: "p-4",size: '500x800'%>
+      <%= image_tag 'kotonoha_sharing.png',class: "p-4",size: '500x800'%>
     </div>
     <div class="py-6">
-      <p class="text-gray-700 font-bold">ドリンク日記や投稿を書く:</p>
-        非公開投稿では日記として、</br>
-        公開投稿では情報共有やつぶやきとして使えます。</br>
+      <p class="text-gray-700 font-bold">ドリンク投稿を書く:</p>
+        ドリンクに関する情報共有やドリンクの生成結果など投稿してみましょう。</br>
+        非公開投稿では下書きや日記として使うことができます。</br>
     <%= image_tag 'kotonoha_hikoukai.png',class: "p-4",size: '500x800'%>
     <%= image_tag 'kotonoha_koukai.png',class: "p-4",size: '500x800'%>
     </div>
     <div class="py-6">
-      <%= link_to 'お試し:', root_path, class: "font-bold text-emerald-700" %></br>
-      上部の検索コーナー、メニュー表はログインせずに使用できます。ぜひお試しください。
+      <%= link_to 'お試し:', root_path, class: "btn btn-primary p-2" %>
+      <br>
+      上部のドリンク名入力フォームやメニュー表、</br>
+      シェアされたドリンクの閲覧はログインせずに利用できます。</br>
+      ぜひお試しください。</br>
+      ※メニュー表は回数制限なく利用できます。</br>
     </div>
   </div>
 </div>
-
-
-
 
 <!-- お問い合わせ関連　-->
