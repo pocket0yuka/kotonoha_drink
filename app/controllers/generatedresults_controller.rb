@@ -76,20 +76,24 @@ class GeneratedresultsController < ApplicationController
     params[:story_form].present? && params[:story_form][:story].present?
   end
 
-  # API接続回数の確認と制限
-  def check_api_limit
-    # ログインしている場合はユーザーID、していない場合はIPアドレスを使用
-    user_or_ip = user_signed_in? ? "user:#{current_user.id}" : "ip:#{request.remote_ip}"
-    key = "#{user_or_ip}:api_count"
-    count = $redis.get(key).to_i # 現在のカウントを取得、未設定なら0
+    # API接続回数の確認と制限
+    def check_api_limit
+      # ログインしている場合はユーザーID、していない場合はセッションIDを使用
+      user_or_session = user_signed_in? ? "user:#{current_user.id}" : "session:#{session.id}"
+      key = "#{user_or_session}:api_count"
+      count = $redis.get(key).to_i # 現在のカウントを取得、未設定なら0
 
-    if count >= 3
-      # API接続回数が3回を超えた場合
-      flash[:alert] = '本日のドリンク生成の上限に達しました。'
-      redirect_to root_path # または適切なパスにリダイレクト
-    else
-      # カウントを1増やし、24時間で期限切れに設定
-      $redis.set(key, count + 1, ex: 24.hours.to_i)
+      if count >= 3
+        # API接続回数が3回を超えた場合
+        flash[:alert] = '本日のドリンク生成の上限に達しました。'
+        redirect_to root_path # または適切なパスにリダイレクト
+      else
+        # カウントを1増やし、その日の終わりまで有効期限を設定
+        now = Time.current
+        end_of_day = now.end_of_day
+        seconds_until_end_of_day = (end_of_day - now).to_i
+
+        $redis.set(key, count + 1, ex: seconds_until_end_of_day)
+      end
     end
-  end
 end
