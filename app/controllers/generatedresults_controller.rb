@@ -79,14 +79,19 @@ class GeneratedresultsController < ApplicationController
     # API接続回数の確認と制限
     def check_api_limit
       # ログインしている場合はユーザーID、していない場合はセッションIDを使用
+      date = Time.current.to_date.to_s
       user_or_session = user_signed_in? ? "user:#{current_user.id}" : "session:#{session.id}"
-      key = "#{user_or_session}:api_count"
+      key = "#{user_or_session}:api_count:#{date}"
       count = $redis.get(key).to_i # 現在のカウントを取得、未設定なら0
 
       if count >= 3
-        # API接続回数が3回を超えた場合
-        flash[:alert] = '本日のドリンク生成の上限に達しました。'
-        redirect_to root_path # または適切なパスにリダイレクト
+        # Redisからキーの残りTTL(生存時間)を取得
+        ttl = $redis.ttl(key)
+        # 秒数を時間、分、秒に変換
+        hours, minutes, seconds = ttl.divmod(3600)[0], ttl.divmod(3600)[1].divmod(60)[0], ttl.divmod(3600)[1].divmod(60)[1]
+        # フラッシュメッセージに残り時間を含める
+        flash[:alert] = "本日のドリンク生成の上限に達しました。次に利用可能になるまであと #{hours}時間#{minutes}分#{seconds}秒です。"
+        redirect_to root_path
       else
         # カウントを1増やし、その日の終わりまで有効期限を設定
         now = Time.current
