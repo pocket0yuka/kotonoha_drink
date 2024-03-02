@@ -54,7 +54,9 @@
         </div>
 
         <div class="p-2 text-right">
-          <%= link_to "編集", "javascript:void(0);", onclick: "openEditBookmarkModal()" %>
+            <%= link_to "javascript:void(0);", onclick: "openEditBookmarkModal()", class: "p-2" do %>
+              <i class="fa-solid fa-pen-to-square fa-sm"></i>
+            <% end %>
           <dialog id="edit_bookmark_modal" class="modal">
             <div class="modal-box">
               <form method="dialog">
@@ -63,9 +65,10 @@
               <%= render 'bookmarks/edit' %>
             </div>
           </dialog>
+        <%= link_to bookmark_path, method: :delete, data: { confirm: '本当に削除しますか？' } , class: "p-2" do %>
+          <i class="fa-solid fa-trash fa-sm"></i>
+        <% end %>
         </div>
-
-        <!-- 一覧に戻るリンク -->
         <%= link_to '一覧に戻る', bookmarks_path, class: "btn btn-primary mt-4" %>
       </div>
     </div>
