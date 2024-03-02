@@ -2,9 +2,9 @@
   <%= render "shared/loading" %>
   <div class="container mx-auto px-4 py-8">
     <!-- smサイズでは2列、mdサイズでは2列、lgサイズで5列のグリッドレイアウトに調整 -->
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-3 md:grid-cols-5 gap-4 justify-center">
       <% @socialsharings.each do |socialsharing| %>
-        <div class="relative overflow-hidden shadow-lg rounded-lg">
+        <div class="relative overflow-hidden shadow-lg ">
           <%= link_to socialsharing_path(socialsharing) do %>
             <% if socialsharing.image.present? %>
               <%= image_tag socialsharing.image.url, class: "w-full h-full object-cover transition duration-500 ease-in-out transform hover:scale-105" %>
