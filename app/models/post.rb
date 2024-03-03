@@ -2,6 +2,7 @@
 
 # 投稿のモデル
 class Post < ApplicationRecord
+  mount_uploader :image, ImageUploader
   #socialsharing外部インスタンス➡️postにパラメータを渡してtag_nameに新しい値を入れるためメソッド追加
   attr_accessor :tag_names
 

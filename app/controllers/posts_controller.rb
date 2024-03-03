@@ -33,6 +33,12 @@ class PostsController < ApplicationController
     # モデルにないのでtagを直接取得
     tag_names = params[:post][:tag_names]
 
+    if @post.body.blank?
+      flash[:alert] = '本文を入力してください。'
+      redirect_to new_post_path
+      return # 以降の処理は実行しない
+    end
+
     if @post.save
       # タグがあれば追加
       add_tags(tag_names) if tag_names.present?
@@ -78,7 +84,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:body, :visibility).merge(visibility: params[:post][:visibility].to_i)
+    params.require(:post).permit(:body, :image, :image_cache, :visibility).merge(visibility: params[:post][:visibility].to_i)
   end
 
   # タグが指定されている場合にタグを追加
