@@ -105,4 +105,8 @@ class PostsController < ApplicationController
       end
     end
   end
+
+  def blank
+    return if @post.body.blank?
+  end
 end

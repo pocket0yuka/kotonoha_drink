@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # (ソーシャルシェア兼)みんなが作ったドリンク言葉一覧
 class SocialsharingsController < ApplicationController
-  def show
-    @socialsharing = Socialsharing.find(params[:id])
+  def index
+    @socialsharings = Socialsharing.order(created_at: :desc)
   end
 
-  def index
-    @socialsharings = Socialsharing.all.order(created_at: :desc)
+  def show
+    @socialsharing = Socialsharing.find(params[:id])
   end
 
   def create
