@@ -93,7 +93,7 @@ gem 'kaminari'
 gem 'redis'
 
 # ogp設定
-gem "meta-tags"
+gem 'meta-tags'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

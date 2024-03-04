@@ -46,8 +46,8 @@ class ImageUploader < CarrierWave::Uploader::Base
     original_filename
   end
 
-  def default_url(*args)
-    "kotonoha_drink logo.png"
+  def default_url(*_args)
+    'kotonoha_drink logo.png'
   end
 
   # Override the filename of the uploaded files:

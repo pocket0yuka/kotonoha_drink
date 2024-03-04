@@ -24,6 +24,6 @@ class Bookmark < ApplicationRecord
     # CarrierWaveを使用してアップロード
     self.image = file
     file.close
-    #file.unlink # 一時的なファイルのため読み込んだ後削除する
+    # file.unlink # 一時的なファイルのため読み込んだ後削除する
   end
 end
