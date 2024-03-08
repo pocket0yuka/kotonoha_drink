@@ -1,16 +1,30 @@
 <div class="min-h-screen bg-gray-100 p-4">
-  <%= render "shared/loading" %>
-  <%= paginate @categories, window: 1, outer_window: 0 %>
+  <%= render "shared/loading", class: "text-center py-4" %>
+  <div class="text-center py-4">
+    <%= paginate @categories, window: 1, outer_window: 0, class: "pagination" %>
+  </div>
   <% @categories.each do |category| %>
-    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4">
-      <h2 class="text-2xl font-bold text-purple-700 p-4"><%= I18n.t("activerecord.attributes.drink.category.#{category.category}") %></h2>
-      <ul class="list-disc list-inside p-4">
-        <% @drinks.each do |drink| %>
-          <li class="py-2 border-b border-gray-200">
-            <%= link_to drink.name, drink_path(drink), class: " text-blue-500 hover:text-blue-600"%>
-          </li>
-        <% end %>
-      </ul>
+    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden my-4">
+      <h3 class ="bg-stone-400 w-70 h-10"></h3>
+      <h2 class="text-3xl font-bold text-slate-500 p-6 z-10"><%= I18n.t("activerecord.attributes.drink.category.#{category.category}") %></h2>
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <% @drinks.each do |drink| %>
+            <div class="relative overflow-hidden shadow-md rounded-lg">
+              <%= link_to drink_path(drink), class: "block hover:opacity-90" do %>
+                <% if drink.image.present? %>
+                  <%= image_tag drink.image.url, alt: drink.name, class: "w-full h-48 object-cover transition duration-500 ease-in-out transform hover:scale-110 rounded-t-lg" %>
+                <% else %>
+                  <%= image_tag "placeholder.png", alt: "Default Image", class: "w-full h-48 object-cover transition duration-500 ease-in-out transform hover:scale-110 rounded-t-lg" %>
+                <% end %>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-4 rounded-b-lg">
+                  <h3 class="text-lg text-white font-semibold truncate"><%= drink.name %></h3>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
