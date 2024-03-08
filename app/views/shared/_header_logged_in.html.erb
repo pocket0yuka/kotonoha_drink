@@ -11,13 +11,14 @@
           </label>
       </div> 
       <div class="flex-1 px-2 mx-2 max-sm:hidden">
-          <a class="font-medium text-green-700 text-xl">言の葉</a>
-            <%= image_tag 'kotonoha_drink logo.png',size: '50x50'%>
-          <a class="text-black text-xl">rink</a></div>
-          <%= form_with url: generatedresults_path, method: :get, local: true, id: 'drink-search-form' do |form| %>
-            <%= form.text_field :keyword, placeholder: "ドリンク名を入力", class: "text-sm text-green-700 border border-emerald-700 bg-slate-50 input input-bordered input-md w-full max-w-lg" %>
-            <%= form.submit "作成", class: "btn btn-primary" %>
-          <% end %>
+        <%= link_to root_path do %>
+          <%= image_tag 'kotonoha_logo.png',size: '170x170' , class: " object-cover transition duration-500 ease-in-out transform hover:scale-105" %>
+        <% end %>
+      </div>
+        <%= form_with url: generatedresults_path, method: :get, local: true, id: 'drink-search-form' do |form| %>
+          <%= form.text_field :keyword, placeholder: "ドリンク名を入力", class: "text-sm text-green-700 border border-emerald-700 bg-slate-50 input input-bordered input-md w-full max-w-lg" %>
+          <%= form.submit "作成", class: "btn btn-primary" %>
+        <% end %>
         <div class="flex-none hidden md:block">
           <ul class="menu menu-horizontal">
             <!-- Navbar menu content here -->
