@@ -290,6 +290,8 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.1.0)
+    rakuten_web_service (1.13.2)
+      json (~> 2.3)
     ransack (4.1.1)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
@@ -416,6 +418,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.8)
   rails-i18n
+  rakuten_web_service
   ransack
   redis
   rubocop

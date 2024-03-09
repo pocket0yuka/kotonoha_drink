@@ -95,6 +95,9 @@ gem 'redis'
 # ogp設定
 gem 'meta-tags'
 
+# 楽天api商品検索用
+gem 'rakuten_web_service'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
