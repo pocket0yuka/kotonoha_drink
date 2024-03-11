@@ -1,16 +1,49 @@
+<head>
+  <script>
+    function openNewBookmarkModal() {
+      var modal = document.getElementById('new_bookmark_modal');
+      modal.showModal();
+    }
+
+    function closeNewBookmarkModal() {
+      var modal = document.getElementById('new_bookmark_modal');
+      modal.close();
+    }
+  </script>
+</head>
+
+
 <div class="hero min-h-screen bg-gray-100">
   <%= render "shared/loading" %>
   <div class="text-center">
-    <h1 class="text-4xl font-bold mb-2 p-2">保存したドリンク一覧</h1>
-    <div class="bg-base-200 sticky top-0 z-10">
+    <h1 class="text-2xl md:text-4xl font-bold mb-2 p-2">保存したドリンク一覧</h1>
+    <div class="bg-stone-300 sticky top-0 z-10">
       <!-- 検索と並び替えフォーム -->
       <%= form_tag bookmarks_path, method: :get, class: " p-2" do %>
         <%= text_field_tag :search, params[:search], placeholder: "検索...", class: "input input-bordered" %>
         <%= select_tag :order, options_for_select({ '新しい順': 'created_at_desc', '古い順': 'created_at_asc', 'あいうえお順': 'alphabetical', 'オリジナル順': 'is_original' }, params[:order]), prompt: "並び替え", class: "select select-bordered" %>
         <%= submit_tag "検索と並び替え", class: "btn btn-primary" %>
+        <div class="tooltip tooltip-bottom" data-tip="作成">
+        <%= link_to "javascript:void(0);", onclick: "openNewBookmarkModal()", class: "ml-auto btn btn-outline text-white bg-indigo-500 hover:bg-indigo-600" do %>
+          <i class="fa-regular fa-square-plus fa-sm"></i>
+        <% end %>
+        </div>
       <% end %>
     </div>
+    
     <div class="overflow-x-auto w-11/12 mx-auto max-w-screen-xl">
+      <!-- モーダル -->
+      <div class="text-left">
+        <dialog id="new_bookmark_modal" class="modal">
+          <div class="modal-box">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="closeNewBookmarkModal()">✕</button>
+            </form>
+            <%= render 'bookmarks/new' %>
+          </div>
+        </dialog>
+      </div>
+      <!-- カード一覧 -->
       <div class="grid grid-cols-3 md:grid-cols-5 gap-4 justify-center">
         <% @bookmarks.each do |bookmark| %>
           <div class="flex flex-col items-center bg-white shadow overflow-hidden">

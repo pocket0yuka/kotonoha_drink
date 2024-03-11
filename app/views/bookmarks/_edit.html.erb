@@ -23,7 +23,7 @@
     
     <div class="form-group mt-3 mb-3">
       <% if @bookmark.image.present? %>
-        <%= image_tag @bookmark.image.url, id: 'preview-target', size: '250x250' %>
+        <%= image_tag @bookmark.image.url, id: 'preview-target', size: '200x200' %>
       <% else %>
         <%= image_tag '', id: 'preview-target', size: '250x250', alt: 'Image preview' %>
       <% end %>
