@@ -1,17 +1,23 @@
-<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-  <% @items.first(10).each do |item| %>
-    <div class="card card-compact bg-base-100 shadow-xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <% @items.first(3).each do |item| %>
+    <div class="card w-full bg-base-100 shadow-xl">
       <figure>
-        <%= image_tag(item['mediumImageUrls'][0], class: "object-cover w-full h-48") %>
+        <%= image_tag(item['mediumImageUrls'][0]) %>
       </figure>
       <div class="card-body">
         <h2 class="card-title">
           <%= link_to item.name, item.url, class: "text-sm" %>
         </h2>
         <p><%= number_with_delimiter(item.price) %>円</p>
-        <div class="flex justify-between items-center">
-          <span>評価: <%= item['reviewAverage'] %></span>
-          <span>レビュー数: <%= item['reviewCount'] %></span>
+        <div class="flex justify-between items-center text-sm">
+          <div class="flex items-center">
+            <i class="fas fa-star text-yellow-400 mr-1"></i>
+            <span><%= item['reviewAverage'] %></span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-comment-alt text-gray-500 mr-1"></i>
+            <span><%= item['reviewCount'] %> レビュー</span>
+          </div>
         </div>
       </div>
     </div>
