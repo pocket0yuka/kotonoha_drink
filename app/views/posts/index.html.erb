@@ -45,6 +45,13 @@
                 <%= tag.name %>
               </span>
             <% end %>
+
+          <% if post.drink_word.present? %>
+            <span class="badge text-violet-700 badge-outline mr-2">
+              <%= post.drink_word %>
+            </span>
+          <% end %>
+
           </div>
           <% if post.image.present? %>
             <div class="mb-4 flex justify-center">

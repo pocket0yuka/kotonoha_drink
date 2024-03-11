@@ -6,7 +6,7 @@
       <div class="container mx-auto max-w-md shadow-md hover:shadow-lg transition duration-300">
         <div class="py-8 p-8 bg-white rounded-xl">
           <div class="mb-6 text-center">
-            <h1 class="text-xl text-gray-700 font-semibold">新しい投稿を作成</h1>
+            <h1 class="text-xl text-gray-700 font-semibold">本日の一杯</h1>
           </div>
           <%= form_with(model: @post, local: true, class: "space-y-5") do |form| %>
             <% if @post.visibility == '非公開' %>
@@ -31,8 +31,13 @@
             </div>
 
             <div>
+              <%= form.label :drink_word, "ドリンク言葉", class: "block text-gray-700 font-medium mb-2" %>
+              <%= form.text_field :drink_word, rows: 4, value: @post.drink_word || params[:drink_word] ,placeholder: "ドリンク言葉",class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
+            </div>
+
+            <div>
               <%= form.label :body, "投稿内容", class: "block text-gray-700 font-medium mb-2" %>
-              <%= form.text_area :body, rows: 4, value: @post.body || params[:body] ,placeholder: "飲み物に関する内容を自由に投稿してください",class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
+              <%= form.text_area :body, rows: 4, value: @post.body || params[:body] ,placeholder: "本日の一杯を投稿してみましょう。何を飲んだ？",class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
             </div>
             <fieldset class="mt-4">
               <legend class="text-gray-700 font-medium mb-2">公開設定</legend>

@@ -23,6 +23,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new
     @post.tag_names = params[:tag_names] if params[:tag_names].present?
     @post.body = params[:body] if params[:body].present?
+    @post.drink_word = params[:drink_word] if params[:drink_word].present?
   end
 
   def edit
@@ -84,7 +85,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:body, :image, :image_cache, :visibility).merge(visibility: params[:post][:visibility].to_i)
+    params.require(:post).permit(:body, :image, :image_cache, :drink_word, :visibility).merge(visibility: params[:post][:visibility].to_i)
   end
 
   # タグが指定されている場合にタグを追加
