@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update]
   resources :bookmarks
   resources :socialsharings, only: %i[show index create]
+  get 'posts/private', to: 'posts#private', as: 'private_posts'
   resources :posts do
     resource :favorites, only: %i[create destroy]
     collection do

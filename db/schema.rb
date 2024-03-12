@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_03_210412) do
     t.datetime "updated_at", null: false
     t.string "image"
     t.string "image_cache"
+    t.string "drink_word"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

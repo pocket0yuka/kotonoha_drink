@@ -1,12 +1,11 @@
 <%= render "shared/loading" %>
 <div class="flex flex-col sm:flex-row ">
-  <div class="new-post-form w-full sm:w-1/2">
     <!-- 新規投稿フォーム -->
     <div class="min-h-screen bg-gray-100 flex items-center justify-center w-11/12 mx-auto max-w-screen-xl">
       <div class="container mx-auto max-w-md shadow-md hover:shadow-lg transition duration-300">
         <div class="py-8 p-8 bg-white rounded-xl">
           <div class="mb-6 text-center">
-            <h1 class="text-xl text-gray-700 font-semibold">新しい投稿を作成</h1>
+            <h1 class="text-xl text-gray-700 font-semibold">本日の一杯</h1>
           </div>
           <%= form_with(model: @post, local: true, class: "space-y-5") do |form| %>
             <% if @post.visibility == '非公開' %>
@@ -31,8 +30,13 @@
             </div>
 
             <div>
+              <%= form.label :drink_word, "ドリンク言葉", class: "block text-gray-700 font-medium mb-2" %>
+              <%= form.text_field :drink_word, rows: 4, value: @post.drink_word || params[:drink_word] ,placeholder: "ドリンク言葉",class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
+            </div>
+
+            <div>
               <%= form.label :body, "投稿内容", class: "block text-gray-700 font-medium mb-2" %>
-              <%= form.text_area :body, rows: 4, value: @post.body || params[:body] ,placeholder: "飲み物に関する内容を自由に投稿してください",class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
+              <%= form.text_area :body, rows: 4, value: @post.body || params[:body] ,placeholder: "本日の一杯を投稿してみましょう。何を飲んだ？",class: "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500" %>
             </div>
             <fieldset class="mt-4">
               <legend class="text-gray-700 font-medium mb-2">公開設定</legend>
@@ -54,27 +58,4 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="private-posts-list w-full sm:w-1/2">
-    <%= render 'private_posts', private_posts: @private_posts %>
-    <div class=" p-6 text-right">
-      <%= search_form_for @q, url: new_post_path, class: "form-control" do |f| %>
-        <div class="flex gap-2 items-center">
-          <div data-controller="autocomplete" data-autocomplete-url-value="/tags/search" role="combobox">
-            <%= f.search_field :tags_name_cont,data: { autocomplete_target: 'input' },placeholder: "タグで検索" ,class: "input input-bordered input-primary w-full max-w-xs" %>
-            <%= f.hidden_field :tags_name, data: { autocomplete_target: 'hidden' } %>
-            <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
-            <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4"></div>
-          </div>
-          <%= f.submit "検索", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-      <div class="p-2">
-        <%= link_to posts_path, class: "btn bg-indigo-500 hover:bg-indigo-600 text-white" do %>
-          <i class="fa-regular fa-comments fa-sm"></i>
-          みんなの投稿
-        <% end %>
-      </div>
-    </div>
-  </div>
 </div>

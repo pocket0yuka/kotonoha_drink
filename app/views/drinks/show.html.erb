@@ -16,7 +16,7 @@
         <div class="relative">
           <div class="absolute top-1 right-2">
             <div class="tooltip tooltip-bottom" data-tip="投稿">
-              <%= link_to new_post_path(tag_names: @drink.name, body: @drink.word), class: "btn bg-indigo-500 hover:bg-indigo-400 text-white" do %>
+              <%= link_to posts_path(tag_names: @drink.name, drink_word: @drink.word), class: "btn bg-indigo-500 hover:bg-indigo-400 text-white" do %>
                 <i class="fa-solid fa-pen fa-sm"></i>
               <% end %>
             </div>
