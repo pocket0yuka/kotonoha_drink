@@ -1,9 +1,14 @@
+<div class="hero min-h-screen bg-gray-100">
+  <%= render "shared/loading" %>
+  <div class="text-center">
+
+
   <h1 class="text-lg p-6 text-center font-bold">非公開投稿</h1>
   <div class="flex flex-col items-center justify-center">
     <div class="overflow-x-auto h-96 w-full">
       <table class="table w-full">
         <tbody>
-          <% private_posts.each do |post| %>
+          <% @private_posts.each do |post| %>
             <tr class="hover">
               <td class="relative space-y-4">
                 <div class="flex flex-col justify-between h-full">
@@ -60,3 +65,6 @@
         <% end %>
       </div>
     </div>
+
+  </div>
+</div>

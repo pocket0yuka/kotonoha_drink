@@ -13,6 +13,13 @@ class PostsController < ApplicationController
     @posts = @q.result.includes(:tags, :user).where(visibility: Post.visibilities[:公開]).order(created_at: :desc)
   end
 
+  def private
+    @post = current_user.posts.new
+    @q = Post.ransack(params[:q])
+    # タグとユーザーを事前に読み込み（N+1防止）
+    @private_posts = @q.result.includes(:tags, :user).where(visibility: Post.visibilities[:非公開]).order(created_at: :desc)
+  end
+
   def show
   end
 
@@ -46,7 +53,7 @@ class PostsController < ApplicationController
       add_tags(tag_names) if tag_names.present?
 
       if @post.visibility == '非公開'
-        private_response
+        redirect_to  private_posts_path
       else
         # 公開投稿の場合のリダイレクト
         redirect_to posts_path
@@ -93,19 +100,6 @@ class PostsController < ApplicationController
   def add_tags(tag_names)
     tags = tag_names.split(/[、,]+/).map(&:strip).uniq
     create_tags(@post, tags)
-  end
-
-  # 非公開投稿時のレスポンス
-  def private_response
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          'private_posts',
-          partial: 'posts/private_posts',
-          locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) }
-        )
-      end
-    end
   end
 
   def blank
