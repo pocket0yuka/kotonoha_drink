@@ -71,7 +71,7 @@ class PostsController < ApplicationController
       if @post.visibility == '公開'
         redirect_to posts_path
       else
-        redirect_to new_post_path
+        redirect_to  private_posts_path
       end
     else
       redirect_to @post
