@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       post 'search', to: 'posts#index', as: :search_post
     end
   end
+  post 'posts/private', to: 'posts#private'
   resources :tags do
     get :search, on: :collection
   end

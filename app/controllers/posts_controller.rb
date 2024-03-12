@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   # 公開時の投稿を表示
   def index
+    @post = current_user.posts.new
     @q = Post.ransack(params[:q])
     # タグとユーザーを事前に読み込み（N+1防止）
     @posts = @q.result.includes(:tags, :user).where(visibility: Post.visibilities[:公開]).order(created_at: :desc)

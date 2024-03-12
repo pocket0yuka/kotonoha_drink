@@ -1,4 +1,3 @@
-<%= turbo_frame_tag "private_posts" do %>
   <h1 class="text-lg p-6 text-center font-bold">非公開投稿</h1>
   <div class="flex flex-col items-center justify-center">
     <div class="overflow-x-auto h-96 w-full">
@@ -41,4 +40,23 @@
       </table>
     </div>
   </div>
-<% end %>
+
+    <div class=" p-6 text-right">
+      <%= search_form_for @q, url: new_post_path, class: "form-control" do |f| %>
+        <div class="flex gap-2 items-center">
+          <div data-controller="autocomplete" data-autocomplete-url-value="/tags/search" role="combobox">
+            <%= f.search_field :tags_name_cont,data: { autocomplete_target: 'input' },placeholder: "タグで検索" ,class: "input input-bordered input-primary w-full max-w-xs" %>
+            <%= f.hidden_field :tags_name, data: { autocomplete_target: 'hidden' } %>
+            <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+            <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4"></div>
+          </div>
+          <%= f.submit "検索", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <div class="p-2">
+        <%= link_to posts_path, class: "btn bg-indigo-500 hover:bg-indigo-600 text-white" do %>
+          <i class="fa-regular fa-comments fa-sm"></i>
+          みんなの投稿
+        <% end %>
+      </div>
+    </div>
