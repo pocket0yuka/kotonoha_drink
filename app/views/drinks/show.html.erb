@@ -38,7 +38,7 @@
         </div>
 
         <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
-          <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@drink.name}のドリンク言葉は#{@drink.word}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
+          <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@drink.name}のドリンク言葉は#{@drink.word}です。#{@drink.info}")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
             <i class="fa-brands fa-square-x-twitter fa-lg"></i>にも投稿する？
           <% end %>
         </button>
