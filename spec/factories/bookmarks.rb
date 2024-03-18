@@ -4,8 +4,8 @@ FactoryBot.define do
     generated_drink { "ドリンク" }
     generated_word { "言の葉ドリンク" }
     generated_info { "言の葉ドリンク情報" }
-    image { "0_0.png" }
-    image_cache { "0_0.png" }
+    image { "test_image" }
+    image_cache { "test_image" }
     memo { "ドリンクメモ" }
     is_original { false }
   end
