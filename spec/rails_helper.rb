@@ -60,4 +60,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  # create()やbuild()を使えるようにする(シンタックスシュガー)
+  config.include FactoryBot::Syntax::Methods
 end
