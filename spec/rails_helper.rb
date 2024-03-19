@@ -29,7 +29,14 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+# 各テストの前にデータベースを手動でクリーンアップ
 RSpec.configure do |config|
+  config.before(:each) do
+    User.delete_all
+    Post.delete_all
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')
 
