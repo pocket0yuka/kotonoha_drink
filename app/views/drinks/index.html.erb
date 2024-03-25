@@ -8,7 +8,7 @@
       <h3 class ="bg-stone-400 w-70 h-10"></h3>
       <h2 class="text-3xl font-bold text-slate-500 p-6 z-10"><%= I18n.t("activerecord.attributes.drink.category.#{category.category}") %></h2>
       <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div class="grid grid-cols-3 md:grid-cols-5 gap-4 justify-center">
           <% @drinks.each do |drink| %>
             <div class="relative overflow-hidden shadow-md rounded-lg">
               <%= link_to drink_path(drink), class: "block hover:opacity-90" do %>
