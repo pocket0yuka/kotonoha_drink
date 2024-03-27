@@ -1,10 +1,11 @@
 <div class="hero min-h-screen bg-gray-100">
   <%= render "shared/loading" %>
   <div class="container mx-auto px-4 py-8">
-    <!-- smサイズでは2列、mdサイズでは2列、lgサイズで5列のグリッドレイアウトに調整 -->
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6">
+  <h1 class="text-center text-2xl p-4 text-gray-700 font-semibold">みんなが生成したドリンク</h1>
+    <!-- smサイズでは2列、mdサイズでは3列、lgサイズで5列のグリッドレイアウトに調整 -->
+    <div class="grid grid-cols-3 md:grid-cols-5 gap-4 justify-center">
       <% @socialsharings.each do |socialsharing| %>
-        <div class="relative overflow-hidden shadow-lg rounded-lg">
+        <div class="relative overflow-hidden shadow-lg ">
           <%= link_to socialsharing_path(socialsharing) do %>
             <% if socialsharing.image.present? %>
               <%= image_tag socialsharing.image.url, class: "w-full h-full object-cover transition duration-500 ease-in-out transform hover:scale-105" %>
@@ -12,8 +13,8 @@
               <%= image_tag "kotonoha_drink logo.png", size: '250x250', class: "w-full h-full object-cover transition duration-500 ease-in-out transform hover:scale-105" %>
             <% end %>
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-              <h2 class="text-xl text-white font-bold truncate"><%= socialsharing.generated_drink %></h2>
-              <p class="text-sm text-white truncate"><%= socialsharing.generated_word %></p>
+              <h2 class="text-xs md:text-xl text-white md:font-bold truncate"><%= socialsharing.generated_drink %></h2>
+              <p class="text-xs md:text-sm text-white truncate"><%= socialsharing.generated_word %></p>
             </div>
           <% end %>
         </div>

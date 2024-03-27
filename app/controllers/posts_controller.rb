@@ -7,9 +7,17 @@ class PostsController < ApplicationController
 
   # 公開時の投稿を表示
   def index
+    @post = current_user.posts.new
     @q = Post.ransack(params[:q])
     # タグとユーザーを事前に読み込み（N+1防止）
     @posts = @q.result.includes(:tags, :user).where(visibility: Post.visibilities[:公開]).order(created_at: :desc)
+  end
+
+  def private
+    @post = current_user.posts.new
+    @q = Post.ransack(params[:q])
+    # タグとユーザーを事前に読み込み（N+1防止）
+    @private_posts = @q.result.includes(:tags, :user).where(visibility: Post.visibilities[:非公開]).order(created_at: :desc)
   end
 
   def show
@@ -23,6 +31,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new
     @post.tag_names = params[:tag_names] if params[:tag_names].present?
     @post.body = params[:body] if params[:body].present?
+    @post.drink_word = params[:drink_word] if params[:drink_word].present?
   end
 
   def edit
@@ -33,12 +42,18 @@ class PostsController < ApplicationController
     # モデルにないのでtagを直接取得
     tag_names = params[:post][:tag_names]
 
+    if @post.body.blank?
+      flash[:alert] = '本文を入力してください。'
+      redirect_to new_post_path
+      return # 以降の処理は実行しない
+    end
+
     if @post.save
       # タグがあれば追加
       add_tags(tag_names) if tag_names.present?
 
       if @post.visibility == '非公開'
-        private_response
+        redirect_to  private_posts_path
       else
         # 公開投稿の場合のリダイレクト
         redirect_to posts_path
@@ -56,7 +71,7 @@ class PostsController < ApplicationController
       if @post.visibility == '公開'
         redirect_to posts_path
       else
-        redirect_to new_post_path
+        redirect_to  private_posts_path
       end
     else
       redirect_to @post
@@ -78,7 +93,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:body, :visibility).merge(visibility: params[:post][:visibility].to_i)
+    params.require(:post).permit(:body, :image, :image_cache, :drink_word, :visibility).merge(visibility: params[:post][:visibility].to_i)
   end
 
   # タグが指定されている場合にタグを追加
@@ -87,16 +102,7 @@ class PostsController < ApplicationController
     create_tags(@post, tags)
   end
 
-  # 非公開投稿時のレスポンス
-  def private_response
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          'private_posts',
-          partial: 'posts/private_posts',
-          locals: { private_posts: current_user.posts.where(visibility: '非公開').order(created_at: :desc) }
-        )
-      end
-    end
+  def blank
+    return if @post.body.blank?
   end
 end

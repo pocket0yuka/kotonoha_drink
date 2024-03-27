@@ -21,3 +21,6 @@ import "./image/preview"
 
 //ローディング画面
 import "./modal/loading"
+
+//ドリンク注文時入力が空の状態でapiに接続しない調整
+import "./api/generated_new"

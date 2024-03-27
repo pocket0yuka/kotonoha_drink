@@ -36,18 +36,30 @@ class ImageUploader < CarrierWave::Uploader::Base
   # 画像を100x100pxにリサイズ
   process resize_to_limit: [350, 350]
 
+  # webpに変換
+  def convert_to_webp
+    manipulate! { |img| img.format('webp') }
+  end
+
+  def filename
+    return unless original_filename.present?
+
+    base_name = File.basename(original_filename, '.*')
+    "#{base_name}.webp"
+  end
+
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w[jpg jpeg gif png]
+    %w[jpg jpeg gif png webp ]
   end
 
   def filename
     original_filename
   end
 
-  def default_url(*args)
-    "kotonoha_drink logo.png"
+  def default_url(*_args)
+    'kotonoha_drink logo.png'
   end
 
   # Override the filename of the uploaded files:

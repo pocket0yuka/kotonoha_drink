@@ -6,7 +6,10 @@ module BookmarkFiltering
 
   included do
     scope :search, lambda { |keyword|
-      where('generated_drink LIKE ? OR generated_word LIKE ?', "%#{keyword}%", "%#{keyword}%") if keyword.present?
+      if keyword.present?
+        like_keyword = "%#{keyword}%"
+        where('generated_drink LIKE :keyword OR generated_word LIKE :keyword OR generated_info LIKE :keyword OR memo LIKE :keyword', keyword: like_keyword)
+      end
     }
 
     scope :order_by, lambda { |order|

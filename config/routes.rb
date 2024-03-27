@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update]
   resources :bookmarks
   resources :socialsharings, only: %i[show index create]
+  get 'posts/private', to: 'posts#private', as: 'private_posts'
   resources :posts do
     resource :favorites, only: %i[create destroy]
     collection do
@@ -37,4 +38,5 @@ Rails.application.routes.draw do
   get 'contact', to: 'statics#contact'
   get 'terms_of_service', to: 'statics#terms_of_service'
   get 'privacy_policy', to: 'statics#privacy_policy'
+  get 'items/search'   #楽天api用
 end

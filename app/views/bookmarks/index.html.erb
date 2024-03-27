@@ -1,47 +1,64 @@
+<head>
+  <script>
+    function openNewBookmarkModal() {
+      var modal = document.getElementById('new_bookmark_modal');
+      modal.showModal();
+    }
+
+    function closeNewBookmarkModal() {
+      var modal = document.getElementById('new_bookmark_modal');
+      modal.close();
+    }
+  </script>
+</head>
+
+
 <div class="hero min-h-screen bg-gray-100">
   <%= render "shared/loading" %>
-  <div class="text-center" >
-    <h1 class="text-4xl font-bold mb-2 p-2">保存したドリンク一覧</h1>
-    <div class="bg-base-200 sticky top-0 z-10">
+  <div class="text-center">
+    <h1 class="text-2xl md:text-4xl font-bold mb-2 p-2">保存したドリンク一覧</h1>
+    <div class="bg-stone-300 sticky top-0 z-10">
       <!-- 検索と並び替えフォーム -->
       <%= form_tag bookmarks_path, method: :get, class: " p-2" do %>
         <%= text_field_tag :search, params[:search], placeholder: "検索...", class: "input input-bordered" %>
         <%= select_tag :order, options_for_select({ '新しい順': 'created_at_desc', '古い順': 'created_at_asc', 'あいうえお順': 'alphabetical', 'オリジナル順': 'is_original' }, params[:order]), prompt: "並び替え", class: "select select-bordered" %>
         <%= submit_tag "検索と並び替え", class: "btn btn-primary" %>
+        <div class="tooltip tooltip-bottom" data-tip="作成">
+        <%= link_to "javascript:void(0);", onclick: "openNewBookmarkModal()", class: "ml-auto btn btn-outline text-white bg-indigo-500 hover:bg-indigo-600" do %>
+          <i class="fa-regular fa-square-plus fa-sm"></i>
+        <% end %>
+        </div>
       <% end %>
     </div>
+    
     <div class="overflow-x-auto w-11/12 mx-auto max-w-screen-xl">
-      <table class="table w-full">
-        <!-- テーブルのヘッダー -->
-        <thead>
-          <tr>
-            <th class="bg-white">ドリンク名</th>
-            <th class="bg-white">ドリンク言葉</th>
-            <th class="bg-white">操作</th>
-          </tr>
-        </thead>
-        <!-- テーブルのボディ -->
-        <tbody>
-          <% @bookmarks.each do |bookmark| %>
-            <tr>
-              <td>
-                <!-- is_original の場合にアイコンを表示 -->
-                <% if bookmark.is_original %>
-                  <i class="fa-solid fa-whiskey-glass fa-sm"></i>
+      <!-- モーダル -->
+      <div class="text-left">
+        <dialog id="new_bookmark_modal" class="modal">
+          <div class="modal-box">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="closeNewBookmarkModal()">✕</button>
+            </form>
+            <%= render 'bookmarks/new' %>
+          </div>
+        </dialog>
+      </div>
+      <!-- カード一覧 -->
+      <div class="grid grid-cols-3 md:grid-cols-5 gap-4 justify-center">
+        <% @bookmarks.each do |bookmark| %>
+          <div class="flex flex-col items-center bg-white shadow overflow-hidden">
+            <div class="w-full aspect-w-1 aspect-h-1">
+              <%= link_to bookmark_path(bookmark) do %>
+                <% if bookmark.image.present? %>
+                  <%= image_tag bookmark.image.url, alt: "#{bookmark.generated_drink}の画像", class: "w-full h-full object-cover" %>
                 <% else %>
-                  <i class="fa-solid fa-robot fa-sm"></i>
+                  <%= image_tag "kotonoha_drink logo.png", alt: "デフォルト画像", class: "w-full h-full object-cover" %>
                 <% end %>
-                <%= bookmark.generated_drink %>
-              </td>
-              <td><%= bookmark.generated_word %></td>
-              <td>
-                <%= link_to '詳細', bookmark_path(bookmark), class: "btn btn-primary btn-sm" %>
-                <%= link_to '削除', bookmark_path(bookmark), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

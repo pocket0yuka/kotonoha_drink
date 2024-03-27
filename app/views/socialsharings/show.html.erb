@@ -16,7 +16,7 @@
         <div class="relative">
           <div class="absolute top-1 right-2">
             <div class="tooltip tooltip-bottom" data-tip="投稿する">
-              <%= link_to new_post_path(tag_names: @socialsharing.generated_drink, body: @socialsharing.generated_word), class: "btn bg-indigo-500 hover:bg-indigo-400 text-white" do %>
+              <%= link_to posts_path(tag_names: @socialsharing.generated_drink, drink_word: @socialsharing.generated_word, body: @socialsharing.generated_info), class: "btn bg-indigo-500 hover:bg-indigo-400 text-white" do %>
                 <i class="fa-solid fa-pen fa-sm"></i>
               <% end %>
             </div>
@@ -38,7 +38,7 @@
         </div>
 
         <button class="btn btn-outline btn-info bg-black hover:bg-gray-800 text-white">
-          <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@socialsharing.generated_drink}のドリンク言葉は#{@socialsharing.generated_word}らしいよ〜")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
+          <%= link_to "https://twitter.com/intent/tweet?url=#{CGI.escape(request.url)}&text=#{CGI.escape("#{@socialsharing.generated_drink}のドリンク言葉は#{@socialsharing.generated_word}です。#{@socialsharing.generated_info}")}", title: 'Twitter', target: '_blank', class: "flex items-center" do %>
             <i class="fa-brands fa-square-x-twitter fa-lg"></i>にも投稿する？
           <% end %>
         </button>

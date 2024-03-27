@@ -21,8 +21,15 @@ services:
       - redis
     environment:
       REDIS_URL: ${REDIS_URL}
+      CAPYBARA_SERVER_HOST: rails 
+      CAPYBARA_APP_HOST: http://rails
     stdin_open: true
     tty: true
+  
+  selenium_chrome:
+    image: seleniarm/standalone-chromium:4.17.0
+    ports:
+      - '4444:4444'
 
   db:
     image: postgres:16

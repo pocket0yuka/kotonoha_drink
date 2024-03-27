@@ -27,6 +27,21 @@
     <!-- カード -->
     <div class="card w-full bg-white shadow-xl max-w-lg mx-auto">
       <div class="card-body">
+
+
+        <div class="relative">
+          <div class="absolute top-1 right-2">
+            <div class="tooltip tooltip-bottom" data-tip="投稿">
+              <%= link_to posts_path(tag_names:  @bookmark.generated_drink, drink_word: @bookmark.generated_word, body: @bookmark.generated_info ), class: "btn bg-indigo-500 hover:bg-indigo-400 text-white" do %>
+                <i class="fa-solid fa-pen fa-sm"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
+
+
+
         <h2 class="card-title text-4xl mb-4">ドリンク情報</h2>
 
         <!-- is_original の場合 -->
@@ -54,7 +69,9 @@
         </div>
 
         <div class="p-2 text-right">
-          <%= link_to "編集", "javascript:void(0);", onclick: "openEditBookmarkModal()" %>
+            <%= link_to "javascript:void(0);", onclick: "openEditBookmarkModal()", class: "p-2" do %>
+              <i class="fa-solid fa-pen-to-square fa-sm"></i>
+            <% end %>
           <dialog id="edit_bookmark_modal" class="modal">
             <div class="modal-box">
               <form method="dialog">
@@ -63,9 +80,10 @@
               <%= render 'bookmarks/edit' %>
             </div>
           </dialog>
+        <%= link_to bookmark_path, method: :delete, data: { confirm: '本当に削除しますか？' } , class: "p-2" do %>
+          <i class="fa-solid fa-trash fa-sm"></i>
+        <% end %>
         </div>
-
-        <!-- 一覧に戻るリンク -->
         <%= link_to '一覧に戻る', bookmarks_path, class: "btn btn-primary mt-4" %>
       </div>
     </div>

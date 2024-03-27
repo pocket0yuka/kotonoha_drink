@@ -16,7 +16,7 @@ class Bookmark < ApplicationRecord
     image_data = Base64.decode64(base64)
 
     # 一時ファイルを作成、base64をこのファイルに書き込む
-    file = Tempfile.new([filename, '.png'])
+    file = Tempfile.new([filename, '.webp'])
     file.binmode # バイナリモードでの書き込みを指定
     file << image_data # base64データを書き込む
     file.rewind # ファイルポインタを先頭に戻す
@@ -24,6 +24,6 @@ class Bookmark < ApplicationRecord
     # CarrierWaveを使用してアップロード
     self.image = file
     file.close
-    file.unlink # 一時的なファイルのため読み込んだ後削除する
+    # file.unlink # 一時的なファイルのため読み込んだ後削除する
   end
 end

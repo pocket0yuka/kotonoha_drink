@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_24_151618) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_03_210412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_24_151618) do
     t.boolean "is_original"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "image_data"
+    t.string "image_url"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
@@ -67,6 +69,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_24_151618) do
     t.integer "visibility", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
+    t.string "image_cache"
+    t.string "drink_word"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

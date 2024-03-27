@@ -109,6 +109,7 @@ GEM
     devise-i18n (1.12.0)
       devise (>= 4.9.0)
     devise-i18n-views (0.3.7)
+    diff-lcs (1.5.1)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -116,6 +117,11 @@ GEM
     erubi (1.12.0)
     event_stream_parser (1.0.0)
     excon (0.109.0)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-multipart (1.0.4)
@@ -290,6 +296,8 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.1.0)
+    rakuten_web_service (1.13.2)
+      json (~> 2.3)
     ransack (4.1.1)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
@@ -307,6 +315,23 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.1)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.13.1)
     rubocop (1.60.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -344,8 +369,7 @@ GEM
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     rubyzip (2.3.2)
-    selenium-webdriver (4.17.0)
-      base64 (~> 0.2)
+    selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -402,6 +426,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   dotenv-rails
+  factory_bot_rails
   fog-aws
   jbuilder
   jsbundling-rails
@@ -416,8 +441,10 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.8)
   rails-i18n
+  rakuten_web_service
   ransack
   redis
+  rspec-rails
   rubocop
   rubocop-performance
   rubocop-rails

@@ -14,7 +14,7 @@
     <% each_page do |page| %>
       <% if page.left_outer? || page.right_outer? || page.inside_window? %>
         <%# 現在のページかどうかでクラスを変更します %>
-        <% active_class = page.current? ? 'bg-violet-500 text-white' : 'bg-violet-300 text-black' %>
+        <% active_class = page.current? ? 'bg-green-900 text-white' : 'bg-green-500 text-black' %>
         
         <%# ページへのリンクをボタンとして表示します %>
         <%= link_to page, url_for(page: page), class: "join-item btn #{active_class}" %>

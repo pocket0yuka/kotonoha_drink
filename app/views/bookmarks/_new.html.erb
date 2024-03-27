@@ -1,5 +1,4 @@
 <div class="hero min-h-screen bg-gray-100 p-4">
-  <%= render "shared/loading" %>
   <%= form_with model: @bookmark, local: true, class: "w-full max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md" do |form| %>
     <div class="mb-4">
       <%= form.label :generated_drink, 'ドリンク名', class: "block text-gray-700 text-sm font-bold mb-2" %>
@@ -24,7 +23,7 @@
       <% if @bookmark.image.present? %>
         <%= image_tag @bookmark.image.url %>
       <% else %>
-        <%= image_tag 'kotonoha_bookmark.png',id: 'preview-target',size: '250x250' %>
+        <%= image_tag 'kotonoha_bookmark.png',id: 'preview-target',size: '200x200' %>
       <% end %>
     </div>
 
@@ -35,7 +34,7 @@
 
     <%= form.hidden_field :is_original, value: true %>
     <div class="flex items-center justify-end">
-      <%= form.submit 'ブックマークを保存する', class: 'btn btn-primary' %>
+      <%= form.submit '保存する', class: 'btn btn-primary' %>
     </div>
   <% end %>
   </div>

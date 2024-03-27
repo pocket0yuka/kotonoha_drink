@@ -1,0 +1,15 @@
+<div class="hero min-h-screen bg-gray-100">
+  <%= render "shared/loading" %>
+
+  <div class="search-box p-5">
+    <%= form_with url: items_search_path, method: :get, local: true, class: "form-control" do |f| %>
+      <div class="form-group mb-4">
+        <%= f.text_field :keyword, value: params[:keyword], placeholder: "キーワード" ,class: "input input-bordered input-primary w-full max-w-xs" %>
+      </div>
+      <%= f.submit '商品を検索', class: "btn btn-primary" %>
+    <% end %>
+  <% if @items.present? %>
+    <%= render 'items/item' %>
+  <% end %>
+  </div>
+</div>
