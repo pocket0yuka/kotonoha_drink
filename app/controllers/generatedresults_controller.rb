@@ -4,6 +4,7 @@
 class GeneratedresultsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   before_action :initialize_service
+  before_action :check_api_limit
 
   def show
     if params[:keyword].present?
@@ -77,8 +78,12 @@ class GeneratedresultsController < ApplicationController
 
   # API接続回数の確認と制限
   def check_api_limit
+    # paramsからkeywordとstoryの値を取得
+    keyword = params[:keyword].presence
+    story = params.dig(:story_form, :story).presence
+
     # 空文字または空白のみでないことを確認
-    return if story.blank? || keyword.blank?
+    return if story.blank? && keyword.blank?
 
     # ログインしている場合はユーザーID、していない場合はセッションIDを使用
     date = Time.current.to_date.to_s
