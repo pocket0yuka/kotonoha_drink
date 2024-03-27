@@ -86,4 +86,4 @@ https://www.figma.com/file/TzDlpu5ueA88VE0lWfjm1f/%E8%A8%80%E3%81%AE%E8%91%89dri
 
 ### ER 図
 
-[![Image from Gyazo](https://i.gyazo.com/e17d245b92be0d1379e022d073aaad78.png)](https://gyazo.com/e17d245b92be0d1379e022d073aaad78)
+[![Image from Gyazo](https://i.gyazo.com/094c4293ea5c2d7286e6960e0fb454ad.png)](https://gyazo.com/094c4293ea5c2d7286e6960e0fb454ad)
