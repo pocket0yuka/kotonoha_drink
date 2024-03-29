@@ -39,38 +39,42 @@ https://kotonoha-drink.com
 | ユーザー登録・ログイン |
 | :---: |
 | [![Image from Gyazo](https://i.gyazo.com/0e604d2559ee46a77ed3f0a7541a3103.gif)](https://gyazo.com/0e604d2559ee46a77ed3f0a7541a3103) |
+
+| ドリンク生成機能 |
+| :---: |
+| [![Image from Gyazo](https://i.gyazo.com/8e9ab3b580d5ee71051c9ccb314fe9f4.gif)](https://gyazo.com/8e9ab3b580d5ee71051c9ccb314fe9f4) |
+| <p>ドリンク名の入力欄からドリンク言葉の生成。ドリンクの注文欄でどのようなドリンクを希望しているのか入力すると、希望に沿ったドリンクの提案とそのドリンク言葉を生成します。※1日3回までの回数制限があります。</p> |
+
+| 生成結果保存機能 |
+| :---: |
+| [![Image from Gyazo](https://i.gyazo.com/b396b5d56a6e51652481b2bd3658f890.gif)](https://gyazo.com/b396b5d56a6e51652481b2bd3658f890) |
+| [![Image from Gyazo](https://i.gyazo.com/308880cd6515216ea848f2071ec0988e.gif)](https://gyazo.com/308880cd6515216ea848f2071ec0988e) |
+| [![Image from Gyazo](https://i.gyazo.com/a9105c5debaec621a2fe65508a02a244.gif)](https://gyazo.com/a9105c5debaec621a2fe65508a02a244) |
+| <p>生成結果は保存して管理する事ができます。また、Xへ共有する事ができ、共有されたものはみんなが生成したドリンクとして閲覧する事ができます。</p> |
+
+| 投稿機能 |
+| :---: |
+| [![Image from Gyazo](https://i.gyazo.com/7a6065212487c6a81f1649676a34495c.gif)](https://gyazo.com/7a6065212487c6a81f1649676a34495c) |
+| [![Image from Gyazo](https://i.gyazo.com/2749edce6680f6d46aaae3cf39121366.gif)](https://gyazo.com/2749edce6680f6d46aaae3cf39121366) |
+| <p>本日飲んだ一杯について投稿する機能となっています。</br>ドリンクの詳細画面にある投稿ボタンを押すと新規投稿に画像以外のドリンクの情報を入れる事ができます。投稿のタグをクリックすると事でタグ名に関連する商品を検索する事ができます。公開、非公開の選択が可能です。</p>|
+
 - ユーザー登録機能
 - ログイン/ログアウト機能
   - googleログイン機能
 - open AI APIへの接続回数の制限機能(1ユーザーに対して1日3回まで)
   - 日付の変更でリセット、次回使用可能までの時間を表示(フラッシュメッセージ)
-
-| ドリンク生成機能 |
-| :---: |
-| [![Image from Gyazo](https://i.gyazo.com/8e9ab3b580d5ee71051c9ccb314fe9f4.gif)](https://gyazo.com/8e9ab3b580d5ee71051c9ccb314fe9f4) |
 - ドリンク言葉生成機能(ドリンク名からの生成、文章からドリンクの提案と生成)
   - テキスト生成、画像生成機能
-
-| 生成結果保存機能 |
-| :---: |
-| | [![Image from Gyazo](https://i.gyazo.com/b396b5d56a6e51652481b2bd3658f890.gif)](https://gyazo.com/b396b5d56a6e51652481b2bd3658f890) | |
-| [![Image from Gyazo](https://i.gyazo.com/308880cd6515216ea848f2071ec0988e.gif)](https://gyazo.com/308880cd6515216ea848f2071ec0988e) |
   - 生成結果保存機能
     - ドリンクの検索(ドリンク名、ドリンク言葉、ドリンク情報)、並び替え機能
   - シェア機能、xへのソーシャルシェア機能
 - ユーザーによるドリンク言葉の作成・保存機能
-
-| 投稿機能 |
-| :---: |
-| [![Image from Gyazo](https://i.gyazo.com/7a6065212487c6a81f1649676a34495c.gif)](https://gyazo.com/7a6065212487c6a81f1649676a34495c) |
-[![Image from Gyazo](https://i.gyazo.com/2749edce6680f6d46aaae3cf39121366.gif)](https://gyazo.com/2749edce6680f6d46aaae3cf39121366)
 - 本日飲んだ一杯についての投稿機能(画像、タグ、ドリンク言葉、投稿内容)
   - 公開・非公開機能
   - タグ検索機能（オートコンプリート機能）
   - いいね機能
   - ドリンク名のタグからの商品検索機能(楽天商品検索)
   - 画像アップロード機能、プレビュー機能
-
 - プロフィール編集機能
   - 通知機能
 - メニュー表(生成結果のデータを入れたドリンク表)
