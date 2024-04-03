@@ -3,7 +3,7 @@
 # (ソーシャルシェア兼)みんなが作ったドリンク言葉一覧
 class SocialsharingsController < ApplicationController
   def index
-    @socialsharings = Socialsharing.order(created_at: :desc)
+    @socialsharings = Socialsharing.order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def show
